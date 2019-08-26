@@ -1,4 +1,5 @@
 const colors = require('vuetify/es5/util/colors').default
+const env = require('dotenv').config()
 
 module.exports = {
   mode: 'spa',
@@ -20,6 +21,10 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
+   ** Variables from .env file
+   */
+  env: env.parsed,
+  /*
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
@@ -30,7 +35,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/google-maps'],
   /*
    ** Nuxt.js dev-modules
    */
