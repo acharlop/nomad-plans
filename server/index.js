@@ -1,6 +1,10 @@
 const { Nuxt, Builder } = require('nuxt')
 const fastify = require('fastify')({
-  logger: true,
+  logger: {
+    prettyPrint: {
+      levelFirst: true,
+    },
+  },
 })
 
 // Import and Set Nuxt.js options
