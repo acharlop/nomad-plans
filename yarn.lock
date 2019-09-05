@@ -1541,7 +1541,7 @@
     axios-retry "^3.1.2"
     consola "^2.10.1"
 
-"@nuxtjs/eslint-config@^1.0.1":
+"@nuxtjs/eslint-config@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-config/-/eslint-config-1.1.2.tgz#cde4c950014a781bcc34abbfef9c62546d8fc34c"
   integrity sha512-uKBdza1/Poz32gEodQ9MSW8M9CU4RPdvEiSLX5LWyavrbjhXW9iIbzJzSDlgMhD1QfQ5WrWv1iqL3Bh/ArbIgw==
@@ -1614,17 +1614,17 @@
     "@nuxtjs/pwa-utils" "3.0.0-beta.16"
     "@nuxtjs/workbox" "3.0.0-beta.16"
 
-"@nuxtjs/vuetify@^1.0.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.4.0.tgz#edc31c1a260d555b6b84c73f14308ea97f64536d"
-  integrity sha512-1ne92TRtMYZwgyapOxVYxyPA6+tpycb9cc2iDnauTKEMz6Ll7PRxZig7umPJJszQ1gMHcdvKbILrBWVi7Q/2fg==
+"@nuxtjs/vuetify@^1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.6.3.tgz#badbeebd0537ccce7d60b58056ebbbc908519dcf"
+  integrity sha512-4ropWU3aMo5YTpR+rOAs9rKPCphVcsjQnnim9HU6aphOvwkMv1zkms03yDQm0kJKrfwgPfx1t9fqwcdB7eZv7Q==
   dependencies:
     consola "^2.10.1"
     deepmerge "^4.0.0"
     fibers "^4.0.1"
     sass "^1.22.10"
-    sass-loader "^7.3.1"
-    vuetify "^2.0.10"
+    sass-loader "^8.0.0"
+    vuetify "^2.0.14"
     vuetify-loader "^1.3.0"
 
 "@nuxtjs/workbox@3.0.0-beta.16":
@@ -1928,7 +1928,7 @@
     source-map "~0.6.1"
     vue-template-es2015-compiler "^1.9.0"
 
-"@vue/test-utils@^1.0.0-beta.27":
+"@vue/test-utils@^1.0.0-beta.29":
   version "1.0.0-beta.29"
   resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-1.0.0-beta.29.tgz#c942cf25e891cf081b6a03332b4ae1ef430726f0"
   integrity sha512-yX4sxEIHh4M9yAbLA/ikpEnGKMNBCnoX98xE1RwxfhQVcn0MaXNSj1Qmac+ZydTj6VBSEVukchBogXBTwc+9iA==
@@ -7013,7 +7013,7 @@ loader-utils@^0.2.16:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.0, loader-utils@^1.2.3:
+loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.0, loader-utils@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.2.3.tgz#1ff5dc6911c9f0a062531a4c04b609406108c2c7"
   integrity sha512-fkpz8ejdnEMG3s37wGL07iSBDg99O9D5yflE9RGNH3hRdx9SOwYfnGYdZOUIZitN8E+E2vkq3MUMYMvPYl5ZZA==
@@ -9824,15 +9824,15 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass-loader@^7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.3.1.tgz#a5bf68a04bcea1c13ff842d747150f7ab7d0d23f"
-  integrity sha512-tuU7+zm0pTCynKYHpdqaPpe+MMTQ76I9TPZ7i4/5dZsigE350shQWe5EZNl5dBidM49TPET75tNqRbcsUZWeNA==
+sass-loader@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-8.0.0.tgz#e7b07a3e357f965e6b03dd45b016b0a9746af797"
+  integrity sha512-+qeMu563PN7rPdit2+n5uuYVR0SSVwm0JsOUsaJXzgYcClWSlmX0iHDnmeOobPkf5kUglVot3QS6SyLyaQoJ4w==
   dependencies:
     clone-deep "^4.0.1"
-    loader-utils "^1.0.1"
-    neo-async "^2.5.0"
-    pify "^4.0.1"
+    loader-utils "^1.2.3"
+    neo-async "^2.6.1"
+    schema-utils "^2.1.0"
     semver "^6.3.0"
 
 sass@^1.22.10:
@@ -9863,6 +9863,14 @@ schema-utils@^2.0.0:
   dependencies:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
+
+schema-utils@^2.1.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.2.0.tgz#48a065ce219e0cacf4631473159037b2c1ae82da"
+  integrity sha512-5EwsCNhfFTZvUreQhx/4vVQpJ/lnCAkgoIHLhSpp4ZirE+4hzFvdJi0FMub6hxbFVBJYSpeVVmon+2e7uEGRrA==
+  dependencies:
+    ajv "^6.10.2"
+    ajv-keywords "^3.4.1"
 
 scriptjs@^2.5.9:
   version "2.5.9"
@@ -11242,10 +11250,10 @@ vuetify-loader@^1.3.0:
   dependencies:
     loader-utils "^1.2.0"
 
-vuetify@^2.0.10:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.0.10.tgz#652a687bda080f92f9ad784e018f8171cb479100"
-  integrity sha512-JgJJnD4e1/relDtu/448+nBn3J2ncXyk0YH4uZAAGM6XyUOpKMnLvv3Q+ZCnIxA1D6yp+wEknyzsfx2N9MgVwg==
+vuetify@^2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.0.14.tgz#aa0da805075a96662b14d9274c6bb38b7b7212ee"
+  integrity sha512-s7gNKelJT+J4eEpDTJE+Bl7jT9KHy1UQXJsJVL06lHF7JAscsc+hY/OY3xGUvkBOUqslK/r9wS23VG3/9pTZPA==
 
 vuex-persistedstate@^2.5.4:
   version "2.5.4"
