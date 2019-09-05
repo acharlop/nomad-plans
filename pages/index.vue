@@ -12,6 +12,7 @@
 // import GmapMap from 'vue2-google-maps'
 
 export default {
+  layout: 'main',
   // components: {
   //   GmapMap,
   // },

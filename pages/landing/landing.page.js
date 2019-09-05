@@ -1,9 +1,15 @@
+import VFacebookLogin from 'vue-facebook-login-component'
+import config from '~/config'
+
 export default {
-  layout: 'landing',
-  components: {},
+  components: {
+    VFacebookLogin,
+  },
   props: [],
   data() {
-    return {}
+    return {
+      facebookAppId: config.facebook.secret,
+    }
   },
   computed: {},
   mounted() {},
