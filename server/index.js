@@ -12,18 +12,19 @@ let fastifyConfig = {
   },
 }
 
-const devFastifyConfig = {
-  http2: true,
-  https: {
-    allowHTTP1: true, // fallback support for HTTP1
-    key: fs.readFileSync(path.join(__dirname, '..', 'https', 'fastify.key')),
-    cert: fs.readFileSync(path.join(__dirname, '..', 'https', 'fastify.cert')),
-    passphrase: '1234',
-  },
-}
-
 if (isDev) {
-  fastifyConfig = { ...fastifyConfig, ...devFastifyConfig }
+  fastifyConfig = {
+    ...fastifyConfig,
+    http2: true,
+    https: {
+      allowHTTP1: true, // fallback support for HTTP1
+      key: fs.readFileSync(path.join(__dirname, '..', 'https', 'fastify.key')),
+      cert: fs.readFileSync(
+        path.join(__dirname, '..', 'https', 'fastify.cert')
+      ),
+      passphrase: '1234',
+    },
+  }
 }
 const fastify = require('fastify')(fastifyConfig)
 
