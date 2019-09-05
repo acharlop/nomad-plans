@@ -35,13 +35,19 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/google-maps'],
+  plugins: ['~/plugins/google-maps', '~/plugins/local-storage'],
+  /*
+   ** Router configuration
+   */
+  router: {
+    middleware: 'route-auth',
+  },
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify',
   ],
   /*
@@ -86,5 +92,9 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+    splitChunks: {
+      layouts: true,
+      pages: true,
+    },
   },
 }

@@ -1,11 +1,35 @@
+const fs = require('fs')
+const path = require('path')
 const { Nuxt, Builder } = require('nuxt')
-const fastify = require('fastify')({
-  logger: true,
-})
+
+const isDev = process.env.NODE_ENV !== 'production'
+
+let fastifyConfig = {
+  logger: {
+    prettyPrint: {
+      levelFirst: true,
+    },
+  },
+}
+
+const devFastifyConfig = {
+  http2: true,
+  https: {
+    allowHTTP1: true, // fallback support for HTTP1
+    key: fs.readFileSync(path.join(__dirname, '..', 'https', 'fastify.key')),
+    cert: fs.readFileSync(path.join(__dirname, '..', 'https', 'fastify.cert')),
+    passphrase: '1234',
+  },
+}
+
+if (isDev) {
+  fastifyConfig = { ...fastifyConfig, ...devFastifyConfig }
+}
+const fastify = require('fastify')(fastifyConfig)
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
-config.dev = process.env.NODE_ENV !== 'production'
+config.dev = isDev
 
 async function start() {
   // Instantiate nuxt.js
