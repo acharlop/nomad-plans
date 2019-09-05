@@ -35,7 +35,13 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/google-maps'],
+  plugins: ['~/plugins/google-maps', '~/plugins/local-storage'],
+  /*
+   ** Router configuration
+   */
+  router: {
+    middleware: 'route-auth',
+  },
   /*
    ** Nuxt.js dev-modules
    */
