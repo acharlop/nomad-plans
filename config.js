@@ -1,4 +1,4 @@
-export default {
+const config = {
   googleMaps: {
     secret: process.env.GOOGLE_MAPS_API_KEY,
   },
@@ -14,3 +14,5 @@ export default {
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   },
 }
+
+export default config

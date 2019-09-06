@@ -4,6 +4,7 @@ import 'firebase/firestore'
 import 'firebase/database'
 import config from '~/config'
 console.log(JSON.stringify(config, null, 2))
+console.log(process)
 if (!firebase.apps.length) {
   firebase.initializeApp(config.firebase)
 }
