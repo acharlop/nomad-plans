@@ -1,7 +1,7 @@
 const colors = require('vuetify/es5/util/colors').default
 const env = require('dotenv').config()
 
-const config = require('./config').default
+console.log(process.env.GOOGLE_MAPS_API_KEY)
 
 module.exports = {
   mode: 'spa',
@@ -26,8 +26,15 @@ module.exports = {
    ** Variables from .env file
    */
   env: {
-    ...env,
-    ...config,
+    ...env.parsed,
+    firebase: {
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    },
   },
   /*
    ** Customize the progress-bar color
@@ -66,14 +73,14 @@ module.exports = {
       'nuxt-env',
       {
         keys: [
-          { key: 'GOOGLE_MAPS_API_KEY' },
-          { key: 'FACEBOOK_APP_ID' },
-          { key: 'FIREBASE_API_KEY' },
-          { key: 'FIREBASE_AUTH_DOMAIN' },
-          { key: 'FIREBASE_DATABASE_URL' },
-          { key: 'FIREBASE_PROJECT_ID' },
-          { key: 'FIREBASE_STORAGE_BUCKET' },
-          { key: 'FIREBASE_MESSAGING_SENDER_ID' },
+          { key: 'GOOGLE_MAPS_API_KEY', default: env.GOOGLE_MAPS_API_KEY },
+          { key: 'FACEBOOK_APP_ID', default: env.FACEBOOK_APP_ID },
+          { key: 'FIREBASE_API_KEY', default: env.FIREBASE_API_KEY },
+          { key: 'FIREBASE_AUTH_DOMAIN', default: env.FIREBASE_AUTH_DOMAIN },
+          { key: 'FIREBASE_DATABASE_URL', default: env.FIREBASE_DATABASE_URL },
+          { key: 'FIREBASE_PROJECT_ID', default: env.FIREBASE_PROJECT_ID },
+          { key: 'FIREBASE_STORAGE_BUCKET', default: env.FIREBASE_STORAGE_BUCKET },
+          { key: 'FIREBASE_MESSAGING_SENDER_ID', default: env.FIREBASE_MESSAGING_SENDER_ID },
         ],
       },
     ],
