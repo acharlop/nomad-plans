@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/database'
 import config from '~/config'
-
+console.log(JSON.stringify(config, null, 2))
 if (!firebase.apps.length) {
   firebase.initializeApp(config.firebase)
 }
