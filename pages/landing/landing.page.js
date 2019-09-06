@@ -1,5 +1,4 @@
 import VFacebookLogin from 'vue-facebook-login-component'
-import config from '~/config'
 
 export default {
   components: {
@@ -9,12 +8,11 @@ export default {
   data() {
     return {
       // TODO remove if making our own button
-      facebookAppId: config.facebook.secret,
+      facebookAppId: process.env.facebookAppId,
     }
   },
   computed: {},
   created() {
-    console.log(this.$env)
     this.$store
       .dispatch('auth/signInAutomatic')
       .then((loggedIn) => {
