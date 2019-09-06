@@ -1,4 +1,4 @@
-const config = {
+const createConfig = () => ({
   googleMaps: {
     secret: process.env.GOOGLE_MAPS_API_KEY,
   },
@@ -13,6 +13,8 @@ const config = {
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   },
-}
+})
+
+const config = createConfig()
 
 export default config
