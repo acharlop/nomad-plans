@@ -2,7 +2,7 @@ const colors = require('vuetify/es5/util/colors').default
 const env = require('dotenv').config()
 
 const config = require('./config').default
-
+console.log(config)
 module.exports = {
   mode: 'spa',
   /*
