@@ -14,6 +14,7 @@ export default {
   },
   computed: {},
   created() {
+    console.log(this.$env)
     this.$store
       .dispatch('auth/signInAutomatic')
       .then((loggedIn) => {

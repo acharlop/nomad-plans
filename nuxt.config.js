@@ -62,6 +62,21 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // '@nuxtjs/pwa',
+    [
+      'nuxt-env',
+      {
+        keys: [
+          { key: 'GOOGLE_MAPS_API_KEY' },
+          { key: 'FACEBOOK_APP_ID' },
+          { key: 'FIREBASE_API_KEY' },
+          { key: 'FIREBASE_AUTH_DOMAIN' },
+          { key: 'FIREBASE_DATABASE_URL' },
+          { key: 'FIREBASE_PROJECT_ID' },
+          { key: 'FIREBASE_STORAGE_BUCKET' },
+          { key: 'FIREBASE_MESSAGING_SENDER_ID' },
+        ],
+      },
+    ],
   ],
   /*
    ** Axios module configuration
