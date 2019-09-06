@@ -2,7 +2,7 @@ const colors = require('vuetify/es5/util/colors').default
 const env = require('dotenv').config()
 
 const config = require('./config').default
-console.log(config)
+
 module.exports = {
   mode: 'spa',
   /*
@@ -25,7 +25,10 @@ module.exports = {
   /*
    ** Variables from .env file
    */
-  env: !env.error ? env.parsed : config,
+  env: {
+    ...env,
+    ...config,
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -99,6 +102,4 @@ module.exports = {
       pages: true,
     },
   },
-  // custom config
-  config,
 }
