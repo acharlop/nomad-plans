@@ -1,5 +1,5 @@
-import { mount } from '@vue/test-utils'
 import PrivacyPolicyComponentComponent from './index.vue'
+import { mount } from '@/test/test-utils'
 
 describe('PrivacyPolicyComponentComponent', () => {
   // is vue component

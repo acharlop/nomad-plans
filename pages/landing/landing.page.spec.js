@@ -1,10 +1,27 @@
-import { mount } from '@vue/test-utils'
 import LandingPageComponent from './index.vue'
+import { mount } from '@/test/test-utils'
+
+let storeOptions
 
 describe('LandingPageComponent', () => {
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        auth: {
+          state: {},
+          actions: {
+            'auth/signInAutomatic': jest.fn().mockReturnValue(),
+            'auth/signInWithFacebook': jest.fn().mockReturnValue(),
+          },
+          getters: {},
+        },
+      },
+    }
+  })
+
   // is Vue instance
   test('is a Vue instance', () => {
-    const wrapper = mount(LandingPageComponent)
+    const wrapper = mount(LandingPageComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options

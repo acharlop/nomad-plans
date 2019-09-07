@@ -14,4 +14,14 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
   ],
+  setupFiles: ['<rootDir>/test/setup'],
+  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 80,
+  //     functions: 80,
+  //     lines: 80,
+  //     statements: -10,
+  //   },
+  // },
 }
