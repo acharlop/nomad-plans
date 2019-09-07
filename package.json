@@ -14,14 +14,19 @@
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore . && prettier --write ./**{js,vue}",
+    "lint:fix": "yarn lint --fix && yarn prettier:fix",
+    "prettier": "prettier **/**.{js,vue}",
+    "prettier:fix": "prettier --write **/**.{js,vue}",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --collect-coverage",
-    "test:ci": "jest --collect-coverage"
+    "test:ci": "yarn test:cover"
   },
   "lint-staged": {
-    "*.{js,vue}": "eslint"
+    "*.{js,vue}": [
+      "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+      "prettier --write **/**.{js,vue}"
+    ]
   },
   "husky": {
     "hooks": {
