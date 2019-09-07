@@ -1,15 +1,9 @@
-import VFacebookLogin from 'vue-facebook-login-component'
+import Vue from 'vue'
 
-export default {
-  components: {
-    VFacebookLogin,
-  },
+export default Vue.component('LandingPageComponent', {
   props: [],
   data() {
-    return {
-      // TODO remove if making our own button
-      facebookAppId: process.env.facebookAppId,
-    }
+    return {}
   },
   computed: {},
   created() {
@@ -34,4 +28,4 @@ export default {
         })
     },
   },
-}
+})

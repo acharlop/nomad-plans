@@ -1,5 +1,5 @@
-import { mount } from '@vue/test-utils'
 import MainLayoutComponent from '../main'
+import { mount } from '@/test/test-utils'
 
 describe('MainLayoutComponent', () => {
   // is Vue instance
