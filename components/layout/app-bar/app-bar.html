@@ -1,0 +1,100 @@
+<v-app-bar fixed app>
+  <!--    <v-app-bar-nav-icon @click.stop="drawer = !drawer" />-->
+  <v-avatar class="ml-1 mr-2 d-none d-sm-inline">
+    <fa class="icon i-globe" :icon="iconGlobe" />
+  </v-avatar>
+  <v-toolbar-title v-text="title" />
+  <v-spacer />
+  <!--  buttons for medium and up -->
+  <v-btn class="ma-2 d-none d-sm-inline" tile depressed color="transparent">
+    <v-icon left>mdi-plus-circle-outline</v-icon> NEW PLAN
+  </v-btn>
+  <v-btn class="ma-2 d-none d-sm-inline" tile depressed color="transparent">PLANS</v-btn>
+  <!-- buttons form sm and down -->
+  <v-btn class="ma-2 d-sm-none" icon color="transparent" small>
+    <fa class="icon-small" :icon="iconAdd" />
+  </v-btn>
+  <v-btn class="ma-2 d-sm-none" icon color="transparent" small>
+    <fa class="icon-small" :icon="iconMap" />
+  </v-btn>
+
+  <!-- dropdown -->
+  <v-menu
+    v-model="profileMenu"
+    :close-on-content-click="false"
+    :nudge-width="210"
+    :nudge-left="210"
+    :nudge-top="-20"
+    offset-y
+  >
+    <template v-slot:activator="{ on }">
+      <v-btn icon class="ma-2" color="transparent" v-on="on">
+        <v-avatar size="36">
+          <img :src="photoURL" alt="user avatar">
+        </v-avatar>
+      </v-btn>
+    </template>
+
+    <v-card>
+      <v-list>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>{{name}}</v-list-item-title>
+            <v-list-item-subtitle>{{email}}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list-item>
+        <v-list-item-content>
+          <v-btn tile depressed color="transparent" left>Send Invites</v-btn>
+        </v-list-item-content>
+      </v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+
+      <v-list-item>
+        <v-list-item-content>
+          <v-btn tile depressed color="transparent" left>Legal stuff</v-btn>
+        </v-list-item-content>
+      </v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list-item>
+        <v-list-item-content>
+          <auth-button></auth-button>
+        </v-list-item-content>
+      </v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list-item>
+        <v-list-item-content>
+          <v-row justify="center">
+            <v-col cols="6" md="4">
+              <v-btn icon large class="ma-1" color="transparent">
+                <fa class="icon i-page" :icon="iconPage" />
+              </v-btn>
+            </v-col>
+            <v-col cols="6" md="4">
+              <v-btn icon large class="ma-1" color="transparent">
+                <fa class="icon i-message" :icon="iconMessage" />
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-list-item-content>
+      </v-list-item>
+      </v-list>
+    </v-card>
+  </v-menu>
+
+
+
+</v-app-bar>

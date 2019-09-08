@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import AuthButton from '@/components/auth-button'
+import AppBar from '@/components/layout/app-bar'
 
 export default Vue.component('MainLayout', {
   components: {
-    AuthButton,
+    AppBar,
   },
   props: [],
   data() {
@@ -25,7 +25,6 @@ export default Vue.component('MainLayout', {
       ],
       miniVariant: false,
       right: true,
-      title: 'Nomad Maps',
     }
   },
   computed: {},
