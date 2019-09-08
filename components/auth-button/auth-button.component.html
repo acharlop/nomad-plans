@@ -1,4 +1,4 @@
-<button @click="isAuthenticated ? logout() : login()">
-  <fa :icon="icon" />
-  <span>Sign {{ isNewUser ? 'up' : isAuthenticated ? 'out' : 'in' }} with Facebook</span>
+<button class="auth-button" @click="isAuthenticated ? logout() : login()">
+  <fa class="icon" :icon="icon" />
+  <div class="text">Sign {{ isNewUser ? 'up' : isAuthenticated ? 'out' : 'in' }} with Facebook</div>
 </button>
