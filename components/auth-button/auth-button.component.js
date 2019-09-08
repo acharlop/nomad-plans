@@ -6,9 +6,7 @@ export default Vue.component('AuthButton', {
   components: {},
   props: {},
   data() {
-    return {
-      nextStep: this.isNewUser ? 'up' : this.isAuthenticated ? 'out' : 'in',
-    }
+    return {}
   },
   computed: {
     ...mapState({

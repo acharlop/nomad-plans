@@ -1,10 +1,32 @@
-import { mount } from '@vue/test-utils'
 import AuthButtonComponentComponent from './index.vue'
+import { shallow } from '@/test/test-utils'
+
+let storeOptions
 
 describe('AuthButtonComponentComponent', () => {
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        auth: {
+          namespaced: true,
+          state: {
+            isNewUser: false,
+            isAuthenticated: false,
+          },
+          actions: {
+            signInAutomatic: jest.fn().mockReturnValue(),
+            signInWithFacebook: jest.fn().mockReturnValue(),
+            signOut: jest.fn().mockReturnValue(),
+          },
+          getters: {},
+        },
+      },
+    }
+  })
+
   // is vue component
   test('is Vue component', () => {
-    const wrapper = mount(AuthButtonComponentComponent)
+    const wrapper = shallow(AuthButtonComponentComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options
