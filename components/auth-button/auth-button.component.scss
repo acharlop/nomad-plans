@@ -1,0 +1,32 @@
+.auth-button {
+  height: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: #4267b2;
+  outline: none;
+  overflow: hidden;
+
+  &:hover, &:active {
+    outline: none;
+  }
+
+  .icon {
+    height: 24px;
+    width: 24px;
+    margin: 8px;
+    padding: 0;
+  }
+
+  .text {
+    display: inline-flex;
+    font-size: 16px;
+    border: none;
+    letter-spacing: .25px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+    margin: 0 12px 0 6px;
+  }
+}

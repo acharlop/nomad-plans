@@ -12,7 +12,7 @@ const defaultState = {
     firebaseUID: empty,
   },
   isAuthenticated: false,
-  isNewUser: false,
+  isNewUser: true,
 }
 
 export const state = () => defaultState
@@ -39,26 +39,31 @@ export const mutations = {
       firebaseUID: payload.uid,
     }
   },
-  setAdditionalInfo(state, payload) {
-    state.isNewUser = payload.isNewUser
+  setNewUser(state, payload) {
+    state.isNewUser = payload
   },
   setLoggedIn(state, payload) {
     state.isAuthenticated = payload
   },
   resetUser(state) {
-    state = defaultState
+    state.user = defaultState.user
   },
 }
 
 export const actions = {
   signInWithFacebook({ commit }) {
     return new Promise((resolve, reject) => {
-      auth.signInWithPopup(FacebookAuthProvider).then((response) => {
-        commit('setUser', response.user)
-        commit('setAdditionalInfo', response.additionalUserInfo)
-        commit('setLoggedIn', true)
-        resolve()
-      })
+      auth
+        .signInWithPopup(FacebookAuthProvider)
+        .then((response) => {
+          commit('setUser', response.user)
+          commit('setNewUser', false)
+          commit('setLoggedIn', true)
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
     })
   },
 
@@ -67,6 +72,7 @@ export const actions = {
       auth.onAuthStateChanged((user) => {
         if (user) {
           commit('setUser', user)
+          commit('setNewUser', false)
           commit('setLoggedIn', true)
           resolve(true)
         }
@@ -76,8 +82,12 @@ export const actions = {
   },
 
   signOut({ commit }) {
-    auth.signOut().then(() => {
-      commit('resetUser')
+    return new Promise((resolve, reject) => {
+      auth.signOut().then(() => {
+        commit('resetUser')
+        commit('setLoggedIn', false)
+        resolve()
+      })
     })
   },
 }

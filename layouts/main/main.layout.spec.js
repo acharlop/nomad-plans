@@ -1,10 +1,10 @@
 import MainLayoutComponent from '../main'
-import { mount } from '@/test/test-utils'
+import { shallow } from '@/test/test-utils'
 
 describe('MainLayoutComponent', () => {
   // is Vue instance
-  test('is Vue instance', () => {
-    const wrapper = mount(MainLayoutComponent)
+  test('is Vue instance', async () => {
+    const wrapper = await shallow(MainLayoutComponent)
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options
