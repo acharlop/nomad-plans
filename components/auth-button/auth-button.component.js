@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { mapState, mapActions } from 'vuex'
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
 
 export default Vue.component('AuthButton', {
   components: {},
