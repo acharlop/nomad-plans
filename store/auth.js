@@ -53,12 +53,17 @@ export const mutations = {
 export const actions = {
   signInWithFacebook({ commit }) {
     return new Promise((resolve, reject) => {
-      auth.signInWithPopup(FacebookAuthProvider).then((response) => {
-        commit('setUser', response.user)
-        commit('setNewUser', false)
-        commit('setLoggedIn', true)
-        resolve()
-      })
+      auth
+        .signInWithPopup(FacebookAuthProvider)
+        .then((response) => {
+          commit('setUser', response.user)
+          commit('setNewUser', false)
+          commit('setLoggedIn', true)
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
     })
   },
 
