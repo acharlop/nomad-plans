@@ -7,7 +7,16 @@ if (!firebase.apps.length) {
   firebase.initializeApp(process.env.firebase)
 }
 
-export const FacebookAuthProvider = new firebase.auth.FacebookAuthProvider()
+const authProvider = new firebase.auth.FacebookAuthProvider()
+authProvider.addScope('email')
+authProvider.addScope('user_birthday')
+authProvider.addScope('user_friends')
+authProvider.addScope('user_hometown')
+authProvider.addScope('user_location')
+authProvider.addScope('user_link')
+
+export const FacebookAuthProvider = authProvider
+
 export const auth = firebase.auth()
 export const DB = firebase.database()
 export const StoreDB = firebase.firestore()
