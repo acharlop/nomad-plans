@@ -37,6 +37,7 @@ export default Vue.component('AppBar', {
   mounted() {},
   methods: {
     showDialog() {
+      this.profileMenu = false
       this.legalDialog = true
     },
     hideDialog() {
