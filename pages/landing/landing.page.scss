@@ -21,27 +21,27 @@
   background-color: white;
   color: var(--v-info-darken2);
   padding: 75px 25px 50px;
+}
 
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .inner-wrapper {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 75px;
-  }
+.inner-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 75px;
+}
 
-  p, small, h2 {
-    user-select: none;
-    cursor: default;
-  }
+p, small, h2 {
+  user-select: none;
+  cursor: default;
 }
 
 @media (max-width: 600px) {

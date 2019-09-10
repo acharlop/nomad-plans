@@ -30,7 +30,7 @@
   >
     <v-row>
       <v-col class="wrapper">
-        <div :class="{ 'inner-wrapper': $vuetify.breakpoint.smAndUp }">
+        <div class="inner-wrapper">
           <v-avatar size="72" color="info darken-2" class="mb-10">
             <v-icon dark size="56">mdi-account-circle</v-icon>
           </v-avatar>
@@ -50,7 +50,7 @@
             <a @click="toggleNewUser">
               <b>Sign {{ isNewUser ? 'In' : 'Up' }}</b>
             </a>
-            <span v-if="isNewUser">
+            <span v-if="!isNewUser">
               <br />It's free
             </span>
           </p>
