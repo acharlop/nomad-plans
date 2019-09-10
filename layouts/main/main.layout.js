@@ -1,31 +1,16 @@
 import Vue from 'vue'
+
 import AppBar from '@/components/layout/app-bar'
+import SideDrawer from '@/components/layout/side-drawer'
 
 export default Vue.component('MainLayout', {
   components: {
     AppBar,
+    SideDrawer,
   },
   props: [],
   data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        // {
-        //   icon: 'mdi-apps',
-        //   title: 'Welcome',
-        //   to: '/',
-        // },
-        // {
-        //   icon: 'mdi-chart-bubble',
-        //   title: 'Inspire',
-        //   to: '/inspire',
-        // },
-      ],
-      miniVariant: false,
-      right: true,
-    }
+    return {}
   },
   computed: {},
   mounted() {},
