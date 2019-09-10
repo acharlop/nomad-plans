@@ -39,10 +39,10 @@
           <p v-if="!isNewUser">Welcome back!</p>
           <auth-button style="color: white;" class="mt-10 mb-4"></auth-button>
           <small v-if="isNewUser" class="legal">By signing up you agree to
-            <a @click.stop="showDialog">Privacy Policy</a>
+            <a @click.stop="showDialog('privacy')">Privacy Policy</a>
             <br />
-            and <a @click.stop="showDialog">Terms of Service</a>
-            <LegalDialog :visible="legalDialog" @close="hideDialog"></LegalDialog>
+            and <a @click.stop="showDialog('service')">Terms of Service</a>
+            <LegalDialog :tab="legalDialogTab" :visible="legalDialog" @close="hideDialog"></LegalDialog>
           </small>
         </div>
         <div>

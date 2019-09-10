@@ -1,7 +1,29 @@
 <v-dialog  max-width="600" v-model="show">
   <v-card>
+    <!-- header -->
     <v-card-title>
       <span class="headline">Terms of Service and Privacy Policy</span>
     </v-card-title>
+
+    <!-- text -->
+    <v-card-text class="pa-0">
+      <v-tabs v-model="selectedTab" fixed-tabs>
+        <v-tab key="service" href="#tab-service">service</v-tab>
+        <v-tab key="privacy" href="#tab-privacy">privacy</v-tab>
+          <v-tab-item key="service" value="tab-service" class="ma-4">
+            <terms-of-service></terms-of-service>
+          </v-tab-item>
+
+          <v-tab-item key="privacy" value="tab-privacy" class="ma-4">
+            <privacy-policy></privacy-policy>
+          </v-tab-item>
+      </v-tabs>
+    </v-card-text>
+
+    <!-- footer -->
+    <v-card-actions>
+      <div class="flex-grow-1"></div>
+      <v-btn color="green darken-1" text @click="show = false">close</v-btn>
+    </v-card-actions>
   </v-card>
 </v-dialog>

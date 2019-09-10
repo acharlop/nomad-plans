@@ -13,6 +13,7 @@ export default Vue.component('LandingPageComponent', {
   data() {
     return {
       legalDialog: false,
+      legalDialogTab: 'service',
     }
   },
   computed: {
@@ -23,7 +24,8 @@ export default Vue.component('LandingPageComponent', {
   created() {},
   methods: {
     ...mapMutations('auth', ['toggleNewUser']),
-    showDialog() {
+    showDialog(tab) {
+      this.legalDialogTab = tab
       this.legalDialog = true
     },
     hideDialog() {

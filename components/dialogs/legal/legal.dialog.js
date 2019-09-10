@@ -1,11 +1,20 @@
 import Vue from 'vue'
+import PrivacyPolicyComponent from '@/components/privacy-policy'
+import TermsOfServiceComponent from '@/components/terms-of-service'
 
 export default Vue.component('LegalDialog', {
-  components: {},
+  components: {
+    PrivacyPolicyComponent,
+    TermsOfServiceComponent,
+  },
   props: {
     visible: {
       type: Boolean,
       default: true,
+    },
+    tab: {
+      type: String,
+      default: 'service',
     },
   },
   data() {
@@ -20,6 +29,11 @@ export default Vue.component('LegalDialog', {
       },
       set(value) {
         if (!value) this.$emit('close')
+      },
+    },
+    selectedTab: {
+      get() {
+        return `tab-${this.tab}`
       },
     },
   },
