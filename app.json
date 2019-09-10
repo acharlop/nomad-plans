@@ -1,0 +1,61 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "heroku pipeline",
+  "env": {
+    "FACEBOOK_APP_ID": {
+      "required": true
+    },
+    "FIREBASE_API_KEY": {
+      "required": true
+    },
+    "FIREBASE_APP_ID": {
+      "required": true
+    },
+    "FIREBASE_AUTH_DOMAIN": {
+      "required": true
+    },
+    "FIREBASE_AUTH_REDIRECT_URL": {
+      "required": true
+    },
+    "FIREBASE_DATABASE_URL": {
+      "required": true
+    },
+    "FIREBASE_MESSAGING_SENDER_ID": {
+      "required": true
+    },
+    "FIREBASE_PROJECT_ID": {
+      "required": true
+    },
+    "FIREBASE_STORAGE_BUCKET": {
+      "required": true
+    },
+    "GOOGLE_MAPS_API_KEY": {
+      "required": true
+    },
+    "HOST": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "nomad-plans",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
