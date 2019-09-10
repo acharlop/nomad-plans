@@ -7,17 +7,17 @@
   <v-col
     md="8"
     sm="6"
-    align="center"
-    justify="center"
     class="d-none d-sm-flex fill-height panel-map"
   >
-<!--    <MapSvg class="map" />-->
     <div class="map-text">
       <h1 style="">Traveling Together<br />With Your Best Nomad Friends</h1>
       <p>See where your Nomad friends are right now, what their plans for next<br/>
         moth or season. Add your plans to share them with those whom you<br />
         loving to spend time with.
       </p>
+    </div>
+    <div class="photo-credit">
+      <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@iambrettzeck?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Brett Zeck"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Photo: Brett Zeck</span></a>
     </div>
   </v-col>
   <v-col
@@ -30,14 +30,14 @@
   >
     <v-row>
       <v-col class="wrapper">
-        <div>
+        <div :class="{ 'inner-wrapper': $vuetify.breakpoint.smAndUp }">
           <v-avatar size="72" color="info darken-2" class="mb-10">
             <v-icon dark size="56">mdi-account-circle</v-icon>
           </v-avatar>
           <h2 class="mb-4">Nomad Plans</h2>
           <p v-if="isNewUser">Sign up with Facebook to create<br />an account</p>
           <p v-if="!isNewUser">Welcome back!</p>
-          <auth-button style="color: white;" class="mt-12 mb-4"></auth-button>
+          <auth-button style="color: white;" class="mt-10 mb-4"></auth-button>
           <small v-if="isNewUser" class="legal">By signing up you agree to <a>Privacy Policy</a><br />and <a>Terms of Service</a></small>
         </div>
         <div>

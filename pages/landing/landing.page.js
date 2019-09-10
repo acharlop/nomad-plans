@@ -15,8 +15,7 @@ export default Vue.component('LandingPageComponent', {
   },
   computed: {
     ...mapState({
-      isNewUser: (state) =>
-        state.auth.isNewUser,
+      isNewUser: (state) => state.auth.isNewUser,
     }),
   },
   created() {},
