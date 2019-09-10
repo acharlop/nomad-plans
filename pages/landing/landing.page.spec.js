@@ -1,10 +1,28 @@
 import LandingPageComponent from './index.vue'
 import { shallow } from '@/test/test-utils'
 
+let storeOptions
+
 describe('LandingPageComponent', () => {
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        auth: {
+          namespaced: true,
+          state: {
+            isNewUser: false,
+          },
+          mutations: {
+            toggleNewUser: jest.fn(),
+          },
+        },
+      },
+    }
+  })
+
   // is Vue instance
   test('is a Vue instance', () => {
-    const wrapper = shallow(LandingPageComponent)
+    const wrapper = shallow(LandingPageComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options

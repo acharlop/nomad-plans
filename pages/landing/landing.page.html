@@ -35,14 +35,14 @@
             <v-icon dark size="56">mdi-account-circle</v-icon>
           </v-avatar>
           <h2 class="mb-4">Nomad Plans</h2>
-          <p v-if="signUp">Sign up with Facebook to create<br />an account</p>
-          <p v-if="!signUp">Welcome back!</p>
+          <p v-if="isNewUser">Sign up with Facebook to create<br />an account</p>
+          <p v-if="!isNewUser">Welcome back!</p>
           <auth-button style="color: white;" class="mt-12 mb-4"></auth-button>
-          <small v-if="signUp" class="legal">By signing up you agree to <a>Privacy Policy</a><br />and <a>Terms of Service</a></small>
+          <small v-if="isNewUser" class="legal">By signing up you agree to <a>Privacy Policy</a><br />and <a>Terms of Service</a></small>
         </div>
         <div>
-          <p v-if="signUp">Already have an account? <a><b>Sign In</b></a></p>
-          <p v-if="!signUp">Don't have an account? <a><b>Sign Up</b></a><br />It's free.</p>
+          <p v-if="isNewUser">Already have an account? <a @click="toggleNewUser"><b>Sign In</b></a></p>
+          <p v-if="!isNewUser">Don't have an account? <a @click="toggleNewUser"><b>Sign Up</b></a><br />It's free.</p>
         </div>
       </v-col>
     </v-row>

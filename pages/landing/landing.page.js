@@ -1,19 +1,26 @@
 import Vue from 'vue'
+import { mapState, mapMutations } from 'vuex'
+
 import AuthButton from '@/components/auth-button'
-import MapSvg from '@/assets/svgs/world.svg'
+// import MapSvg from '@/assets/svgs/world.svg'
 
 export default Vue.component('LandingPageComponent', {
   components: {
     AuthButton,
-    MapSvg,
+    // MapSvg,
   },
   props: [],
   data() {
-    return {
-      signUp: false,
-    }
+    return {}
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      isNewUser: (state) =>
+        state.auth.isNewUser,
+    }),
+  },
   created() {},
-  methods: {},
+  methods: {
+    ...mapMutations('auth', ['toggleNewUser']),
+  },
 })
