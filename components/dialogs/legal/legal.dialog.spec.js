@@ -1,5 +1,5 @@
-import { mount } from '@vue/test-utils'
 import LegalDialogComponent from './index.vue'
+import { mount } from '@/test/test-utils'
 
 describe('LegalDialogComponent', () => {
   // is vue component
