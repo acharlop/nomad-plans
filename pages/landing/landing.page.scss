@@ -1,3 +1,59 @@
-.landing-page {
-
+.panel-map {
+  //background-color: var(--v-info-darken2);
+  position: relative;
 }
+
+.map {
+  fill: var(--v-info-darken2);
+  stroke: red;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.map-text {
+  color: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.panel-cta {
+  background-color: white;
+  color: var(--v-info-darken2);
+  padding: 75px 25px 50px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  p, small, h2 {
+    user-select: none;
+    cursor: default;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel-cta {
+    padding: 50px 25px 25px;
+  }
+}
+
+small a {
+  text-decoration: underline;
+
+  &:hover {
+    font-weight: bold;
+  }
+  &:active {
+    font-weight: normal;
+  }
+}
+

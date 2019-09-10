@@ -1,4 +1,50 @@
-<section class="landing-page">
-  <h1>Welcome to Nomad Plans!</h1>
-  <auth-button></auth-button>
-</section>
+<v-row
+  align="center"
+  justify="center"
+  no-gutters
+  class="d-flex fill-height"
+>
+  <v-col
+    md="8"
+    sm="6"
+    align="center"
+    justify="center"
+    class="d-none d-sm-flex fill-height panel-map"
+  >
+<!--    <MapSvg class="map" />-->
+    <div class="map-text">
+      <h1 style="">Traveling Together<br />With Your Best Nomad Friends</h1>
+      <p>See where your Nomad friends are right now, what their plans for next<br/>
+        moth or season. Add your plans to share them with those whom you<br />
+        loving to spend time with.
+      </p>
+    </div>
+  </v-col>
+  <v-col
+    md="4"
+    sm="6"
+    xs="12"
+    align="center"
+    justify="center"
+    class="d-flex fill-height panel-cta"
+  >
+    <v-row>
+      <v-col class="wrapper">
+        <div>
+          <v-avatar size="72" color="info darken-2" class="mb-10">
+            <v-icon dark size="56">mdi-account-circle</v-icon>
+          </v-avatar>
+          <h2 class="mb-4">Nomad Plans</h2>
+          <p v-if="signUp">Sign up with Facebook to create<br />an account</p>
+          <p v-if="!signUp">Welcome back!</p>
+          <auth-button style="color: white;" class="mt-12 mb-4"></auth-button>
+          <small v-if="signUp" class="legal">By signing up you agree to <a>Privacy Policy</a><br />and <a>Terms of Service</a></small>
+        </div>
+        <div>
+          <p v-if="signUp">Already have an account? <a><b>Sign In</b></a></p>
+          <p v-if="!signUp">Don't have an account? <a><b>Sign Up</b></a><br />It's free.</p>
+        </div>
+      </v-col>
+    </v-row>
+  </v-col>
+</v-row>
