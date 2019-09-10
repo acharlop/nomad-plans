@@ -1,6 +1,13 @@
 .legal-dialog {
 
 }
+
+.scroll-fix {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+// fix for left margin
 .v-tabs-bar.v-tabs-bar--is-mobile .v-tab {
   margin-left: 0px !important;
 }

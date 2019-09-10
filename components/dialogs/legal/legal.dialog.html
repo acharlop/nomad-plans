@@ -2,7 +2,7 @@
   <v-card>
     <!-- header -->
     <v-card-title class="pa-0">
-      <v-toolbar dark color="primary" app fixed>
+      <v-toolbar dark color="primary" app fixed class="pr-o">
         <v-toolbar-title>Terms and Conditions and Privacy Policy</v-toolbar-title>
         <div class="flex-grow-1"></div>
         <v-toolbar-items>
@@ -19,11 +19,11 @@
         <v-tab key="service" href="#tab-service">Terms and Conditions</v-tab>
         <v-tab key="privacy" href="#tab-privacy">Privacy Policy</v-tab>
           <v-tab-item key="service" value="tab-service" class="ma-4">
-            <terms-of-service style="overflow: scroll; -webkit-overflow-scrolling: touch;"></terms-of-service>
+            <terms-of-service class="scroll-fix"></terms-of-service>
           </v-tab-item>
 
           <v-tab-item key="privacy" value="tab-privacy" class="ma-4">
-            <privacy-policy style="overflow: scroll; -webkit-overflow-scrolling: touch;"></privacy-policy>
+            <privacy-policy  class="scroll-fix"></privacy-policy>
           </v-tab-item>
       </v-tabs>
     </v-card-text>
