@@ -15,6 +15,8 @@ export default {
         secondary: colors.amber.base,
         secondaryLight: '#fff350',
         secondaryDark: '#c79100',
+
+        anchor: colors.blue.darken2,
       },
     },
   },

@@ -7,16 +7,19 @@ import { faMap } from '@fortawesome/free-solid-svg-icons/faMap'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle'
 
 import AuthButton from '@/components/auth-button'
+import LegalDialog from '@/components/dialogs/legal'
 
 export default Vue.component('AppBar', {
   components: {
     AuthButton,
+    LegalDialog,
   },
   props: [],
   data() {
     return {
       title: 'Nomad Maps',
       profileMenu: false,
+      legalDialog: false,
     }
   },
   computed: {
@@ -24,23 +27,20 @@ export default Vue.component('AppBar', {
       photoURL: (state) => `${state.auth.user.photoURL}?height=36&width=36`,
       name: (state) => state.auth.user.displayName,
       email: (state) => state.auth.user.email,
-      iconPage() {
-        return faFacebook
-      },
-      iconMessage() {
-        return faFacebookMessenger
-      },
-      iconGlobe() {
-        return faGlobe
-      },
-      iconMap() {
-        return faMap
-      },
-      iconAdd() {
-        return faPlusCircle
-      },
+      iconPage: () => faFacebook,
+      iconMessage: () => faFacebookMessenger,
+      iconGlobe: () => faGlobe,
+      iconMap: () => faMap,
+      iconAdd: () => faPlusCircle,
     }),
   },
   mounted() {},
-  methods: {},
+  methods: {
+    showDialog() {
+      this.legalDialog = true
+    },
+    hideDialog() {
+      this.legalDialog = false
+    },
+  },
 })

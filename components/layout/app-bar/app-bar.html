@@ -19,6 +19,7 @@
   </v-btn>
 
   <!-- dropdown -->
+  <!-- TODO this should be separate component -->
   <v-menu
     v-model="profileMenu"
     :close-on-content-click="false"
@@ -49,7 +50,7 @@
 
       <v-list-item>
         <v-list-item-content>
-          <v-btn tile depressed color="transparent" left>Send Invites</v-btn>
+          <v-btn tile depressed color="transparent" block>Send Invites</v-btn>
         </v-list-item-content>
       </v-list-item>
       </v-list>
@@ -59,7 +60,8 @@
 
       <v-list-item>
         <v-list-item-content>
-          <v-btn tile depressed color="transparent" left>Legal stuff</v-btn>
+          <v-btn tile depressed color="transparent" block @click.stop="showDialog">Legal stuff</v-btn>
+          <LegalDialog :visible="legalDialog" @close="showDialog"></LegalDialog>
         </v-list-item-content>
       </v-list-item>
       </v-list>

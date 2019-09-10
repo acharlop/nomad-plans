@@ -42,6 +42,9 @@ export const mutations = {
   setNewUser(state, payload) {
     state.isNewUser = payload
   },
+  toggleNewUser(state) {
+    state.isNewUser = !state.isNewUser
+  },
   setLoggedIn(state, payload) {
     state.isAuthenticated = payload
   },
