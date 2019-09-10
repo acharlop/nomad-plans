@@ -38,11 +38,22 @@
           <p v-if="isNewUser">Sign up with Facebook to create<br />an account</p>
           <p v-if="!isNewUser">Welcome back!</p>
           <auth-button style="color: white;" class="mt-10 mb-4"></auth-button>
-          <small v-if="isNewUser" class="legal">By signing up you agree to <a>Privacy Policy</a><br />and <a>Terms of Service</a></small>
+          <small v-if="isNewUser" class="legal">By signing up you agree to
+            <a @click.stop="showDialog">Privacy Policy</a>
+            <br />
+            and <a @click.stop="showDialog">Terms of Service</a>
+            <LegalDialog :visible="legalDialog" @close="hideDialog"></LegalDialog>
+          </small>
         </div>
         <div>
-          <p v-if="isNewUser">Already have an account? <a @click="toggleNewUser"><b>Sign In</b></a></p>
-          <p v-if="!isNewUser">Don't have an account? <a @click="toggleNewUser"><b>Sign Up</b></a><br />It's free.</p>
+          <p>{{ isNewUser ? 'Already' : 'Don\'t' }} have an account?
+            <a @click="toggleNewUser">
+              <b>Sign {{ isNewUser ? 'In' : 'Up' }}</b>
+            </a>
+            <span v-if="isNewUser">
+              <br />It's free
+            </span>
+          </p>
         </div>
       </v-col>
     </v-row>

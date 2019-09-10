@@ -2,16 +2,18 @@ import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 
 import AuthButton from '@/components/auth-button'
-// import MapSvg from '@/assets/svgs/world.svg'
+import LegalDialog from '@/components/dialogs/legal'
 
 export default Vue.component('LandingPageComponent', {
   components: {
     AuthButton,
-    // MapSvg,
+    LegalDialog,
   },
   props: [],
   data() {
-    return {}
+    return {
+      legalDialog: false,
+    }
   },
   computed: {
     ...mapState({
@@ -21,5 +23,11 @@ export default Vue.component('LandingPageComponent', {
   created() {},
   methods: {
     ...mapMutations('auth', ['toggleNewUser']),
+    showDialog() {
+      this.legalDialog = true
+    },
+    hideDialog() {
+      this.legalDialog = false
+    },
   },
 })
