@@ -1,9 +1,18 @@
-<v-dialog  max-width="600" v-model="show">
+<v-dialog max-width="600" v-model="show" :fullscreen="$vuetify.breakpoint.xsOnly"  transition="dialog-bottom-transition" scrollable>
   <v-card>
     <!-- header -->
-    <v-card-title>
-      <span class="headline">Terms of Service and Privacy Policy</span>
-    </v-card-title>
+    <v-card-header>
+      <v-toolbar dark color="primary" app fixed>
+        <v-btn icon dark @click="show = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-toolbar-title>Terms of Service and Privacy Policy</v-toolbar-title>
+        <div class="flex-grow-1"></div>
+        <v-toolbar-items>
+          <v-btn dark text @click="show = false">Close</v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+    </v-card-header>
 
     <!-- text -->
     <v-card-text class="pa-0">

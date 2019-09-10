@@ -61,7 +61,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-btn tile depressed color="transparent" block @click.stop="showDialog">Legal stuff</v-btn>
-          <LegalDialog :visible="legalDialog" @close="showDialog"></LegalDialog>
+          <LegalDialog :visible="legalDialog" @close="hideDialog"></LegalDialog>
         </v-list-item-content>
       </v-list-item>
       </v-list>
