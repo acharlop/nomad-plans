@@ -3,7 +3,7 @@
   :value="visible"
   hide-overlay
   :permanent="visible"
-  width="300px"
+  width="350px"
   background-color="primary"
   app
   clipped
@@ -38,8 +38,8 @@
         <v-btn text outlined>invite your friends</v-btn>
       </div>
       <!-- friends plans -->
-      <div class="side-drawer-wrapper" v-if=friendsPans.length">
-
+      <div class="side-drawer-wrapper" v-if="friendsPlans.length">
+        <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
       </div>
     </v-tab-item>
 
