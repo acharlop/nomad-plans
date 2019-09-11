@@ -8,11 +8,13 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle'
 
 import AuthButton from '@/components/auth-button'
 import LegalDialog from '@/components/dialogs/legal'
+import InvitesDialog from '@/components/dialogs/invites'
 
 export default Vue.component('AppBar', {
   components: {
     AuthButton,
     LegalDialog,
+    InvitesDialog,
   },
   props: [],
   data() {
@@ -20,6 +22,8 @@ export default Vue.component('AppBar', {
       title: 'Nomad Maps',
       profileMenu: false,
       legalDialog: false,
+      invitesDialog: false,
+      Dialog: false,
     }
   },
   computed: {
@@ -36,12 +40,19 @@ export default Vue.component('AppBar', {
   },
   mounted() {},
   methods: {
-    showDialog() {
+    showInvitesDialog() {
       this.profileMenu = false
+      this.legalDialog = false
+      this.invitesDialog = true
+    },
+    showLegalDialog() {
+      this.profileMenu = false
+      this.invitesDialog = false
       this.legalDialog = true
     },
     hideDialog() {
       this.legalDialog = false
+      this.invitesDialog = false
     },
   },
 })
