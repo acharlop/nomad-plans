@@ -1,10 +1,25 @@
-import { mount } from '@vue/test-utils'
 import CardPlanComponentComponent from './index.vue'
+import { mount } from '@/test/test-utils'
+
+let propsData
+const date = new Date()
 
 describe('CardPlanComponentComponent', () => {
+  beforeEach(() => {
+    propsData = {
+      plan: {
+        place: 'Chaing Mai, Thailand',
+        startAt: date.toDateString(),
+        endAt: date.toDateString(),
+        description: '',
+        friends: [],
+        confirmed: true,
+      },
+    }
+  })
   // is vue component
   test('is Vue component', () => {
-    const wrapper = mount(CardPlanComponentComponent)
+    const wrapper = mount(CardPlanComponentComponent, { propsData })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options
