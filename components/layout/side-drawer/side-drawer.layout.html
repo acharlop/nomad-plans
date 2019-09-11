@@ -1,0 +1,30 @@
+<v-navigation-drawer
+  absolute
+  right
+  :value="visible"
+  hide-overlay
+  :permanent="visible"
+  width="300px"
+>
+  <v-tabs v-model="selectedTab" grow class="pa-0" fill-height>
+    <v-tab key="service" href="#tab-mine">my plans</v-tab>
+    <v-tab key="privacy" href="#tab-friends">friends plans</v-tab>
+  </v-tabs>
+
+  <v-tabs-items v-model="selectedTab" class="fill-height" style="padding-bottom: 48px;">
+    <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height">
+      <div class="side-drawer-wrapper">
+        <h2 class="mb-2">"To travel is to live."</h2>
+        <div class="caption mb-12">Hans Christian Anderson</div>
+        <v-btn text outlined><v-icon left>mdi-plus-circle-outline</v-icon>new plan</v-btn>
+      </div>
+    </v-tab-item>
+
+    <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height">
+      <div class="side-drawer-wrapper">
+        <h2 class="mb-12 text-center">"Friends who<br />travel together<br />stay together."</h2>
+        <v-btn text outlined>invite your friends</v-btn>
+      </div>
+    </v-tab-item>
+  </v-tabs-items>
+</v-navigation-drawer>
