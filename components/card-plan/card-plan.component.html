@@ -4,6 +4,12 @@
       <v-list-item-title class="headline">{{ plan.place }}</v-list-item-title>
       <v-list-item-subtitle><b>{{ date }}</b></v-list-item-subtitle>
     </v-list-item-content>
+    <v-list-item-avatar
+      size="64"
+      color="grey"
+      v-if="userTripId"
+    >
+    </v-list-item-avatar>
   </v-list-item>
 
   <v-card-text :class="{ 'pt-0': !plan.description, 'pt-1': plan.description }">

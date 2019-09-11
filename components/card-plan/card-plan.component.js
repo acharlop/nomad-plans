@@ -7,6 +7,10 @@ export default Vue.component('CardPlan', {
       type: Object,
       default: () => ({}),
     },
+    userTripId: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {

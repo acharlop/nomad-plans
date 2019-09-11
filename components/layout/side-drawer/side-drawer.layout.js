@@ -4,6 +4,8 @@ import InvitesDialog from '@/components/dialogs/invites'
 
 import CardPlan from '@/components/card-plan'
 
+const date = new Date()
+
 export default Vue.component('SideDrawer', {
   components: {
     CardPlan,
@@ -13,14 +15,24 @@ export default Vue.component('SideDrawer', {
   data() {
     return {
       invitesDialog: false,
+      myPlans: [
+        {
+          id: 1,
+          place: 'Chaing Mai, Thailand',
+          startAt: date.toDateString(),
+          endAt: date.toDateString(),
+          description: '',
+          friends: [],
+          confirmed: true,
+        },
+      ],
+      friendsPlans: [],
     }
   },
   computed: {
     ...mapState({
       showSideDrawer: (state) => state.layout.showSideDrawer,
       sideDrawerTab: (state) => state.layout.sideDrawerTab,
-      myPlans: (state) => state.plans.mine,
-      friendsPlans: (state) => state.plans.friends,
     }),
     visible: {
       get() {
