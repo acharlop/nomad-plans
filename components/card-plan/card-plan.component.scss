@@ -1,0 +1,15 @@
+@import '~assets/variables';
+button {
+  .v-btn--disabled {
+    color: var(--v-success-base)
+  }
+}
+
+.short-description {
+  height: 44px;
+}
+
+.theme--light.v-btn.v-btn--disabled {
+  color: $success !important;
+  font-weight: bold;
+}

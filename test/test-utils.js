@@ -25,7 +25,7 @@ const stubs = ['router-link', 'router-view', 'nuxt', 'fa']
 
 export const mount = (
   component,
-  { options = {}, storeOptions = {}, vuetifyOptions = {} } = {}
+  { options = {}, storeOptions = {}, vuetifyOptions = {}, propsData = {} } = {}
 ) => {
   const store = new Vuex.Store(storeOptions)
 
@@ -41,13 +41,14 @@ export const mount = (
     stubs,
     store,
     vuetify,
+    propsData,
     ...options,
   })
 }
 
 export const shallow = (
   component,
-  { options = {}, storeOptions = {}, vuetifyOptions = {} } = {}
+  { options = {}, storeOptions = {}, vuetifyOptions = {}, propsData = {} } = {}
 ) => {
   const store = new Vuex.Store(storeOptions)
 
@@ -63,6 +64,7 @@ export const shallow = (
     stubs,
     store,
     vuetify,
+    propsData,
     ...options,
   })
 }

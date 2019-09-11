@@ -1,32 +1,49 @@
 <v-navigation-drawer
-  absolute
   right
   :value="visible"
   hide-overlay
   :permanent="visible"
-  width="300px"
+  width="350px"
+  background-color="primary"
+  app
+  clipped
+  style="top: 64px !important;"
 >
-  <v-tabs v-model="selectedTab" grow class="pa-0" fill-height>
+  <v-tabs v-model="selectedTab" grow class="pa-0">
     <v-tab key="service" href="#tab-mine">my plans</v-tab>
     <v-tab key="privacy" href="#tab-friends">friends plans</v-tab>
   </v-tabs>
 
-  <v-tabs-items v-model="selectedTab" class="fill-height" style="padding-bottom: 48px;">
-    <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height">
-      <div class="side-drawer-wrapper">
-        <h2 class="mb-2">"To travel is to live."</h2>
-        <div class="caption mb-12">Hans Christian Anderson</div>
-        <v-btn text outlined><v-icon left>mdi-plus-circle-outline</v-icon>new plan</v-btn>
+  <v-tabs-items v-model="selectedTab" style="height: calc(100% - 48px)">
+    <!-- my plans -->
+    <v-tab-item key="mine" value="tab-mine" class="pa-4" fill-height>
+      <!-- no plans for me -->
+      <div class="side-drawer-wrapper justify-center" v-if="!myPlans.length">
+          <h2 class="mb-2">"To travel is to live."</h2>
+          <div class="caption mb-12">Hans Christian Anderson</div>
+          <v-btn text outlined><v-icon left>mdi-plus-circle-outline</v-icon>new plan</v-btn>
+      </div>
+
+      <!-- plans -->
+      <div class="side-drawer-wrapper" v-if="myPlans.length">
+        <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
       </div>
     </v-tab-item>
 
+    <!-- friends plans -->
     <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height">
-      <div class="side-drawer-wrapper">
+      <!-- no plans for friends -->
+      <div class="side-drawer-wrapper justify-center" v-if="!friendsPlans.length">
         <h2 class="mb-12 text-center">"Friends who<br />travel together<br />stay together."</h2>
         <v-btn text outlined @click.stop="showInvitesDialog">invite your friends</v-btn>
         <InvitesDialog :visible="invitesDialog" @close="hideDialog"></InvitesDialog>
 
       </div>
+      <!-- friends plans -->
+      <div class="side-drawer-wrapper" v-if="friendsPlans.length">
+        <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
+      </div>
     </v-tab-item>
+
   </v-tabs-items>
 </v-navigation-drawer>

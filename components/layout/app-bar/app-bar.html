@@ -1,4 +1,4 @@
-<v-app-bar fixed app color="primaryDark" class="pr-1">
+<v-app-bar fixed app clipped-right color="primaryDark" class="pr-1">
   <v-avatar class="ml-1 mr-2 d-none d-sm-inline">
     <fa class="icon i-globe" :icon="iconGlobe" />
   </v-avatar>
@@ -27,7 +27,7 @@
     offset-y
   >
     <template v-slot:activator="{ on }">
-      <v-btn icon class="ma-2" color="transparent"  v-on="on">
+      <v-btn icon class="ma-2" color="transparent" v-on="on">
         <v-avatar size="36">
           <img :src="photoURL" alt="user avatar">
         </v-avatar>
@@ -78,14 +78,14 @@
 
       <v-list-item>
         <v-list-item-content>
-          <v-row justify="center">          
-              <v-btn icon large class="ma-1" >
-                <fa class="icon i-page" :icon="iconPage" />
-              </v-btn>
-            
-              <v-btn icon large class="ma-1" >
-                <fa class="icon i-message" :icon="iconMessage" />
-              </v-btn>          
+          <v-row justify="center">
+            <v-btn icon large class="ma-1" >
+              <fa class="icon i-page" :icon="iconPage" />
+            </v-btn>
+
+            <v-btn icon large class="ma-1" >
+              <fa class="icon i-message" :icon="iconMessage" />
+            </v-btn>
           </v-row>
         </v-list-item-content>
       </v-list-item>
