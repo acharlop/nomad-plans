@@ -1,18 +1,20 @@
 <v-card width="100%">
   <v-list-item>
     <v-list-item-content>
-      <v-list-item-title class="headline">{{plan.place}}</v-list-item-title>
-      <v-list-item-subtitle>{{date}}</v-list-item-subtitle>
+      <v-list-item-title class="headline">{{ plan.place }}</v-list-item-title>
+      <v-list-item-subtitle><b>{{ date }}</b></v-list-item-subtitle>
     </v-list-item-content>
   </v-list-item>
 
   <v-card-text :class="{ 'pt-0': !plan.description, 'pt-1': plan.description }">
+    <!-- description -->
     <p class="mb-1" :class="{ 'short-description': hasLongDescription && showMoreDescription }" v-if="plan.description">
       {{ description }}
       <v-icon @click="toggleDescription" small class="mr-n2" v-if="hasLongDescription">
         {{ showMoreDescription ? 'mdi-chevron-down' : 'mdi-chevron-up' }}
       </v-icon>
     </p>
+    <!-- friends list -->
     <v-row class="mx-0">
       <v-avatar v-for="friend of friendsList" :key="friend.id" size="36" class="mr-4 mt-4">
         <img :src="friend.profileUrl" :alt="friend.name">
@@ -38,7 +40,9 @@
   </v-card-text>
 
   <v-card-actions>
-    <v-btn class="btn-confirm" text :disabled="!plan.confirmed">confirm</v-btn>
+    <v-btn class="btn-confirm" text :disabled="plan.confirmed">
+      {{ plan.confirmed ? 'confirmed' : 'confirm' }}
+    </v-btn>
     <v-spacer></v-spacer>
     <v-btn text>edit</v-btn>
   </v-card-actions>
