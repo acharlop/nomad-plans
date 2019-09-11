@@ -1,10 +1,29 @@
-import { mount } from '@vue/test-utils'
+import { mount } from '@/test/test-utils'
 import SideDrawerLayoutComponent from './index.vue'
 
+let storeOptions
+
 describe('SideDrawerLayoutComponent', () => {
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        layout: {
+          state: {
+            showSideDrawer: true,
+            sideDrawerTab: 'mine',
+          },
+          mutations: {
+            toggleSideDrawer: jest.fn(),
+            toggleSideDrawerTab: jest.fn(),
+          },
+        },
+      },
+    }
+  })
+
   // is vue component
   test('is Vue component', () => {
-    const wrapper = mount(SideDrawerLayoutComponent)
+    const wrapper = mount(SideDrawerLayoutComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options

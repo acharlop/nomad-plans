@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default Vue.component('SideDrawer', {
   components: {},
@@ -8,9 +8,13 @@ export default Vue.component('SideDrawer', {
     return {}
   },
   computed: {
+    ...mapState({
+      showSideDrawer: (state) => state.layout.showSideDrawer,
+      sideDrawerTab: (state) => state.layout.sideDrawerTab,
+    }),
     visible: {
       get() {
-        return this.$store.state.layout.showSideDrawer
+        return this.showSideDrawer
       },
       set() {
         this.$store.commit('layout/toggleSideDrawer')
@@ -18,7 +22,7 @@ export default Vue.component('SideDrawer', {
     },
     selectedTab: {
       get() {
-        return `tab-${this.$store.state.layout.sideDrawerTab}`
+        return `tab-${this.sideDrawerTab}`
       },
       set() {
         this.$store.commit('layout/toggleSideDrawerTab')
