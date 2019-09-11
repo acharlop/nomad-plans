@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 
+import CardPlan from '@/components/card-plan'
+
 export default Vue.component('SideDrawer', {
-  components: {},
+  components: {
+    CardPlan,
+  },
   props: [],
   data() {
     return {}
@@ -11,6 +15,8 @@ export default Vue.component('SideDrawer', {
     ...mapState({
       showSideDrawer: (state) => state.layout.showSideDrawer,
       sideDrawerTab: (state) => state.layout.sideDrawerTab,
+      myPlans: (state) => state.plans.mine,
+      friendsPlans: (state) => state.plans.friends,
     }),
     visible: {
       get() {

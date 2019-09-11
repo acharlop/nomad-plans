@@ -1,10 +1,10 @@
 <v-app dark xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+  <app-bar></app-bar>
+  <side-drawer></side-drawer>
   <v-content>
-    <app-bar></app-bar>
     <nuxt />
-    <side-drawer></side-drawer>
-    <v-footer fixed app color="primaryDark">
-      <span>&copy; Nomad Maps 2019</span>
-    </v-footer>
   </v-content>
+  <v-footer fixed app clipped-right color="primaryDark">
+    <span>&copy; Nomad Maps 2019</span>
+  </v-footer>
 </v-app>
