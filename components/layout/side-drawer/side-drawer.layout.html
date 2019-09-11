@@ -23,7 +23,9 @@
     <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height">
       <div class="side-drawer-wrapper">
         <h2 class="mb-12 text-center">"Friends who<br />travel together<br />stay together."</h2>
-        <v-btn text outlined>invite your friends</v-btn>
+        <v-btn text outlined @click.stop="showInvitesDialog">invite your friends</v-btn>
+        <InvitesDialog :visible="invitesDialog" @close="hideDialog"></InvitesDialog>
+
       </div>
     </v-tab-item>
   </v-tabs-items>

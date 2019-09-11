@@ -1,5 +1,5 @@
-import { mount } from '@/test/test-utils'
 import SideDrawerLayoutComponent from './index.vue'
+import { mount } from '@/test/test-utils'
 
 let storeOptions
 
