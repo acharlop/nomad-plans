@@ -5,15 +5,15 @@
   <v-toolbar-title v-text="title" />
   <v-spacer />
   <!--  buttons for medium and up -->
-  <v-btn class="ma-2 d-none d-sm-inline" tile depressed color="transparent">
+  <v-btn class="ma-2 d-none d-sm-inline" text>
     <v-icon left>mdi-plus-circle-outline</v-icon> NEW PLAN
   </v-btn>
-  <v-btn class="ma-2 d-none d-sm-inline" tile depressed color="transparent">PLANS</v-btn>
+  <v-btn class="ma-2 d-none d-sm-inline" text @click="toggleSideDrawer">PLANS</v-btn>
   <!-- buttons form sm and down -->
   <v-btn class="ma-2 d-sm-none" icon color="transparent" small>
     <fa class="icon-small" :icon="iconAdd" />
   </v-btn>
-  <v-btn class="ma-2 d-sm-none" icon color="transparent" small>
+  <v-btn class="ma-2 d-sm-none" icon color="transparent" small @click="toggleSideDrawer">
     <fa class="icon-small" :icon="iconMap" />
   </v-btn>
 

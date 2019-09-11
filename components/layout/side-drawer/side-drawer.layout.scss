@@ -1,0 +1,13 @@
+// fix for left margin
+.v-tabs-bar.v-tabs-bar--is-mobile .v-tab {
+  margin-left: 0px !important;
+}
+
+.side-drawer-wrapper {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

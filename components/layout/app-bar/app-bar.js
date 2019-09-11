@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook'
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons/faFacebookMessenger'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe'
@@ -43,5 +43,6 @@ export default Vue.component('AppBar', {
     hideDialog() {
       this.legalDialog = false
     },
+    ...mapMutations('layout', ['toggleSideDrawer']),
   },
 })
