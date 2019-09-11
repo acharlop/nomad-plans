@@ -3,7 +3,7 @@
     <!-- header -->
     <v-card-title class="pa-0">
       <v-toolbar light color="primary" fixed class="pr-o">
-        <v-toolbar-title>Terms and Conditions and Privacy Policy</v-toolbar-title>
+        <v-toolbar-title>Send Invites to your Friends</v-toolbar-title>
         <div class="flex-grow-1"></div>
         <v-toolbar-items>
           <v-btn light text @click="show = false">
@@ -14,18 +14,9 @@
     </v-card-title>
 
     <!-- text -->
-    <v-card-text class="pa-0">
-      <v-tabs v-model="selectedTab" grow fixed>
-        <v-tab key="service" href="#tab-service">Terms and Conditions</v-tab>
-        <v-tab key="privacy" href="#tab-privacy">Privacy Policy</v-tab>
-          <v-tab-item key="service" value="tab-service" class="ma-4">
-            <terms-of-service class="scroll-fix"></terms-of-service>
-          </v-tab-item>
-
-          <v-tab-item key="privacy" value="tab-privacy" class="ma-4">
-            <privacy-policy  class="scroll-fix"></privacy-policy>
-          </v-tab-item>
-      </v-tabs>
+    <v-card-text class="pa-0 ma-4">
+        <h1>Invite your friend</h1>
+        <p>where our awesome invites will go</p>
     </v-card-text>
 
     <!-- footer -->

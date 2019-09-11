@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import InvitesDialog from '@/components/dialogs/invites'
 
 import CardPlan from '@/components/card-plan'
 
 export default Vue.component('SideDrawer', {
   components: {
     CardPlan,
+    InvitesDialog,
   },
   props: [],
   data() {
-    return {}
+    return {
+      invitesDialog: false,
+    }
   },
   computed: {
     ...mapState({
@@ -36,4 +40,12 @@ export default Vue.component('SideDrawer', {
     },
   },
   mounted() {},
+  methods: {
+    showInvitesDialog() {
+      this.invitesDialog = true
+    },
+    hideDialog() {
+      this.invitesDialog = false
+    },
+  },
 })
