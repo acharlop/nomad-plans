@@ -5,12 +5,18 @@
   <v-toolbar-title v-text="title" />
   <v-spacer />
   <!--  buttons for medium and up -->
-  <v-btn class="ma-2 d-none d-sm-inline" text>
+  <v-btn class="ma-2 d-none d-sm-inline" text @click="showDialogPlanForm">
     <v-icon left>mdi-plus-circle-outline</v-icon> NEW PLAN
   </v-btn>
   <v-btn class="ma-2 d-none d-sm-inline" text @click="toggleSideDrawer">PLANS</v-btn>
   <!-- buttons form sm and down -->
-  <v-btn class="ma-2 d-sm-none" icon color="transparent" small>
+  <v-btn
+    icon
+    small
+    class="ma-2 d-sm-none"
+    color="transparent"
+    @click="showDialogPlanForm"
+  >
     <fa class="icon-small" :icon="iconAdd" />
   </v-btn>
   <v-btn class="ma-2 d-sm-none" icon color="transparent" small @click="toggleSideDrawer">
@@ -48,8 +54,7 @@
 
       <v-list-item>
         <v-list-item-content>
-          <v-btn tile depressed color="transparent" block @click.stop="showInvitesDialog">Send Invites</v-btn>
-          <InvitesDialog :visible="invitesDialog" @close="hideDialog"></InvitesDialog>
+          <v-btn tile depressed color="transparent" block @click="showDialogInvite">Send Invites</v-btn>
         </v-list-item-content>
       </v-list-item>
       </v-list>
@@ -59,8 +64,7 @@
 
       <v-list-item>
         <v-list-item-content>
-          <v-btn tile depressed color="transparent" block @click.stop="showLegalDialog">Legal stuff</v-btn>
-          <LegalDialog :visible="legalDialog" @close="hideDialog"></LegalDialog>
+          <v-btn tile depressed color="transparent" block @click="showDialogLegal">Legal stuff</v-btn>
         </v-list-item-content>
       </v-list-item>
       </v-list>
@@ -92,7 +96,5 @@
       </v-list>
     </v-card>
   </v-menu>
-
-
 
 </v-app-bar>

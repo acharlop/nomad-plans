@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export default Vue.component('InvitesDialog', {
+export default Vue.component('PlanFormDialog', {
   components: {},
   props: {
     visible: {
