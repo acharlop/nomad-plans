@@ -14,15 +14,93 @@
     </v-card-title>
 
     <!-- text -->
-    <v-card-text class="pa-0 ma-4">
-      <h1>Invite your friend</h1>
-      <p>where our awesome invites will go</p>
+    <v-card-text class="pa-0 ma-4" style="max-width: 570px;">
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-form
+              ref="form"
+              v-model="valid"
+            >
+              <v-text-field
+                v-model="place"
+                label="Place"
+                required
+                outlined
+              ></v-text-field>
+
+              <v-row class="ma-0">
+                <v-menu
+                  v-model="startAtMenu"
+                  :close-on-content-click="false"
+                  :nudge-top="20"
+                  transition="scale-transition"
+                  offset-y
+                  class="mr-3"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="startAt"
+                      label="Start Date"
+                      readonly
+                      outlined
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="startAt" @input="startAtMenu = false"></v-date-picker>
+                </v-menu>
+
+
+                <v-menu
+                  v-model="endAtMenu"
+                  :close-on-content-click="false"
+                  :nudge-top="20"
+                  :nudge-left="30"
+                  transition="scale-transition"
+                  offset-y
+                  class="ml-3"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="endAt"
+                      label="End Date"
+                      readonly
+                      outlined
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="endAt" :min="startAt" @input="endAtMenu = false"></v-date-picker>
+                </v-menu>
+              </v-row>
+
+              <v-subheader class="pl-0">Likelihood</v-subheader>
+
+              <v-slider
+                v-model="confirmation"
+                :tick-labels="confirmations"
+                step="1"
+                max="2"
+                ticks="always"
+                tick-size="4"
+                class="mb-5"
+              ></v-slider>
+
+              <v-textarea
+                v-model="note"
+                label="Note"
+                outlined
+              ></v-textarea>
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-text>
 
     <!-- footer -->
     <v-card-actions>
       <div class="flex-grow-1"></div>
-      <v-btn color="green darken-1" text @click="show = false">close</v-btn>
+      <v-btn color="green darken-1" text @click="show = false">cancel</v-btn>
+      <v-btn color="green darken-1" text @click="show = false">add</v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>

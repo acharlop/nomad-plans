@@ -9,7 +9,17 @@ export default Vue.component('PlanFormDialog', {
     },
   },
   data() {
-    return {}
+    return {
+      valid: false,
+      place: '',
+      startAt: '',
+      endAt: '',
+      confirmations: ['Not Sure', 'Most Likely', 'Confirmed'],
+      confirmation: 1,
+      note: '',
+      startAtMenu: false,
+      endAtMenu: false,
+    }
   },
   computed: {
     show: {
