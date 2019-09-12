@@ -3,7 +3,7 @@
   :value="visible"
   hide-overlay
   :permanent="visible"
-  width="350px"
+  :width="$vuetify.breakpoint.xsOnly ? '100%' : '350px'"
   background-color="primary"
   app
   clipped
