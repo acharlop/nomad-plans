@@ -7,4 +7,10 @@
   <v-footer fixed app clipped-right color="primaryDark">
     <span>&copy; Nomad Maps 2019</span>
   </v-footer>
+
+  <!-- dialogs -->
+  <LegalDialog :visible="legalDialog" @close="closeDialogs"></LegalDialog>
+  <InvitesDialog :visible="inviteDialog" @close="closeDialogs"></InvitesDialog>
+  <PlanFormDialog :visible="planFormDialog" @close="closeDialogs"></PlanFormDialog>
+
 </v-app>

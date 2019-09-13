@@ -1,10 +1,30 @@
 import MainLayoutComponent from '../main'
 import { shallow } from '@/test/test-utils'
 
+let storeOptions
+
 describe('MainLayoutComponent', () => {
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        layout: {
+          namespaced: true,
+          state: {
+            dialogs: {
+              legal: false,
+              invite: false,
+              planForm: false,
+            },
+          },
+          getters: {},
+        },
+      },
+    }
+  })
+
   // is Vue instance
   test('is Vue instance', async () => {
-    const wrapper = await shallow(MainLayoutComponent)
+    const wrapper = await shallow(MainLayoutComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options

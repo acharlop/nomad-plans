@@ -15,15 +15,20 @@ export default Vue.component('CardPlan', {
   data() {
     return {
       date: `${this.plan.startAt} - ${this.plan.endAt}`,
-      hasLotsOfFriends: this.plan.friends.length > 4,
-      moreFriendsCount: this.plan.friends.length - 4,
+      hasLotsOfFriends: this.plan.friends
+        ? this.plan.friends.length > 4
+        : false,
+      moreFriendsCount: this.plan.friends ? this.plan.friends.length - 4 : 0,
       showMoreFriends: true,
       hasLongDescription: this.plan.description.length > 87,
       showMoreDescription: true,
+      confirmed: this.plan.confirmation === 3,
     }
   },
   computed: {
     friendsList() {
+      if (!this.plan.friends || !this.plan.friends.length) return []
+
       return this.plan.friends.length > 4 && this.showMoreFriends
         ? this.plan.friends.slice(0, 4)
         : this.plan.friends

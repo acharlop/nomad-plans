@@ -1,0 +1,108 @@
+<v-dialog max-width="600" v-model="show" :fullscreen="$vuetify.breakpoint.xsOnly" transition="dialog-bottom-transition" scrollable>
+  <v-card>
+    <!-- header -->
+    <v-card-title class="pa-0">
+      <v-toolbar light color="primary" fixed class="pr-o">
+        <v-toolbar-title>Create new plan</v-toolbar-title>
+        <v-spacer />
+        <v-toolbar-items>
+          <v-btn light text @click="show = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+    </v-card-title>
+
+    <!-- text -->
+    <v-card-text class="pa-0 ma-4 plan-form-container">
+        <v-row>
+          <v-col class="pb-0" cols="12">
+            <v-form
+              ref="form"
+              v-model="valid"
+            >
+              <v-text-field
+                v-model="place"
+                label="Place"
+                :rules="placeRules"
+                required
+                outlined
+              ></v-text-field>
+
+              <v-row class="ma-0 mt-2">
+                <v-menu
+                  v-model="startAtMenu"
+                  :close-on-content-click="false"
+                  :nudge-top="20"
+                  transition="scale-transition"
+                  offset-y
+                  class="mr-3"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="startAt"
+                      label="Start Date"
+                      :rules="dateRules"
+                      readonly
+                      outlined
+                      v-on="on"
+                      @focus.native="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="startAt" @input="startAtMenu = false"></v-date-picker>
+                </v-menu>
+
+
+                <v-menu
+                  v-model="endAtMenu"
+                  :close-on-content-click="false"
+                  :nudge-top="20"
+                  :nudge-left="30"
+                  transition="scale-transition"
+                  offset-y
+                  class="ml-3"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="endAt"
+                      label="End Date"
+                      :rules="dateRules"
+                      readonly
+                      outlined
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="endAt" :min="startAt" @input="endAtMenu = false"></v-date-picker>
+                </v-menu>
+              </v-row>
+
+              <v-subheader class="pl-0">Likelihood</v-subheader>
+
+              <v-slider
+                v-model="confirmation"
+                :tick-labels="confirmations"
+                step="1"
+                max="2"
+                ticks="always"
+                tick-size="4"
+                class="mb-5"
+              ></v-slider>
+
+              <v-textarea
+                v-model="description"
+                label="Note"
+                outlined
+              ></v-textarea>
+            </v-form>
+          </v-col>
+        </v-row>
+    </v-card-text>
+
+    <!-- footer -->
+    <v-card-actions class="ma-2 mt-0">
+      <div class="flex-grow-1"></div>
+      <v-btn color="green darken-1" text @click="show = false" class="mr-2">cancel</v-btn>
+      <v-btn color="green darken-1" :disabled="!valid || submitLoading" @click="submit" :loading="submitLoading">add</v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>

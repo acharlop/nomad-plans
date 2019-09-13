@@ -17,6 +17,12 @@ describe('SideDrawerLayoutComponent', () => {
             toggleSideDrawerTab: jest.fn(),
           },
         },
+        plans: {
+          state: {
+            mine: [],
+            friends: [],
+          },
+        },
       },
     }
   })

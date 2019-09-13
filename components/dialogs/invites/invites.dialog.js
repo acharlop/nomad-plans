@@ -7,15 +7,9 @@ export default Vue.component('InvitesDialog', {
       type: Boolean,
       default: true,
     },
-    tab: {
-      type: String,
-      default: 'service',
-    },
   },
   data() {
-    return {
-      dialog: false,
-    }
+    return {}
   },
   computed: {
     show: {
@@ -24,11 +18,6 @@ export default Vue.component('InvitesDialog', {
       },
       set(value) {
         if (!value) this.$emit('close')
-      },
-    },
-    selectedTab: {
-      get() {
-        return `tab-${this.tab}`
       },
     },
   },

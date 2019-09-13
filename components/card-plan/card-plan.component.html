@@ -1,4 +1,4 @@
-<v-card width="100%">
+<v-card width="100%" class="mb-6">
   <v-list-item>
     <v-list-item-content>
       <v-list-item-title class="headline">{{ plan.place }}</v-list-item-title>
@@ -46,8 +46,8 @@
   </v-card-text>
 
   <v-card-actions>
-    <v-btn class="btn-confirm" text :disabled="plan.confirmed">
-      {{ plan.confirmed ? 'confirmed' : 'confirm' }}
+    <v-btn class="btn-confirm" text :disabled="confirmed">
+      {{ confirmed ? 'confirmed' : 'confirm' }}
     </v-btn>
     <v-spacer></v-spacer>
     <v-btn text>edit</v-btn>
