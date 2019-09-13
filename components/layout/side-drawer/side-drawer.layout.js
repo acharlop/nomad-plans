@@ -11,25 +11,14 @@ export default Vue.component('SideDrawer', {
   },
   props: [],
   data() {
-    return {
-      myPlans: [
-        // {
-        //   id: 1,
-        //   place: 'Chaing Mai, Thailand',
-        //   startAt: date.toDateString(),
-        //   endAt: date.toDateString(),
-        //   description: '',
-        //   friends: [],
-        //   confirmed: true,
-        // },
-      ],
-      friendsPlans: [],
-    }
+    return {}
   },
   computed: {
     ...mapState({
       showSideDrawer: (state) => state.layout.showSideDrawer,
       sideDrawerTab: (state) => state.layout.sideDrawerTab,
+      myPlans: (state) => state.plans.mine,
+      friendsPlans: (state) => state.plans.friends,
     }),
     visible: {
       get() {
@@ -50,10 +39,6 @@ export default Vue.component('SideDrawer', {
   },
   mounted() {},
   methods: {
-    ...mapMutations('layout', [
-      'showDialogInvite',
-      'showDialogPlanForm',
-      'closeDialogs',
-    ]),
+    ...mapMutations('layout', ['showDialogInvite', 'showDialogPlanForm']),
   },
 })
