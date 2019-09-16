@@ -16,12 +16,12 @@
 
   <v-tabs-items v-model="selectedTab" style="height: calc(100% - 48px)">
     <!-- my plans -->
-    <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height">
+    <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height primary lighten-5">
       <!-- no plans for me -->
       <div class="side-drawer-wrapper justify-center" v-if="!myPlans.length">
-          <h2 class="mb-2">"To travel is to live."</h2>
+          <h2 class="mb-2" >"To travel is to live."</h2>
           <div class="caption mb-12">Hans Christian Anderson</div>
-          <v-btn text outlined @click="showDialogPlanForm">
+          <v-btn color="primary darken-2" text outlined @click="showDialogPlanForm">
             <v-icon left>mdi-plus-circle-outline</v-icon>new plan
           </v-btn>
       </div>
@@ -33,12 +33,12 @@
     </v-tab-item>
 
     <!-- friends plans -->
-    <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height">
+    <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height primary lighten-5" >
       <!-- no plans for friends -->
       <div class="side-drawer-wrapper justify-center" v-if="!friendsPlans.length">
         <h2 class="mb-12 text-center">"Friends who<br />travel together<br />stay together."</h2>
-        <v-btn text outlined @click.stop="showDialogInvite">invite your friends</v-btn>
-
+        <v-btn color="primary darken-2" text outlined @click.stop="showDialogInvite">
+            <v-icon left>mdi-account-multiple-plus-outline</v-icon>invite your friends</v-btn>
       </div>
       <!-- friends plans -->
       <div class="side-drawer-wrapper" v-if="friendsPlans.length">

@@ -1,9 +1,10 @@
+
 <v-dialog max-width="600" v-model="show" :fullscreen="$vuetify.breakpoint.xsOnly" transition="dialog-bottom-transition" scrollable>
   <v-card>
     <!-- header -->
     <v-card-title class="pa-0">
       <v-toolbar light color="primary" fixed class="pr-0">
-        <v-toolbar-title>Send Invites to your Friends</v-toolbar-title>
+        <v-toolbar-title>Invite your Friends</v-toolbar-title>
         <v-spacer />
         <v-toolbar-items>
           <v-btn light text @click="show = false">
@@ -14,9 +15,26 @@
     </v-card-title>
 
     <!-- text -->
-    <v-card-text class="pa-0 ma-4">
-        <h1>Invite your friend</h1>
-        <p>where our awesome invites will go</p>
+    <v-card-text class="text-center pa-0 ma-4">
+        <v-avatar size="72" color="secondary" class="ma-4">
+            <v-icon dark size="56">mdi-account-multiple-plus-outline</v-icon>
+        </v-avatar>
+        <h2 class="ma-4">Nomad Plans is better with Friends!</h2>
+        
+        <p>Copy and share the link
+          <a href="https://nomadplans.co">https://nomadplans.co</a> .
+        </br>
+        </br>
+        Or simply share us on your Facebook timeline 
+      <!-- Share FB button-->
+        <button class="auth-button" data-href="https://nomad-plans.herokuapp.com/" >
+          <fa class="icon" :icon="icon" /> 
+          <div class="text"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomad-plans.herokuapp.com%2F&amp;src=sdkpreparse" >Share</a></div>
+        </button>
+
+        </br>
+      Once your friends sign up to Nomad Plans, you'll see them on the map.
+        </p>
     </v-card-text>
 
     <!-- footer -->

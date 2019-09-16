@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
+
 
 export default Vue.component('InvitesDialog', {
   components: {},
@@ -19,6 +21,9 @@ export default Vue.component('InvitesDialog', {
       set(value) {
         if (!value) this.$emit('close')
       },
+    },
+    icon() {
+      return faFacebookSquare
     },
   },
   mounted() {},
