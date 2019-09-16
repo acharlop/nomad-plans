@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default Vue.component('PlanFormDialog', {
   components: {},
@@ -16,17 +16,21 @@ export default Vue.component('PlanFormDialog', {
       startAt: '',
       endAt: '',
       confirmations: ['Not Sure', 'Most Likely', 'Confirmed'],
-      confirmation: 1,
+      confirmation: 0,
       description: '',
       startAtMenu: false,
       endAtMenu: false,
       placeRules: [(v) => !!v || 'Name is required'],
       dateRules: [(v) => !!v || 'Date is required'],
       submitLoading: false,
+      deleteLoading: false,
     }
   },
   computed: {
-    ...mapActions('plans', ['createPlan']),
+    ...mapState({
+      isEdit: (state) => !!state.plans.editId,
+    }),
+    ...mapGetters('plans', ['editPlan']),
     show: {
       get() {
         return this.visible
@@ -36,13 +40,37 @@ export default Vue.component('PlanFormDialog', {
       },
     },
   },
-  mounted() {},
+  watch: {
+    isEdit(newVal) {
+      if (newVal) {
+        const { editPlan } = this
+
+        this.place = editPlan.place
+        this.startAt = editPlan.startAt
+        this.endAt = editPlan.endAt
+        this.description = editPlan.description
+        this.confirmation = editPlan.confirmation
+      }
+    },
+  },
+  beforeUpdate() {},
   methods: {
-    resetAndClose() {
+    ...mapActions('plans', ['createPlan', 'deletePlan']),
+    close() {
       this.show = false
       this.submitLoading = false
-      this.confirmation = 1
+      this.deleteLoading = false
+      this.confirmation = 0
       this.$refs.form.reset()
+      if (this.isEdit) {
+        this.$store.commit('plans/removePlanEditId')
+      }
+    },
+    remove() {
+      this.deleteLoading = true
+      this.deletePlan().then(() => {
+        this.close()
+      })
     },
     submit() {
       if (this.$refs.form.validate()) {
@@ -56,8 +84,10 @@ export default Vue.component('PlanFormDialog', {
           description: this.description,
         }
 
-        this.$store.dispatch('plans/createPlan', plan).then(() => {
-          this.resetAndClose()
+        const action = this.isEdit ? 'plans/editPlan' : 'plans/createPlan'
+
+        this.$store.dispatch(action, plan).then(() => {
+          this.close()
         })
       }
     },
