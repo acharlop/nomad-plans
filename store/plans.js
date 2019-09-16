@@ -3,13 +3,24 @@ import { StoreDB } from '@/services/firebase'
 const defaultState = {
   mine: [],
   friends: [],
+  editId: undefined,
 }
 
 export const state = () => defaultState
-export const getters = {}
+export const getters = {
+  editPlan(state) {
+    return state.mine.filter((plan) => plan.id === state.editId)[0]
+  },
+}
 export const mutations = {
   setPlans(state, payload) {
     state.mine = payload
+  },
+  setPlanEditId(state, payload) {
+    state.editId = payload
+  },
+  removePlanEditId(state) {
+    state.editId = undefined
   },
 }
 export const actions = {
@@ -32,5 +43,22 @@ export const actions = {
         })
         commit('setPlans', plans)
       })
+  },
+  editPlan({ state }, plan) {
+    return StoreDB.collection('plans')
+      .doc(state.editId)
+      .set(plan, { merge: true })
+  },
+  confirmPlan({ state }, planId) {
+    const plan = { confirmation: 1 }
+
+    return StoreDB.collection('plans')
+      .doc(planId)
+      .set(plan, { merge: true })
+  },
+  deletePlan({ state }) {
+    return StoreDB.collection('plans')
+      .doc(state.editId)
+      .delete()
   },
 }

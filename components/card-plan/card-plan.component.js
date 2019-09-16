@@ -22,7 +22,7 @@ export default Vue.component('CardPlan', {
       showMoreFriends: true,
       hasLongDescription: this.plan.description.length > 87,
       showMoreDescription: true,
-      confirmed: this.plan.confirmation === 3,
+      confirmLoading: false,
     }
   },
   computed: {
@@ -40,14 +40,28 @@ export default Vue.component('CardPlan', {
           : this.plan.description.length
       return this.plan.description.slice(0, index)
     },
+    confirmed() {
+      return this.plan.confirmation === 1
+    },
   },
   mounted() {},
   methods: {
+    confirmPlan() {
+      this.confirmLoading = true
+
+      this.$store.dispatch('plans/confirmPlan', this.plan.id).then(() => {
+        this.confirmLoading = false
+      })
+    },
     toggleFriendsList() {
       this.showMoreFriends = !this.showMoreFriends
     },
     toggleDescription() {
       this.showMoreDescription = !this.showMoreDescription
+    },
+    edit() {
+      this.$store.commit('plans/setPlanEditId', this.plan.id)
+      this.$store.commit('layout/showDialogPlanForm')
     },
   },
 })
