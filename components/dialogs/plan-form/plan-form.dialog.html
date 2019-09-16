@@ -36,7 +36,8 @@
                   :nudge-top="20"
                   transition="scale-transition"
                   offset-y
-                  class="mr-3"
+                  :class="{ 'mr-3': !$vuetify.breakpoint.xsOnly }"
+                  content-class="menu"
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field
@@ -60,7 +61,8 @@
                   :nudge-left="30"
                   transition="scale-transition"
                   offset-y
-                  class="ml-3"
+                  :class="{ 'ml-3': !$vuetify.breakpoint.xsOnly }"
+                  content-class="menu"
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field

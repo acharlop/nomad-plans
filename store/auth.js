@@ -75,6 +75,7 @@ export const actions = {
       auth.onAuthStateChanged((user) => {
         if (user) {
           commit('setUser', user)
+          commit('setNewUser', false)
           commit('setLoggedIn', true)
           resolve(true)
         }
