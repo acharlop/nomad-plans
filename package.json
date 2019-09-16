@@ -17,8 +17,8 @@
     "lint:fix": "yarn lint --fix && yarn prettier:fix",
     "prettier": "prettier **/**.{js,vue}",
     "prettier:fix": "prettier --write **/**.{js,vue}",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --no-cache",
+    "test:watch": "jest --watch --no-cache",
     "test:cover": "jest --collect-coverage",
     "test:ci": "yarn test:cover"
   },
