@@ -1,35 +1,36 @@
-const date = new Date()
+import { StoreDB } from '@/services/firebase'
 
 const defaultState = {
   mine: [],
-  friends: [
-    {
-      id: 1,
-      place: 'Chaing Mai, Thailand',
-      startAt: date,
-      endAt: date,
-      description:
-        'Will stay there for a month or two at most. Although when I get there I usually end up wanting to stay longer.',
-      friends: [],
-      confirmed: false,
-    },
-  ],
+  friends: [],
 }
 
 export const state = () => defaultState
 export const getters = {}
 export const mutations = {
-  addPlan(state, payload) {
-    state.mine.push(payload)
+  setPlans(state, payload) {
+    state.mine = payload
   },
 }
 export const actions = {
-  createPlan({ commit, state }, plan) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        commit('addPlan', { ...plan, friends: [], id: state.mine.length + 1 })
-        resolve()
-      }, 2000)
+  createPlan({ rootState, state }, plan) {
+    return StoreDB.collection('plans').add({
+      userId: rootState.auth.user.userId,
+      ...plan,
     })
+  },
+  getPlans({ commit, rootState }) {
+    StoreDB.collection('plans')
+      .where('userId', '==', rootState.auth.user.userId)
+      .onSnapshot((querySnapshot) => {
+        const plans = []
+        querySnapshot.forEach((plan) => {
+          plans.push({
+            ...plan.data(),
+            id: plan.id,
+          })
+        })
+        commit('setPlans', plans)
+      })
   },
 }

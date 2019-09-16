@@ -20,10 +20,7 @@ export default Vue.component('PlanFormDialog', {
       description: '',
       startAtMenu: false,
       endAtMenu: false,
-      placeRules: [
-        (v) => !!v || 'Name is required',
-        (v) => v.length <= 30 || 'Name must be less than 10 characters',
-      ],
+      placeRules: [(v) => !!v || 'Name is required'],
       dateRules: [(v) => !!v || 'Date is required'],
       submitLoading: false,
     }
@@ -41,6 +38,12 @@ export default Vue.component('PlanFormDialog', {
   },
   mounted() {},
   methods: {
+    resetAndClose() {
+      this.show = false
+      this.submitLoading = false
+      this.confirmation = 1
+      this.$refs.form.reset()
+    },
     submit() {
       if (this.$refs.form.validate()) {
         this.submitLoading = true
@@ -54,8 +57,7 @@ export default Vue.component('PlanFormDialog', {
         }
 
         this.$store.dispatch('plans/createPlan', plan).then(() => {
-          this.show = false
-          this.submitLoading = true
+          this.resetAndClose()
         })
       }
     },

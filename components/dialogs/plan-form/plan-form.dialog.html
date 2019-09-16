@@ -101,7 +101,7 @@
     <!-- footer -->
     <v-card-actions class="ma-2 mt-0">
       <div class="flex-grow-1"></div>
-      <v-btn color="green darken-1" text @click="show = false" class="mr-2">cancel</v-btn>
+      <v-btn color="green darken-1" text @click="resetAndClose" class="mr-2">cancel</v-btn>
       <v-btn color="green darken-1" :disabled="!valid || submitLoading" @click="submit" :loading="submitLoading">add</v-btn>
     </v-card-actions>
   </v-card>

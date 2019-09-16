@@ -18,9 +18,13 @@ describe('SideDrawerLayoutComponent', () => {
           },
         },
         plans: {
+          namespaced: true,
           state: {
             mine: [],
             friends: [],
+          },
+          actions: {
+            getPlans: jest.fn(),
           },
         },
       },
