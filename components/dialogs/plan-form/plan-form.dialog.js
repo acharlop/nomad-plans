@@ -40,9 +40,20 @@ export default Vue.component('PlanFormDialog', {
       },
     },
   },
-  beforeUpdate() {
+  watch: {
+    isEdit(newVal) {
+      if (newVal) {
+        const { editPlan } = this
 
+        this.place = editPlan.place
+        this.startAt = editPlan.startAt
+        this.endAt = editPlan.endAt
+        this.description = editPlan.description
+        this.confirmation = editPlan.confirmation
+      }
+    },
   },
+  beforeUpdate() {},
   methods: {
     ...mapActions('plans', ['createPlan', 'deletePlan']),
     close() {
@@ -78,19 +89,6 @@ export default Vue.component('PlanFormDialog', {
         this.$store.dispatch(action, plan).then(() => {
           this.close()
         })
-      }
-    },
-  },
-  watch: {
-    isEdit(newVal) {
-      if (newVal) {
-        const { editPlan } = this
-
-        this.place = editPlan.place
-        this.startAt = editPlan.startAt
-        this.endAt = editPlan.endAt
-        this.description = editPlan.description
-        this.confirmation = editPlan.confirmation
       }
     },
   },

@@ -1,10 +1,33 @@
 import PlanFormDialogComponent from './index.vue'
 import { mount } from '@/test/test-utils'
 
+let storeOptions
+
 describe('PlanFormDialogComponent', () => {
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        plans: {
+          namespaced: true,
+          state: {
+            editId: undefined,
+          },
+          actions: {
+            createPlan: jest.fn(),
+            deletePlan: jest.fn(),
+            editPlan: jest.fn(),
+          },
+          mutations: {
+            removePlanEditId: jest.fn(),
+          },
+        },
+      },
+    }
+  })
+
   // is vue component
   test('is Vue component', () => {
-    const wrapper = mount(PlanFormDialogComponent)
+    const wrapper = mount(PlanFormDialogComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options
