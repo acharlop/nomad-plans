@@ -37,7 +37,9 @@ export default Vue.component('SideDrawer', {
       },
     },
   },
-  mounted() {},
+  created() {
+    this.$store.dispatch('plans/getPlans')
+  },
   methods: {
     ...mapMutations('layout', ['showDialogInvite', 'showDialogPlanForm']),
   },

@@ -9,7 +9,7 @@ const defaultState = {
     photoURL: empty,
     providerId: empty,
     facebookUID: empty,
-    firebaseUID: empty,
+    userId: empty,
   },
   isAuthenticated: false,
   isNewUser: true,
@@ -36,7 +36,7 @@ export const mutations = {
       photoURL: newUser.photoURL,
       providerId: newUser.providerId,
       facebookUID: newUser.uid,
-      firebaseUID: payload.uid,
+      userId: payload.uid,
     }
   },
   setNewUser(state, payload) {
