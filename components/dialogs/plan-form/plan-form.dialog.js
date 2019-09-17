@@ -57,18 +57,22 @@ export default Vue.component('PlanFormDialog', {
         this.confirmation = 0
       }
     },
+    description(newVal) {
+      if (newVal === undefined) {
+        this.description = ''
+      }
+    },
   },
   beforeUpdate() {},
   methods: {
     ...mapActions('plans', ['createPlan', 'deletePlan']),
     close() {
       this.show = false
+      this.$refs.form.reset()
       this.submitLoading = false
       this.deleteLoading = false
-      this.confirmation = 0
       this.startAtMenu = false
       this.endAtMenu = false
-      this.$refs.form.reset()
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
       }
