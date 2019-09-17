@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapState, mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 import CardPlan from '@/components/card-plan'
 

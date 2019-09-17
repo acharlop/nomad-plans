@@ -35,12 +35,18 @@ export const actions = {
       .where('userId', '==', rootState.auth.user.userId)
       .onSnapshot((querySnapshot) => {
         const plans = []
+        // build plans array from response
         querySnapshot.forEach((plan) => {
           plans.push({
             ...plan.data(),
             id: plan.id,
           })
         })
+        // sort by descending date
+        plans.sort((a, b) =>
+          a.startAt > b.startAt ? -1 : b.startAt > a.startAt ? 1 : 0
+        )
+        // add to state
         commit('setPlans', plans)
       })
   },
