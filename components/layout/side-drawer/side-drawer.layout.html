@@ -4,19 +4,18 @@
   hide-overlay
   :permanent="visible"
   :width="$vuetify.breakpoint.xsOnly ? '100%' : '350px'"
-  background-color="primary"
   app
   clipped
-  style="top: 64px !important;"
+  style="top: 56px !important;"
 >
   <v-tabs v-model="selectedTab" grow class="pa-0">
     <v-tab key="service" href="#tab-mine">my plans</v-tab>
     <v-tab key="privacy" href="#tab-friends">friends plans</v-tab>
   </v-tabs>
 
-  <v-tabs-items v-model="selectedTab" style="height: calc(100% - 48px)">
+  <v-tabs-items v-model="selectedTab" style="height: calc(100% - 48px); background-color: #f5f5f6;">
     <!-- my plans -->
-    <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height primary lighten-5">
+    <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height">
       <!-- no plans for me -->
       <div class="side-drawer-wrapper justify-center" v-if="!myPlans.length">
           <h2 class="mb-2" >"To travel is to live."</h2>
@@ -33,7 +32,7 @@
     </v-tab-item>
 
     <!-- friends plans -->
-    <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height primary lighten-5" >
+    <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height" >
       <!-- no plans for friends -->
       <div class="side-drawer-wrapper justify-center" v-if="!friendsPlans.length">
         <h2 class="mb-12 text-center">"Friends who<br />travel together<br />stay together."</h2>

@@ -27,5 +27,12 @@ export default Vue.component('InvitesDialog', {
     },
   },
   mounted() {},
-  methods: {},
+  methods: {
+    copyText() {
+      // var copyText = "https://nomadplans.co"
+      var copyText = document.getElementById("nomadLink");
+      copyText.select();
+      document.execCommand("copy");
+    },
+  },
 })
