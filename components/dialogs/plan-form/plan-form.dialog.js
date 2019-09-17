@@ -20,7 +20,7 @@ export default Vue.component('PlanFormDialog', {
       description: '',
       startAtMenu: false,
       endAtMenu: false,
-      placeRules: [(v) => !!v || 'Name is required'],
+      placeRules: [(v) => !!v || 'Place is required'],
       dateRules: [(v) => !!v || 'Date is required'],
       submitLoading: false,
       deleteLoading: false,
