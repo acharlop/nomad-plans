@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
 
-
 export default Vue.component('InvitesDialog', {
   components: {},
   props: {
@@ -30,9 +29,9 @@ export default Vue.component('InvitesDialog', {
   methods: {
     copyText() {
       // var copyText = "https://nomadplans.co"
-      var copyText = document.getElementById("nomadLink");
-      copyText.select();
-      document.execCommand("copy");
+      const copyText = document.getElementById('nomadLink')
+      copyText.select()
+      document.execCommand('copy')
     },
   },
 })
