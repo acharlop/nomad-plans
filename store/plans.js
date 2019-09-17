@@ -33,6 +33,7 @@ export const actions = {
   getPlans({ commit, rootState }) {
     StoreDB.collection('plans')
       .where('userId', '==', rootState.auth.user.userId)
+      .orderBy('startAt', 'desc')
       .onSnapshot((querySnapshot) => {
         const plans = []
         // build plans array from response
@@ -42,11 +43,6 @@ export const actions = {
             id: plan.id,
           })
         })
-        // sort by descending date
-        plans.sort((a, b) =>
-          a.startAt > b.startAt ? -1 : b.startAt > a.startAt ? 1 : 0
-        )
-        // add to state
         commit('setPlans', plans)
       })
   },
