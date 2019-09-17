@@ -52,6 +52,11 @@ export default Vue.component('PlanFormDialog', {
         this.confirmation = editPlan.confirmation
       }
     },
+    show(newVal) {
+      if (newVal && !this.isEdit) {
+        this.confirmation = 0
+      }
+    },
   },
   beforeUpdate() {},
   methods: {
@@ -61,6 +66,8 @@ export default Vue.component('PlanFormDialog', {
       this.submitLoading = false
       this.deleteLoading = false
       this.confirmation = 0
+      this.startAtMenu = false
+      this.endAtMenu = false
       this.$refs.form.reset()
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
