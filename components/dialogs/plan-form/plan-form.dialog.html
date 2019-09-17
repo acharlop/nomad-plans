@@ -14,91 +14,89 @@
     </v-card-title>
 
     <!-- text -->
-    <v-card-text class="pa-0 ma-4 plan-form-container">
-        <v-row>
-          <v-col class="pb-0" cols="12">
-            <v-form
-              ref="form"
-              v-model="valid"
+    <v-card-text v-if="show" class="pa-0 ma-4 plan-form-container">
+      <v-col class="pb-0" cols="12">
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
+          <v-text-field
+            v-model="place"
+            label="Place"
+            :rules="placeRules"
+            required
+            outlined
+          ></v-text-field>
+
+          <v-row class="ma-0 mt-2">
+            <v-menu
+              v-model="startAtMenu"
+              :close-on-content-click="false"
+              :nudge-top="20"
+              transition="scale-transition"
+              offset-y
+              :class="{ 'mr-3': !$vuetify.breakpoint.xsOnly }"
+              content-class="menu"
             >
-              <v-text-field
-                v-model="place"
-                label="Place"
-                :rules="placeRules"
-                required
-                outlined
-              ></v-text-field>
-
-              <v-row class="ma-0 mt-2">
-                <v-menu
-                  v-model="startAtMenu"
-                  :close-on-content-click="false"
-                  :nudge-top="20"
-                  transition="scale-transition"
-                  offset-y
-                  :class="{ 'mr-3': !$vuetify.breakpoint.xsOnly }"
-                  content-class="menu"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      v-model="startAt"
-                      label="Start Date"
-                      :rules="dateRules"
-                      readonly
-                      outlined
-                      v-on="on"
-                      @focus.native="on"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker v-model="startAt" @input="startAtMenu = false"></v-date-picker>
-                </v-menu>
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="startAt"
+                  label="Start Date"
+                  :rules="dateRules"
+                  readonly
+                  outlined
+                  v-on="on"
+                  @focus.native="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="startAt" @input="startAtMenu = false"></v-date-picker>
+            </v-menu>
 
 
-                <v-menu
-                  v-model="endAtMenu"
-                  :close-on-content-click="false"
-                  :nudge-top="20"
-                  :nudge-left="30"
-                  transition="scale-transition"
-                  offset-y
-                  :class="{ 'ml-3': !$vuetify.breakpoint.xsOnly }"
-                  content-class="menu"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      v-model="endAt"
-                      label="End Date"
-                      :rules="dateRules"
-                      readonly
-                      outlined
-                      v-on="on"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker v-model="endAt" :min="startAt" @input="endAtMenu = false"></v-date-picker>
-                </v-menu>
-              </v-row>
+            <v-menu
+              v-model="endAtMenu"
+              :close-on-content-click="false"
+              :nudge-top="20"
+              :nudge-left="30"
+              transition="scale-transition"
+              offset-y
+              :class="{ 'ml-3': !$vuetify.breakpoint.xsOnly }"
+              content-class="menu"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="endAt"
+                  label="End Date"
+                  :rules="dateRules"
+                  readonly
+                  outlined
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="endAt" :min="startAt" @input="endAtMenu = false"></v-date-picker>
+            </v-menu>
+          </v-row>
 
-              <v-subheader class="pl-0">Likelihood</v-subheader>
+          <v-subheader class="pl-0">Likelihood</v-subheader>
 
-              <v-slider
-                v-model="confirmation"
-                :tick-labels="confirmations"
-                :min="-1"
-                :step="1"
-                :max="1"
-                ticks="always"
-                tick-size="4"
-                class="mb-5"
-              ></v-slider>
+          <v-slider
+            v-model="confirmation"
+            :tick-labels="confirmations"
+            :min="-1"
+            :step="1"
+            :max="1"
+            ticks="always"
+            tick-size="4"
+            class="mb-5"
+          ></v-slider>
 
-              <v-textarea
-                v-model="description"
-                label="Note"
-                outlined
-              ></v-textarea>
-            </v-form>
-          </v-col>
-        </v-row>
+          <v-textarea
+            v-model="description"
+            label="Note"
+            outlined
+          ></v-textarea>
+        </v-form>
+      </v-col>
     </v-card-text>
 
     <!-- footer -->
