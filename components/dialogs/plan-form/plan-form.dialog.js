@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import { mapActions, mapGetters, mapState } from 'vuex'
 
+import InputSearchPlaces from '@/components/input-search-places'
+
 export default Vue.component('PlanFormDialog', {
-  components: {},
+  components: {
+    InputSearchPlaces,
+  },
   props: {
     visible: {
       type: Boolean,
