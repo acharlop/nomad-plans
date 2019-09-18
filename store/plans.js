@@ -11,6 +11,19 @@ export const getters = {
   editPlan(state) {
     return state.mine.filter((plan) => plan.id === state.editId)[0]
   },
+  plannedDates(state) {
+    const dates = []
+
+    state.mine.forEach((plan) => {
+      if (state.editId !== plan.id) {
+        dates.push({ startAt: plan.startAt, endAt: plan.endAt })
+      } else {
+        dates.push()
+      }
+    })
+
+    return dates.filter((d) => d)
+  },
 }
 export const mutations = {
   setPlans(state, payload) {
