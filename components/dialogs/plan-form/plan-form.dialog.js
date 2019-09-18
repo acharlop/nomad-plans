@@ -176,19 +176,8 @@ export default Vue.component('PlanFormDialog', {
       }
     },
     // date picker allowed dates functions
-    allowedStartDates(val) {
+    allowedDates(val) {
       const hasDates = this.startAt || this.endAt
-      // const isPlanned = this.plannedDate(val)
-      // const isInRange = this.limitDatesByRange(val)
-
-      return hasDates
-        ? this.limitDatesByRange(val)
-        : this.limitDatesByPlans(val)
-    },
-    allowedEndDates(val) {
-      const hasDates = this.startAt || this.endAt
-      // const isPlanned = this.limitDatesByPlans(val)
-      // const isInRange = this.limitDatesByRange(val)
 
       return hasDates
         ? this.limitDatesByRange(val)
@@ -228,11 +217,17 @@ export default Vue.component('PlanFormDialog', {
       }
 
       for (let i = 0; i < planned.length; i++) {
-        if (val < planned[i].startAt && (!endBefore || endBefore > planned[i].startAt)) {
+        if (
+          val < planned[i].startAt &&
+          (!endBefore || endBefore > planned[i].startAt)
+        ) {
           endBefore = planned[i].startAt
         }
 
-        if (val > planned[i].endAt && (!startAfter || startAfter > planned[i].endAt)) {
+        if (
+          val > planned[i].endAt &&
+          (!startAfter || startAfter > planned[i].endAt)
+        ) {
           startAfter = planned[i].endAt
         }
       }

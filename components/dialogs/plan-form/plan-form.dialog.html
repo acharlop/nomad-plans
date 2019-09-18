@@ -63,7 +63,7 @@
               </template>
               <v-date-picker
                 v-model="startAt"
-                :allowed-dates="allowedStartDates"
+                :allowed-dates="allowedDates"
                 :min="allowedPlanRange.startAfter"
                 :max="allowedPlanRange.endBefore || endAt"
                 @input="startAtMenu = false"
@@ -94,7 +94,7 @@
               </template>
               <v-date-picker
                 v-model="endAt"
-                :allowed-dates="allowedEndDates"
+                :allowed-dates="allowedDates"
                 :min="allowedPlanRange.startAfter || startAt"
                 :max="allowedPlanRange.endBefore"
                 @input="endAtMenu = false"
