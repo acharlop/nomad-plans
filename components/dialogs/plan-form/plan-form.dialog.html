@@ -1,4 +1,11 @@
-<v-dialog max-width="600" v-model="show" :fullscreen="$vuetify.breakpoint.xsOnly" transition="dialog-bottom-transition" scrollable>
+<v-dialog
+  max-width="600"
+  v-model="show"
+  :persistent="!$vuetify.breakpoint.xsOnly"
+  :fullscreen="$vuetify.breakpoint.xsOnly"
+  transition="dialog-bottom-transition"
+  scrollable
+>
   <v-card>
     <!-- header -->
     <v-card-title class="pa-0">
