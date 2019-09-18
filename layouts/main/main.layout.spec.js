@@ -1,6 +1,8 @@
 import MainLayoutComponent from '../main'
 import { shallow } from '@/test/test-utils'
 
+jest.mock('@/components/dialogs/plan-form', () => () => 'PlanFormDialog')
+
 let storeOptions
 
 describe('MainLayoutComponent', () => {
