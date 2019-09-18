@@ -1,14 +1,36 @@
 import Vue from 'vue'
 import { mapActions, mapGetters, mapState } from 'vuex'
+import downArrowSimulator from 'vue2-google-maps/src/utils/simulateArrowDown'
+import { bindProps, getPropsValues } from 'vue2-google-maps/src/utils/bindProps'
+import { gmapApi } from 'vue2-google-maps'
 
-import InputSearchPlaces from '@/components/input-search-places'
+const mappedProps = {
+  bounds: {
+    type: Object,
+  },
+  componentRestrictions: {
+    type: Object,
+    // Do not bind -- must check for undefined
+    // in the property
+    noBind: true,
+  },
+  types: {
+    type: Array,
+    default() {
+      return []
+    },
+  },
+}
 
 export default Vue.component('PlanFormDialog', {
-  components: {
-    InputSearchPlaces,
-  },
+  components: {},
   props: {
     visible: {
+      type: Boolean,
+      default: true,
+    },
+    selectFirstOnEnter: {
+      required: false,
       type: Boolean,
       default: true,
     },
@@ -16,7 +38,8 @@ export default Vue.component('PlanFormDialog', {
   data() {
     return {
       valid: false,
-      place: '',
+      placeName: '',
+      place: {},
       startAt: '',
       endAt: '',
       confirmations: ['Not Sure', 'Most Likely', 'Confirmed'],
@@ -43,6 +66,7 @@ export default Vue.component('PlanFormDialog', {
         if (!value) this.$emit('close')
       },
     },
+    google: gmapApi,
   },
   watch: {
     isEdit(newVal) {
@@ -50,6 +74,7 @@ export default Vue.component('PlanFormDialog', {
         const { editPlan } = this
 
         this.place = editPlan.place
+        this.placeName = editPlan.place.name
         this.startAt = editPlan.startAt
         this.endAt = editPlan.endAt
         this.description = editPlan.description
@@ -60,14 +85,24 @@ export default Vue.component('PlanFormDialog', {
       if (newVal && !this.isEdit) {
         this.confirmation = 0
       }
+      if (newVal) {
+        this.setupSearch()
+      }
     },
     description(newVal) {
       if (newVal === undefined) {
         this.description = ''
       }
     },
+    placeName(newVal) {
+      if (newVal === undefined) {
+        this.placeName = ''
+      }
+    },
   },
-  beforeUpdate() {},
+  mounted() {
+    this.setupSearch()
+  },
   methods: {
     ...mapActions('plans', ['createPlan', 'deletePlan']),
     close() {
@@ -77,6 +112,7 @@ export default Vue.component('PlanFormDialog', {
       this.deleteLoading = false
       this.startAtMenu = false
       this.endAtMenu = false
+      this.placeName = ''
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
       }
@@ -86,6 +122,18 @@ export default Vue.component('PlanFormDialog', {
       this.deletePlan().then(() => {
         this.close()
       })
+    },
+    placeSelected(data) {
+      if (!data.name) return
+
+      this.placeName = data.formatted_address
+
+      this.place = {
+        name: data.name,
+        address: data.formatted_address,
+        lat: data.geometry.location.lat(),
+        lng: data.geometry.location.lng(),
+      }
     },
     submit() {
       if (this.$refs.form.validate()) {
@@ -105,6 +153,38 @@ export default Vue.component('PlanFormDialog', {
           this.close()
         })
       }
+    },
+    setupSearch() {
+      this.$gmapApiPromiseLazy().then(() => {
+        if (this.selectFirstOnEnter) {
+          downArrowSimulator(this.$refs.searchInput.$refs.input)
+        }
+
+        if (typeof this.google.maps.places.Autocomplete !== 'function') {
+          throw new TypeError('google.maps.places.Autocomplete is undefined.')
+        }
+
+        // set placeholder
+        this.$refs.searchInput.$refs.input.placeholder = ''
+
+        this.$autocomplete = new this.google.maps.places.Autocomplete(
+          this.$refs.searchInput.$refs.input,
+          getPropsValues(this, mappedProps)
+        )
+        bindProps(this, this.$autocomplete, mappedProps)
+
+        this.$watch('componentRestrictions', (v) => {
+          if (v !== undefined) {
+            this.$autocomplete.setComponentRestrictions(v)
+          }
+        })
+
+        // Not using `bindEvents` because we also want
+        // to return the result of `getPlace()`
+        this.$autocomplete.addListener('place_changed', () => {
+          this.placeSelected(this.$autocomplete.getPlace())
+        })
+      })
     },
   },
 })

@@ -20,24 +20,18 @@
           ref="form"
           v-model="valid"
         >
-            <!-- TODO add 'clearable', issue is changing focus to other input -->
-<!--            <v-text-field-->
-<!--              ref="searchInput"-->
-<!--              required-->
-<!--              outlined-->
-<!--              type="search"-->
-<!--              v-model="place"-->
-<!--              label="Place"-->
-<!--              :rules="placeRules"-->
-<!--              class="search-input"-->
-<!--              :placeholder="placeholder"-->
-<!--              :success="placeIsFocused"-->
-<!--              :border-color="placeIsHovered ? 'red' : 'black'"-->
-<!--            >-->
-<!--            </v-text-field>-->
-          <InputSearchPlaces
-            v-model="place"
-          ></InputSearchPlaces>
+            <v-text-field
+              ref="searchInput"
+              required
+              outlined
+              clearable
+              type="search"
+              v-model="placeName"
+              label="Place"
+              :rules="placeRules"
+              class="search-input"
+            >
+            </v-text-field>
           <v-row class="ma-0 mt-2">
             <v-menu
               v-model="startAtMenu"
