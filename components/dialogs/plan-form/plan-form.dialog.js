@@ -195,8 +195,8 @@ export default Vue.component('PlanFormDialog', {
     limitDatesByRange(val) {
       const { startAfter, endBefore } = this.allowedPlanRange
 
-      const isBefore = !startAfter || val > startAfter
-      const isAfter = !endBefore || val < endBefore
+      const isBefore = !startAfter || val >= startAfter
+      const isAfter = !endBefore || val <= endBefore
 
       return !this.allowedPlanRange.set || (isBefore && isAfter)
     },
