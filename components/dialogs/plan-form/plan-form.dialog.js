@@ -106,17 +106,17 @@ export default Vue.component('PlanFormDialog', {
       }
     },
     startAt(val) {
-      if (!this.allowedPlanRange.set) {
-        this.setAllowedPlanRange(val, true)
-      } else if (!val && !this.endAt) {
+      if (!val && !this.endAt) {
         this.resetAllowedPlanRange()
+      } else if (val && !this.endAt) {
+        this.setAllowedPlanRange(val)
       }
     },
     endAt(val) {
-      if (!this.allowedPlanRange.set) {
-        this.setAllowedPlanRange(val, false)
-      } else if (!val && !this.startAt) {
+      if (!val && !this.startAt) {
         this.resetAllowedPlanRange()
+      } else if (val && !this.startAt) {
+        this.setAllowedPlanRange(val)
       }
     },
   },
@@ -205,8 +205,8 @@ export default Vue.component('PlanFormDialog', {
 
       if (!val || !planned.length) return
 
-      let startAfter = ''
-      let endBefore = ''
+      let startAfter = this.startAt || ''
+      let endBefore = this.endAt || ''
 
       if (planned.length === 1) {
         if (val < planned[0].startAt) {
@@ -226,7 +226,7 @@ export default Vue.component('PlanFormDialog', {
 
         if (
           val > planned[i].endAt &&
-          (!startAfter || startAfter > planned[i].endAt)
+          (!startAfter || startAfter < planned[i].endAt)
         ) {
           startAfter = planned[i].endAt
         }
