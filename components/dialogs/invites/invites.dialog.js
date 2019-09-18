@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
 
 export default Vue.component('InvitesDialog', {
   components: {},
@@ -9,7 +10,9 @@ export default Vue.component('InvitesDialog', {
     },
   },
   data() {
-    return {}
+    return {
+      snackbar: false,
+    }
   },
   computed: {
     show: {
@@ -20,7 +23,19 @@ export default Vue.component('InvitesDialog', {
         if (!value) this.$emit('close')
       },
     },
+    icon() {
+      return faFacebookSquare
+    },
   },
   mounted() {},
-  methods: {},
+  methods: {
+    copyText() {
+      // var copyText = "https://nomadplans.co"
+      const copyText = document.getElementById('nomadLink')
+      copyText.select()
+      document.execCommand('copy')
+      this.snackbar = true
+      copyText.blur()
+    },
+  },
 })

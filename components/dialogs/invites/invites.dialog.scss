@@ -1,6 +1,7 @@
-.invites-dialog {
+.invites-dialog-container {
+    width: calc(100% - 30px);
+  }
 
-}
 
 .scroll-fix {
   overflow-y: scroll;
@@ -10,4 +11,37 @@
 // fix for left margin
 .v-tabs-bar.v-tabs-bar--is-mobile .v-tab {
   margin-left: 0px !important;
+}
+
+button, a, input {
+  outline: none;
+
+  &:hover, &:active {
+    outline: none;
+  }
+}
+
+.share-button {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #4267b2;
+
+  &:hover, &:active {
+    outline: none;
+  }
+
+  .text {
+    color: white;
+    display: inline-flex;
+    font-size: 16px;
+    border: none;
+    letter-spacing: .25px;
+
+    margin: 0 12px 0 6px;
+    text-decoration: none;
+  }
 }

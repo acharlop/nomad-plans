@@ -1,9 +1,10 @@
+
 <v-dialog max-width="600" v-model="show" :fullscreen="$vuetify.breakpoint.xsOnly" transition="dialog-bottom-transition" scrollable>
   <v-card>
     <!-- header -->
     <v-card-title class="pa-0">
       <v-toolbar light color="primary" fixed class="pr-0">
-        <v-toolbar-title>Send Invites to your Friends</v-toolbar-title>
+        <v-toolbar-title>Invite your Friends</v-toolbar-title>
         <v-spacer />
         <v-toolbar-items>
           <v-btn light text @click="show = false">
@@ -14,9 +15,30 @@
     </v-card-title>
 
     <!-- text -->
-    <v-card-text class="pa-0 ma-4">
-        <h1>Invite your friend</h1>
-        <p>where our awesome invites will go</p>
+    <v-card-text class="text-center pa-0 ma-4 invites-dialog-container">
+        <v-avatar size="72" color="secondary" class="ma-4">
+            <v-icon dark size="56">mdi-account-multiple-plus-outline</v-icon>
+        </v-avatar>
+        <h2 class="my-4">Nomad Plans is better with Friends!</h2>
+
+
+        <p class="my-5">Share us on your Facebook timeline </p>
+
+         <!-- Share FB button-->
+        <div class="d-flex justify-center">
+            <button class="share-button" >
+              <v-icon color="white" size="24"> mdi-facebook </v-icon>
+              <a target="_blank" class="text" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomad-plans.herokuapp.com%2F&amp;src=sdkpreparse" >Share</a>
+            </button>
+        </div>
+
+        <p class="my-5">Or copy and share the link <input id="nomadLink" type="text" value="https://nomadplans.co"></input>
+          <button @click="copyText"><v-icon small> mdi-content-copy </v-icon></button>
+        </p>
+
+        <p class="my-6">
+          You'll see your friends on the map once they sign up to Nomad Plans.
+        </p>
     </v-card-text>
 
     <!-- footer -->
@@ -25,4 +47,14 @@
       <v-btn color="green darken-1" text @click="show = false">close</v-btn>
     </v-card-actions>
   </v-card>
+
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="1000"
+    color="success"
+  >
+    Link copied
+    <v-btn text @click="snackbar = false">close</v-btn>
+  </v-snackbar>
 </v-dialog>
+
