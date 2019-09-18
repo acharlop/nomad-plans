@@ -10,7 +10,9 @@ export default Vue.component('InvitesDialog', {
     },
   },
   data() {
-    return {}
+    return {
+      snackbar: false,
+    }
   },
   computed: {
     show: {
@@ -32,6 +34,8 @@ export default Vue.component('InvitesDialog', {
       const copyText = document.getElementById('nomadLink')
       copyText.select()
       document.execCommand('copy')
+      this.snackbar = true
+      copyText.blur()
     },
   },
 })

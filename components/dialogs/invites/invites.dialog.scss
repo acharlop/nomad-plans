@@ -13,6 +13,14 @@
   margin-left: 0px !important;
 }
 
+button, a, input {
+  outline: none;
+
+  &:hover, &:active {
+    outline: none;
+  }
+}
+
 .share-button {
   width: 100px;
   height: 40px;
@@ -21,18 +29,8 @@
   align-items: center;
   justify-content: center;
   background-color: #4267b2;
-  outline: none;
-  overflow: hidden;
 
   &:hover, &:active {
-    outline: none;
-  }
-
-  .icon {
-    height: 24px;
-    width: 24px;
-    margin: 8px;
-    padding: 0;
     outline: none;
   }
 
@@ -42,10 +40,7 @@
     font-size: 16px;
     border: none;
     letter-spacing: .25px;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: clip;
-    white-space: nowrap;
+
     margin: 0 12px 0 6px;
     text-decoration: none;
   }
