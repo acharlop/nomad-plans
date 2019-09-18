@@ -51,13 +51,18 @@ export default Vue.component('PlanFormDialog', {
       dateRules: [(v) => !!v || 'Date is required'],
       submitLoading: false,
       deleteLoading: false,
+      allowedPlanRange: {
+        startAfter: '',
+        endBefore: '',
+        set: false,
+      },
     }
   },
   computed: {
     ...mapState({
       isEdit: (state) => !!state.plans.editId,
     }),
-    ...mapGetters('plans', ['editPlan']),
+    ...mapGetters('plans', ['editPlan', 'plannedDates']),
     show: {
       get() {
         return this.visible
@@ -79,6 +84,7 @@ export default Vue.component('PlanFormDialog', {
         this.endAt = editPlan.endAt
         this.description = editPlan.description
         this.confirmation = editPlan.confirmation
+        this.setAllowedPlanRange(editPlan.startAt)
       }
     },
     show(newVal) {
@@ -99,6 +105,20 @@ export default Vue.component('PlanFormDialog', {
         this.placeName = ''
       }
     },
+    startAt(val) {
+      if (!this.allowedPlanRange.set) {
+        this.setAllowedPlanRange(val, true)
+      } else if (!val && !this.endAt) {
+        this.resetAllowedPlanRange()
+      }
+    },
+    endAt(val) {
+      if (!this.allowedPlanRange.set) {
+        this.setAllowedPlanRange(val, false)
+      } else if (!val && !this.startAt) {
+        this.resetAllowedPlanRange()
+      }
+    },
   },
   mounted() {
     this.safeSetup()
@@ -113,6 +133,7 @@ export default Vue.component('PlanFormDialog', {
       this.startAtMenu = false
       this.endAtMenu = false
       this.placeName = ''
+      this.resetAllowedPlanRange()
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
       }
@@ -126,7 +147,7 @@ export default Vue.component('PlanFormDialog', {
     placeSelected(data) {
       if (!data.name) return
 
-      this.placeName = data.formatted_address
+      this.placeName = data.name
 
       this.place = {
         name: data.name,
@@ -154,6 +175,78 @@ export default Vue.component('PlanFormDialog', {
         })
       }
     },
+    // date picker allowed dates functions
+    allowedStartDates(val) {
+      const hasDates = this.startAt || this.endAt
+      // const isPlanned = this.plannedDate(val)
+      // const isInRange = this.limitDatesByRange(val)
+
+      return hasDates
+        ? this.limitDatesByRange(val)
+        : this.limitDatesByPlans(val)
+    },
+    allowedEndDates(val) {
+      const hasDates = this.startAt || this.endAt
+      // const isPlanned = this.limitDatesByPlans(val)
+      // const isInRange = this.limitDatesByRange(val)
+
+      return hasDates
+        ? this.limitDatesByRange(val)
+        : this.limitDatesByPlans(val)
+    },
+    limitDatesByPlans(val) {
+      let allowed = true
+      this.plannedDates.forEach((range) => {
+        if (range.startAt <= val && val <= range.endAt) {
+          allowed = false
+        }
+      })
+      return allowed
+    },
+    limitDatesByRange(val) {
+      const { startAfter, endBefore } = this.allowedPlanRange
+
+      const isBefore = !startAfter || val > startAfter
+      const isAfter = !endBefore || val < endBefore
+
+      return !this.allowedPlanRange.set || (isBefore && isAfter)
+    },
+    setAllowedPlanRange(val) {
+      const { plannedDates: planned } = this
+
+      if (!val || !planned.length) return
+
+      let startAfter = ''
+      let endBefore = ''
+
+      if (planned.length === 1) {
+        if (val < planned[0].startAt) {
+          endBefore = planned[0].startAt
+        } else {
+          startAfter = planned[0].endAt
+        }
+      }
+
+      for (let i = 0; i < planned.length; i++) {
+        if (val < planned[i].startAt && (!endBefore || endBefore > planned[i].startAt)) {
+          endBefore = planned[i].startAt
+        }
+
+        if (val > planned[i].endAt && (!startAfter || startAfter > planned[i].endAt)) {
+          startAfter = planned[i].endAt
+        }
+      }
+
+      this.allowedPlanRange = { startAfter, endBefore, set: true }
+    },
+    resetAllowedPlanRange() {
+      this.allowedPlanRange = {
+        startAfter: '',
+        endBefore: '',
+        set: false,
+      }
+    },
+    // setup functions
     safeSetup() {
       try {
         if (this.$refs.searchInput.$refs.input) {
