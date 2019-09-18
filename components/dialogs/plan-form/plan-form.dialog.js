@@ -86,7 +86,7 @@ export default Vue.component('PlanFormDialog', {
         this.confirmation = 0
       }
       if (newVal) {
-        this.setupSearch()
+        this.safeSetup()
       }
     },
     description(newVal) {
@@ -101,7 +101,7 @@ export default Vue.component('PlanFormDialog', {
     },
   },
   mounted() {
-    this.setupSearch()
+    this.safeSetup()
   },
   methods: {
     ...mapActions('plans', ['createPlan', 'deletePlan']),
@@ -152,6 +152,17 @@ export default Vue.component('PlanFormDialog', {
         this.$store.dispatch(action, plan).then(() => {
           this.close()
         })
+      }
+    },
+    safeSetup() {
+      try {
+        if (this.$refs.searchInput.$refs.input) {
+          this.setupSearch()
+        }
+      } catch (e) {
+        setTimeout(() => {
+          this.safeSetup()
+        }, 200)
       }
     },
     setupSearch() {
