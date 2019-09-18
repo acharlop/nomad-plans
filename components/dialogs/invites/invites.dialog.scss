@@ -14,8 +14,9 @@
 }
 
 .share-button {
+  width: 100px;
   height: 40px;
-  padding-right: 10px;
+  margin-left: calc(50% - 50px);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

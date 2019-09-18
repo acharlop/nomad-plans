@@ -21,14 +21,16 @@
         </v-avatar>
         <h2 class="my-4">Nomad Plans is better with Friends!</h2>
         
-        <!-- Share FB button-->
+       
         <p class="my-5">Share us on your Facebook timeline </p>
-        <p >
+
+         <!-- Share FB button-->
+        <div>
             <button class="share-button" >
               <v-icon color="white"> mdi-facebook </v-icon> 
               <a target="_blank" class="text" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomad-plans.herokuapp.com%2F&amp;src=sdkpreparse" >Share</a>
             </button>
-        </p>
+        </div>
 
         <p class="my-5">Or copy and share the link <input id="nomadLink" type="text" value="https://nomadplans.co"></input>
           <button @click="copyText"><v-icon small> mdi-content-copy </v-icon></button>
