@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import { mapActions, mapGetters, mapState } from 'vuex'
 
+import InputSearchPlaces from '@/components/input-search-places'
+
 export default Vue.component('PlanFormDialog', {
-  components: {},
+  components: {
+    InputSearchPlaces,
+  },
   props: {
     visible: {
       type: Boolean,
@@ -52,16 +56,27 @@ export default Vue.component('PlanFormDialog', {
         this.confirmation = editPlan.confirmation
       }
     },
+    show(newVal) {
+      if (newVal && !this.isEdit) {
+        this.confirmation = 0
+      }
+    },
+    description(newVal) {
+      if (newVal === undefined) {
+        this.description = ''
+      }
+    },
   },
   beforeUpdate() {},
   methods: {
     ...mapActions('plans', ['createPlan', 'deletePlan']),
     close() {
       this.show = false
+      this.$refs.form.reset()
       this.submitLoading = false
       this.deleteLoading = false
-      this.confirmation = 0
-      this.$refs.form.reset()
+      this.startAtMenu = false
+      this.endAtMenu = false
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
       }

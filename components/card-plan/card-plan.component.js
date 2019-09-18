@@ -14,7 +14,6 @@ export default Vue.component('CardPlan', {
   },
   data() {
     return {
-      date: `${this.plan.startAt} - ${this.plan.endAt}`,
       hasLotsOfFriends: this.plan.friends
         ? this.plan.friends.length > 4
         : false,
@@ -26,6 +25,9 @@ export default Vue.component('CardPlan', {
     }
   },
   computed: {
+    date() {
+      return `${this.plan.startAt} - ${this.plan.endAt}`
+    },
     friendsList() {
       if (!this.plan.friends || !this.plan.friends.length) return []
 

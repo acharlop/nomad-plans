@@ -1,0 +1,12 @@
+<GmapMap
+  :center="{ lat: 10, lng: 10 }"
+  :zoom="3"
+  map-type-id="terrain"
+  style="width: 100%; height: 100%"
+>
+  <GmapMarker
+    :key="index"
+    v-for="(plan, index) in myPlans"
+    :position="google && new google.maps.LatLng(plan.place.lat, plan.place.lng)"
+  ></GmapMarker>
+</GmapMap>

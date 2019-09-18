@@ -33,8 +33,10 @@ export const actions = {
   getPlans({ commit, rootState }) {
     StoreDB.collection('plans')
       .where('userId', '==', rootState.auth.user.userId)
+      .orderBy('startAt', 'desc')
       .onSnapshot((querySnapshot) => {
         const plans = []
+        // build plans array from response
         querySnapshot.forEach((plan) => {
           plans.push({
             ...plan.data(),
