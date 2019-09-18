@@ -1,19 +1,24 @@
 import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 
+// layout components
 import AppBar from '@/components/layout/app-bar'
+import Footer from '@/components/layout/footer'
 import SideDrawer from '@/components/layout/side-drawer'
-import PlanFormDialog from '@/components/dialogs/plan-form'
+
+// dialogs
 import InvitesDialog from '@/components/dialogs/invites'
 import LegalDialog from '@/components/dialogs/legal'
+import PlanFormDialog from '@/components/dialogs/plan-form'
 
 export default Vue.component('MainLayout', {
   components: {
     AppBar,
+    Footer,
     SideDrawer,
-    PlanFormDialog,
     InvitesDialog,
     LegalDialog,
+    PlanFormDialog,
   },
   props: [],
   data() {
