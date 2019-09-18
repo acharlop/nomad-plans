@@ -2,10 +2,14 @@
 .v-tabs-bar.v-tabs-bar--is-mobile .v-tab {
   margin-left: 0px !important;
 }
+.v-navigation-drawer__content {
+  overflow-y: hidden;
+}
 
 .side-drawer{
-  height: calc(100% - 48px); 
+  height: calc(100% - 48px);
   background-color: #f5f5f6;
+  overflow-y: auto;
 }
 
 .side-drawer-wrapper {

@@ -14,8 +14,7 @@
     <v-tab key="service" href="#tab-mine">my plans</v-tab>
     <v-tab key="privacy" href="#tab-friends">friends plans</v-tab>
   </v-tabs>
-
-  <v-tabs-items v-model="selectedTab" class="side-drawer">
+  <v-tabs-items v-model="selectedTab" class="side-drawer">
     <!-- my plans -->
     <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height">
       <!-- no plans for me -->
@@ -26,13 +25,11 @@
             <v-icon left>mdi-plus-circle-outline</v-icon>new plan
           </v-btn>
       </div>
-
       <!-- plans -->
       <div class="side-drawer-wrapper" v-if="myPlans.length">
         <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
       </div>
     </v-tab-item>
-
     <!-- friends plans -->
     <v-tab-item key="friends" value="tab-friends" class="pa-4 fill-height" >
       <!-- no plans for friends -->
