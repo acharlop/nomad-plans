@@ -1,3 +1,3 @@
-<template src="./app-bar.html"></template>
-<script src="./app-bar.js"></script>
-<style src="./app-bar.scss" scoped lang="scss"></style>
+<template src="./app-bar.layout.html"></template>
+<script src="./app-bar.layout.js"></script>
+<style src="./app-bar.layout.scss" scoped lang="scss"></style>
