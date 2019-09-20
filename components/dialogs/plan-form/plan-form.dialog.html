@@ -13,8 +13,8 @@
         <v-toolbar-title>{{ isEdit ? 'Edit Plan' : 'Create new plan' }}</v-toolbar-title>
         <v-spacer />
         <v-toolbar-items>
-          <v-btn text @click="close">
-            <v-icon class="white--text">mdi-close</v-icon>
+          <v-btn dark text @click="close">
+            <v-icon >mdi-close</v-icon>
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
@@ -128,7 +128,7 @@
     <v-card-actions class="ma-2 mt-0">
       <v-btn v-if="isEdit" color="error" text :disabled="deleteLoading || submitLoading" @click="remove" :loading="deleteLoading">delete</v-btn>
       <div class="flex-grow-1"></div>
-      <v-btn color="light-green darken-1" text @click="close" class="mr-2">cancel</v-btn>
+      <v-btn color="primary darken-1" text @click="close" class="mr-2">cancel</v-btn>
       <v-btn class="white--text" color="amber darken-1" :disabled="!valid || submitLoading || deleteLoading" @click="submit" :loading="submitLoading">{{ isEdit ? 'save' : 'add'}}</v-btn>
     </v-card-actions>
   </v-card>
