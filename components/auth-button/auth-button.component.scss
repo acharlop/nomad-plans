@@ -6,6 +6,7 @@
   background-color: #4267b2;
   outline: none;
   overflow: hidden;
+  color: white;
 
   &:hover, &:active {
     outline: none;
@@ -16,6 +17,7 @@
     width: 24px;
     margin: 8px;
     padding: 0;
+    color: white;
   }
 
   .text {
