@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { mapState, mapActions } from 'vuex'
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
 
 export default Vue.component('AuthButton', {
   components: {},
@@ -13,9 +12,6 @@ export default Vue.component('AuthButton', {
       isNewUser: (state) => state.auth.isNewUser,
       isAuthenticated: (state) => state.auth.isAuthenticated,
     }),
-    icon() {
-      return faFacebookSquare
-    },
   },
   created() {
     this.signInAutomatic()

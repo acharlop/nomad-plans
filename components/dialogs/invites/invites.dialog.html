@@ -3,11 +3,11 @@
   <v-card>
     <!-- header -->
     <v-card-title class="pa-0">
-      <v-toolbar light color="primary" fixed class="pr-0">
+      <v-toolbar dark color="primary" fixed class="pr-0">
         <v-toolbar-title>Invite your Friends</v-toolbar-title>
         <v-spacer />
         <v-toolbar-items>
-          <v-btn light text @click="show = false">
+          <v-btn dark text @click="show = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -32,7 +32,7 @@
             </button>
         </div>
 
-        <p class="my-5">Or copy and share the link <input id="nomadLink" type="text" value="https://nomadplans.co"></input>
+        <p class="my-5">Or copy and share the link <input disabled id="nomadLink" type="text" value="https://nomadplans.co"></input>
           <button @click="copyText"><v-icon small> mdi-content-copy </v-icon></button>
         </p>
 
@@ -44,7 +44,7 @@
     <!-- footer -->
     <v-card-actions>
       <div class="flex-grow-1"></div>
-      <v-btn color="green darken-1" text @click="show = false">close</v-btn>
+      <v-btn color="primary darken-1" text @click="show = false">close</v-btn>
     </v-card-actions>
   </v-card>
 

@@ -1,12 +1,12 @@
-<v-app-bar  fixed app clipped-right color="primaryDark" class="pr-1">
+<v-app-bar dark fixed app clipped-right class="pr-1 light-green darken-3">
   <v-avatar class="ml-1 mr-2 d-none d-sm-inline">
-    <fa class="icon i-globe" :icon="iconGlobe" />
+    <v-icon size="42">mdi-earth</v-icon>
   </v-avatar>
   <v-toolbar-title v-text="title" />
   <v-spacer />
   <!--  buttons for medium and up -->
   <v-btn class="ma-2 d-none d-sm-inline" text @click="showDialogPlanForm">
-    <v-icon left>mdi-plus-circle-outline</v-icon> NEW PLAN
+    <v-icon left> mdi-plus-circle-outline</v-icon> NEW PLAN
   </v-btn>
   <v-btn class="ma-2 d-none d-sm-inline" text @click="toggleSideDrawer">PLANS</v-btn>
   <!-- buttons form sm and down -->
@@ -16,11 +16,18 @@
     class="ma-2 d-sm-none"
     color="transparent"
     @click="showDialogPlanForm"
-  >
-    <fa class="icon-small" :icon="iconAdd" />
+    >
+    <v-icon class="icon-small"> mdi-plus-circle-outline</v-icon> 
   </v-btn>
-  <v-btn class="ma-2 d-sm-none" icon color="transparent" small @click="toggleSideDrawer">
-    <fa class="icon-small" :icon="iconMap" />
+
+  <v-btn
+    icon 
+    small 
+    class="ma-2 d-sm-none" 
+    color="transparent" 
+    @click="toggleSideDrawer"
+    >
+    <v-icon class="icon-small"> mdi-map-outline</v-icon>
   </v-btn>
 
   <!-- dropdown -->
@@ -41,7 +48,7 @@
     </template>
 
     <v-card>
-      <v-list color="secondary">
+      <v-list class="primary">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>{{name}}</v-list-item-title>
@@ -83,12 +90,12 @@
       <v-list-item>
         <v-list-item-content>
           <v-row justify="center">
-            <v-btn icon large class="ma-1" >
-              <fa class="icon i-page" :icon="iconPage" />
+            <v-btn icon large class="ma-1 i-page" >
+              <v-icon color="white" >mdi-facebook </v-icon>
             </v-btn>
 
-            <v-btn icon large class="ma-1" >
-              <fa class="icon i-message" :icon="iconMessage" />
+            <v-btn icon large class="ma-1 i-message" >
+              <v-icon color="white">mdi-facebook-messenger</v-icon>
             </v-btn>
           </v-row>
         </v-list-item-content>

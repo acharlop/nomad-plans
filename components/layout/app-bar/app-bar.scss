@@ -1,24 +1,18 @@
-.icon {
-  height: 44px;
-  width: 44px;
-  color: white;
-}
-
 .icon-small {
   height: 26px;
   width: 26px;
-  color: white;
+  color: white !important;
   outline: #000066;
 }
 
 .i-page {
-  color: #4267b2;
+  background-color: #4267b2;
 }
 
 .i-message {
-  color: #0078FF;
+  background-color: #0078FF;
 }
 
-.i-globe {
-  color: red;
+.auth-button{
+  width: 100px;
 }

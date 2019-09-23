@@ -9,14 +9,8 @@ export default {
     themes: {
       light: {
         primary: colors.lightGreen.base,
-        primaryLight: '#bef67a',
-        primaryDark: '#5a9216',
-
-        secondary: '#ffa000',
-        secondaryLight: '#ffd149',
-        secondaryDark: '#c67100',
-
-        anchor: colors.blue.darken2,
+        secondary: colors.amber.base,
+        anchor: colors.amber.darken2,
       },
     },
   },
