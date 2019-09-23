@@ -6,7 +6,7 @@
   transition="dialog-bottom-transition"
   scrollable
 >
-  <v-card> 
+  <v-card>
     <!-- header -->
     <v-card-title class="pa-0">
       <v-toolbar color="primary white--text" fixed class="pr-o">
@@ -90,6 +90,8 @@
                   outlined
                   v-on="on"
                   clearable
+                  :hint="startAt && endAt ? $dateFns.formatDistanceStrict(new Date(startAt), new Date(endAt)) : ''"
+                  :persistent-hint="!!startAt && !!endAt"
                 ></v-text-field>
               </template>
               <v-date-picker
