@@ -20,5 +20,6 @@ module.exports = {
     'nuxt/no-cjs-in-config': 'off',
     'prefer-template': 'error',
     'key-spacing': ['error', { mode: 'minimum' }],
+    'eol-last': ['error', 'always'],
   },
 }
