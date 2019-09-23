@@ -1,6 +1,6 @@
-# nomad-map
+# nomad-plans
 
-> My awesome nomad map project
+> My awesome nomad plans project
 
 ## Build Setup
 

@@ -10,7 +10,7 @@ export default Vue.component('AppBar', {
   props: [],
   data() {
     return {
-      title: 'Nomad Maps',
+      title: 'Nomad Plans',
       profileMenu: false,
     }
   },

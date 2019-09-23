@@ -1,7 +1,7 @@
 {
   "name": "nomad-map",
   "version": "1.0.0",
-  "description": "My awesome nomad map project",
+  "description": "Vue front end for nomadplans.co",
   "author": "Avi Charlop",
   "private": true,
   "engines": {
