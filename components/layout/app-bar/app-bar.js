@@ -1,34 +1,21 @@
 import Vue from 'vue'
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
-import AuthButton from '@/components/auth-button'
+import ProfileMenu from '@/components/menus/profile'
 
 export default Vue.component('AppBar', {
   components: {
-    AuthButton,
+    ProfileMenu,
   },
   props: [],
   data() {
     return {
       title: 'Nomad Plans',
-      profileMenu: false,
     }
   },
-  computed: {
-    ...mapState({
-      photoURL: (state) => `${state.auth.user.photoURL}?height=36&width=36`,
-      name: (state) => state.auth.user.displayName,
-      email: (state) => state.auth.user.email,
-    }),
-  },
+  computed: {},
   mounted() {},
   methods: {
-    ...mapMutations('layout', [
-      'closeDialogs',
-      'showDialogLegal',
-      'showDialogInvite',
-      'showDialogPlanForm',
-      'toggleSideDrawer',
-    ]),
+    ...mapMutations('layout', ['showDialogPlanForm', 'toggleSideDrawer']),
   },
 })

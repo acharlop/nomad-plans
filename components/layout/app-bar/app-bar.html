@@ -17,91 +17,19 @@
     color="transparent"
     @click="showDialogPlanForm"
     >
-    <v-icon class="icon-small"> mdi-plus-circle-outline</v-icon> 
+    <v-icon class="icon-small"> mdi-plus-circle-outline</v-icon>
   </v-btn>
 
   <v-btn
-    icon 
-    small 
-    class="ma-2 d-sm-none" 
-    color="transparent" 
+    icon
+    small
+    class="ma-2 d-sm-none"
+    color="transparent"
     @click="toggleSideDrawer"
     >
     <v-icon class="icon-small"> mdi-map-outline</v-icon>
   </v-btn>
 
-  <!-- dropdown -->
-  <!-- TODO this should be separate component -->
-  <v-menu
-    v-model="profileMenu"
-    :nudge-width="210"
-    :nudge-left="210"
-    :nudge-top="-15"
-    offset-y
-  >
-    <template v-slot:activator="{ on }">
-      <v-btn icon class="ma-2" color="transparent" v-on="on">
-        <v-avatar size="36">
-          <img :src="photoURL" alt="user avatar">
-        </v-avatar>
-      </v-btn>
-    </template>
-
-    <v-card>
-      <v-list class="primary">
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>{{name}}</v-list-item-title>
-            <v-list-item-subtitle>{{email}}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-
-      <v-divider></v-divider>
-
-      <v-list-item>
-        <v-list-item-content>
-          <v-btn tile depressed color="transparent" block @click="showDialogInvite">Invite Friends</v-btn>
-        </v-list-item-content>
-      </v-list-item>
-      </v-list>
-
-      <v-divider></v-divider>
-
-
-      <v-list-item>
-        <v-list-item-content>
-          <v-btn tile depressed color="transparent" block @click="showDialogLegal">Legal stuff</v-btn>
-        </v-list-item-content>
-      </v-list-item>
-      </v-list>
-
-      <v-divider></v-divider>
-
-      <v-list-item>
-        <v-list-item-content>
-          <auth-button></auth-button>
-        </v-list-item-content>
-      </v-list-item>
-      </v-list>
-
-      <v-divider></v-divider>
-
-      <v-list-item>
-        <v-list-item-content>
-          <v-row justify="center">
-            <v-btn icon large class="ma-1 i-page" >
-              <v-icon class="icon">mdi-facebook </v-icon>
-            </v-btn>
-
-            <v-btn icon large class="ma-1 i-message" >
-              <v-icon class="icon">mdi-facebook-messenger</v-icon>
-            </v-btn>
-          </v-row>
-        </v-list-item-content>
-      </v-list-item>
-      </v-list>
-    </v-card>
-  </v-menu>
+  <ProfileMenu />
 
 </v-app-bar>
