@@ -10,42 +10,42 @@
   disable-route-watcher
   class="nav-drawer"
 >
-  <v-app-bar elevate-on-scroll scroll-target="#sidebar-body" absolute tag="div">
+  <v-app-bar elevate-on-scroll scroll-target="#side-drawer" absolute tag="div">
     <v-tabs v-model="selectedTab" grow class="pa-0">
       <v-tab key="service" href="#tab-mine">my plans</v-tab>
       <v-tab key="privacy" href="#tab-friends">friends plans</v-tab>
     </v-tabs>
   </v-app-bar>
-  <v-sheet class="side-drawer" id="sidebar-body">
-  <v-tabs-items v-model="selectedTab">
-    <!-- my plans -->
-    <v-tab-item key="mine" value="tab-mine" class="pa-4 pb-0 fill-height">
-      <!-- no plans for me -->
-      <div class="side-drawer-wrapper justify-center" v-if="!myPlans.length">
-          <h2 class="mb-2 light-green--text text--darken-2" >"To travel is to live."</h2>
-          <div class="caption mb-12 light-green--text text--darken-4">Hans Christian Anderson</div>
-          <v-btn class="amber darken-1 white--text" text outlined @click="showDialogPlanForm">
-            <v-icon left>mdi-plus-circle-outline</v-icon>new plan
-          </v-btn>
-      </div>
-      <!-- plans -->
-      <div class="side-drawer-wrapper" v-if="myPlans.length">
-        <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
-      </div>
-    </v-tab-item>
-    <!-- friends plans -->
-    <v-tab-item key="friends" value="tab-friends" class="pa-4 pb-0 fill-height" >
-      <!-- no plans for friends -->
-      <div class="side-drawer-wrapper justify-center" v-if="!friendsPlans.length">
-        <h2 class="mb-12 light-green--text text--darken-2">"Friends who<br />travel together<br />stay together."</h2>
-        <v-btn class="amber darken-1 white--text" text outlined @click.stop="showDialogInvite">
-            <v-icon left>mdi-account-multiple-plus-outline</v-icon>invite your friends</v-btn>
-      </div>
+  <v-sheet class="side-drawer" id="side-drawer">
+    <v-tabs-items v-model="selectedTab" class="side-drawer-container">
+      <!-- my plans -->
+      <v-tab-item key="mine" value="tab-mine" class="pa-4 pb-0 fill-height">
+        <!-- no plans for me -->
+        <div class="side-drawer-wrapper justify-center" v-if="!myPlans.length">
+            <h2 class="mb-2 light-green--text text--darken-2" >"To travel is to live."</h2>
+            <div class="caption mb-12 light-green--text text--darken-4">Hans Christian Anderson</div>
+            <v-btn class="amber darken-1 white--text" text outlined @click="showDialogPlanForm">
+              <v-icon left>mdi-plus-circle-outline</v-icon>new plan
+            </v-btn>
+        </div>
+        <!-- plans -->
+        <div class="side-drawer-wrapper" v-if="myPlans.length">
+          <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
+        </div>
+      </v-tab-item>
       <!-- friends plans -->
-      <div class="side-drawer-wrapper" v-if="friendsPlans.length">
-        <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
-      </div>
-    </v-tab-item>
-  </v-tabs-items>
+      <v-tab-item key="friends" value="tab-friends" class="pa-4 pb-0 fill-height" >
+        <!-- no plans for friends -->
+        <div class="side-drawer-wrapper justify-center" v-if="!friendsPlans.length">
+          <h2 class="mb-12 light-green--text text--darken-2">"Friends who<br />travel together<br />stay together."</h2>
+          <v-btn class="amber darken-1 white--text" text outlined @click.stop="showDialogInvite">
+              <v-icon left>mdi-account-multiple-plus-outline</v-icon>invite your friends</v-btn>
+        </div>
+        <!-- friends plans -->
+        <div class="side-drawer-wrapper" v-if="friendsPlans.length">
+          <card-plan v-for="plan in myPlans" :plan="plan" :key="plan.id"></card-plan>
+        </div>
+      </v-tab-item>
+    </v-tabs-items>
   </v-sheet>
 </v-navigation-drawer>
