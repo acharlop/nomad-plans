@@ -26,7 +26,18 @@ export default Vue.component('CardPlan', {
   },
   computed: {
     date() {
-      return `${this.plan.startAt} - ${this.plan.endAt}`
+      const startAt = new Date(this.plan.startAt)
+      const endAt = new Date(this.plan.endAt)
+
+      const isSameYear = this.$dateFns.isSameYear(startAt, endAt)
+
+      const dateFormat = 'MMM d, yyyy'
+      const startFormat = isSameYear ? 'MMM d' : dateFormat
+
+      return `${this.$dateFns.format(
+        startAt,
+        startFormat
+      )} - ${this.$dateFns.format(endAt, dateFormat)}`
     },
     friendsList() {
       if (!this.plan.friends || !this.plan.friends.length) return []
