@@ -1,4 +1,4 @@
-<v-app-bar dark fixed app clipped-right class="pr-1 light-green darken-3">
+<v-app-bar dark fixed app clipped-right :collapse="false" class="pr-1 light-green darken-3">
   <v-avatar class="ml-1 mr-2 d-none d-sm-inline">
     <v-icon size="42">mdi-earth</v-icon>
   </v-avatar>
@@ -13,21 +13,21 @@
   <v-btn
     icon
     small
-    class="ma-2 d-sm-none"
+    class="ma-2 my-3 d-sm-none"
     color="transparent"
     @click="showDialogPlanForm"
     >
-    <v-icon class="icon-small"> mdi-plus-circle-outline</v-icon>
+    <v-icon color="white" size="24">mdi-plus-circle-outline</v-icon>
   </v-btn>
 
   <v-btn
     icon
     small
-    class="ma-2 d-sm-none"
+    class="mx-2 my-3 d-sm-none"
     color="transparent"
     @click="toggleSideDrawer"
     >
-    <v-icon class="icon-small"> mdi-map-outline</v-icon>
+    <v-icon color="white" size="24">mdi-map-outline</v-icon>
   </v-btn>
 
   <ProfileMenu />

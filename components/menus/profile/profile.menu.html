@@ -6,11 +6,9 @@
   offset-y
 >
   <template v-slot:activator="{ on }">
-    <v-btn icon class="ma-2" color="transparent" v-on="on">
-      <v-avatar size="36">
-        <img :src="photoURL" alt="user avatar">
-      </v-avatar>
-    </v-btn>
+    <v-avatar :size="36" class="ma-2" v-on="on">
+      <img :src="photoURL" alt="user avatar">
+    </v-avatar>
   </template>
 
   <v-card>
@@ -56,12 +54,12 @@
     <v-list-item>
       <v-list-item-content>
         <v-row justify="center">
-          <v-btn icon large class="ma-1 i-page" color="#4267b2" >
-            <v-icon class="icon">mdi-facebook </v-icon>
+          <v-btn icon large class="ma-1 i-page">
+            <v-icon color="white">mdi-facebook </v-icon>
           </v-btn>
 
           <v-btn icon large class="ma-1 i-message" >
-            <v-icon class="icon">mdi-facebook-messenger</v-icon>
+            <v-icon color="white">mdi-facebook-messenger</v-icon>
           </v-btn>
         </v-row>
       </v-list-item-content>
