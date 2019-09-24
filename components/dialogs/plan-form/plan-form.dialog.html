@@ -90,7 +90,7 @@
                   outlined
                   v-on="on"
                   clearable
-                  :hint="startAt && endAt ? $dateFns.formatDistanceStrict(new Date(startAt), new Date(endAt)) : ''"
+                  :hint="dateRange"
                   :persistent-hint="!!startAt && !!endAt"
                 ></v-text-field>
               </template>
