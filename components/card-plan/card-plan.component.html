@@ -17,13 +17,14 @@
 
   <v-card-text :class="{ 'pt-0': !plan.description, 'pt-1': plan.description }">
     <!-- description -->
-    <p class="mb-1" :class="{ 'short-description': hasLongDescription && showMoreDescription }" v-if="plan.description">
-      {{ description }}
-      <v-icon @click="toggleDescription" small class="mr-n2" v-if="hasLongDescription">
-        {{ showMoreDescription ? 'mdi-chevron-down' : 'mdi-chevron-up' }}
-      </v-icon>
-    </p>
-    <!-- friends list -->
+    <v-hover v-slot:default="{ hover }">
+      <Clamp
+        tag="p"
+        autoresize
+        :max-lines="3"
+        :expanded="hover"
+      >{{plan.description}}</Clamp>
+    </v-hover>
     <v-row class="mx-0">
       <v-avatar v-for="friend of friendsList" :key="friend.id" size="36" class="mr-4 mt-4">
         <img :src="friend.profileUrl" :alt="friend.name">

@@ -1,7 +1,10 @@
 import Vue from 'vue'
+import Clamp from 'vue-clamp'
 
 export default Vue.component('CardPlan', {
-  components: {},
+  components: {
+    Clamp,
+  },
   props: {
     plan: {
       type: Object,
@@ -19,8 +22,6 @@ export default Vue.component('CardPlan', {
         : false,
       moreFriendsCount: this.plan.friends ? this.plan.friends.length - 4 : 0,
       showMoreFriends: true,
-      hasLongDescription: this.plan.description.length > 87,
-      showMoreDescription: true,
       confirmLoading: false,
     }
   },
@@ -45,13 +46,6 @@ export default Vue.component('CardPlan', {
       return this.plan.friends.length > 4 && this.showMoreFriends
         ? this.plan.friends.slice(0, 4)
         : this.plan.friends
-    },
-    description() {
-      const index =
-        this.hasLongDescription && this.showMoreDescription
-          ? 80
-          : this.plan.description.length
-      return this.plan.description.slice(0, index)
     },
     confirmed() {
       return this.plan.confirmation === 1

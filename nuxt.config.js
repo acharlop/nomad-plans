@@ -95,5 +95,6 @@ module.exports = {
       layouts: true,
       pages: true,
     },
+    transpile: ['vue-clamp', 'resize-detector'],
   },
 }
