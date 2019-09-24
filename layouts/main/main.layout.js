@@ -17,17 +17,30 @@ export default Vue.component('MainLayout', {
   },
   props: [],
   data() {
-    return {}
+    return {
+      currentWidth: window.innerWidth,
+    }
   },
   computed: {
     ...mapState({
       legalDialog: (state) => state.layout.dialogs.legal,
       inviteDialog: (state) => state.layout.dialogs.invite,
       planFormDialog: (state) => state.layout.dialogs.planForm,
+      showSideDrawer: (state) => state.layout.showSideDrawer,
     }),
   },
   mounted() {},
   methods: {
-    ...mapMutations('layout', ['closeDialogs']),
+    ...mapMutations('layout', ['closeDialogs', 'toggleSideDrawer']),
+    handleResize() {
+      if (this.currentWidth === window.innerWidth || !this.showSideDrawer)
+        return
+
+      if (window.innerWidth > 600) {
+        this.toggleSideDrawer()
+      }
+
+      this.currentWidth = window.innerWidth
+    },
   },
 })
