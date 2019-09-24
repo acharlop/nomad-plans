@@ -1,3 +1,5 @@
+@import '~/assets/variables';
+
 // fix for left margin
 .v-tabs-bar.v-tabs-bar--is-mobile .v-tab {
   margin-left: 0px !important;
@@ -7,9 +9,10 @@
 }
 
 .side-drawer{
-  height: calc(100% - 48px);
+  height: 100%;
   background-color: #f5f5f6;
   overflow-y: auto;
+  padding-top: $app-bar-height-small;
 }
 
 .side-drawer-wrapper {
@@ -18,4 +21,17 @@
   flex-flow: column nowrap;
   align-items: center;
   height: 100%;
+}
+
+.nav-drawer {
+  top: $app-bar-height-small !important;
+}
+
+@media (min-width: 960px) {
+ .nav-drawer {
+    top: $app-bar-height-large !important;
+  }
+  .side-drawer {
+    padding-top: $app-bar-height-large;
+  }
 }
