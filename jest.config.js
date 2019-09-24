@@ -15,7 +15,7 @@ module.exports = {
     '<rootDir>/pages/**/*.vue',
   ],
   setupFiles: ['<rootDir>/test/setup'],
-  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
+  snapshotSerializers: ['jest-serializer-vue'],
   // coverageThreshold: {
   //   global: {
   //     branches: 80,

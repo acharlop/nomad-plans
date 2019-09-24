@@ -68,6 +68,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // '@nuxtjs/pwa',
+    '@nuxtjs/date-fns',
   ],
   /*
    ** Axios module configuration
@@ -94,5 +95,6 @@ module.exports = {
       layouts: true,
       pages: true,
     },
+    transpile: ['vue-clamp', 'resize-detector'],
   },
 }

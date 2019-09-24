@@ -1,7 +1,9 @@
 import LandingPageComponent from './index.vue'
-import { shallow } from '@/test/test-utils'
+import { mount } from '@/test/test-utils'
 
 let storeOptions
+
+jest.mock('@/components/auth-button', () => () => 'AuthButton')
 
 describe('LandingPageComponent', () => {
   beforeEach(() => {
@@ -22,19 +24,26 @@ describe('LandingPageComponent', () => {
 
   // is Vue instance
   test('is a Vue instance', () => {
-    const wrapper = shallow(LandingPageComponent, { storeOptions })
+    const wrapper = mount(LandingPageComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
-  // Inspect the raw component options
-  test('has a created hook', () => {
-    // expect(typeof LandingPageComponent.created).toBe('function');
+
+  test('displays for new user', () => {
+    storeOptions.modules.auth.state.isNewUser = false
+    const wrapper = mount(LandingPageComponent, { storeOptions })
+    expect(wrapper.isVueInstance()).toBeTruthy()
   })
-  // Evaluate the results of functions in
-  // the raw component options
-  test('sets the correct default data', () => {
-    // expect(typeof LandingPageComponent.data).toBe('function')
-    // const defaultData = LandingPageComponent.data();
-    // expect(defaultData.message).toBe('hello!');
+
+  xtest('opens legal dialog with privacy tab', () => {
+    const wrapper = mount(LandingPageComponent, { storeOptions })
+    wrapper.showDialog = jest.fn()
+
+    const a = wrapper.findAll('a')
+    console.log(wrapper.callToJSON)
+    expect(a.length).toBe(2)
+    expect(a.at(1).innerHTML).toEqual('Privacy Policy')
+    a.at(1).trigger('click')
+    expect(wrapper.showDialog).toHaveBeenCalledWith('privacy')
   })
   // Inspect the component instance on mount
   test('correctly sets the message when created', () => {

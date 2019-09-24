@@ -1,7 +1,7 @@
 {
   "name": "nomad-map",
   "version": "1.0.0",
-  "description": "My awesome nomad map project",
+  "description": "Vue front end for nomadplans.co",
   "author": "Avi Charlop",
   "private": true,
   "engines": {
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/date-fns": "^1.0.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/vuetify": "^1.6.3",
     "cross-env": "^5.2.0",
@@ -42,6 +43,7 @@
     "fastify": "^1.13.3",
     "firebase": "^6.5.0",
     "nuxt": "^2.0.0",
+    "vue-clamp": "^0.2.2",
     "vue-facebook-login-component": "^1.3.7",
     "vue2-google-maps": "^0.10.7",
     "vuex-persistedstate": "^2.5.4"

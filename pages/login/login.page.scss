@@ -1,0 +1,64 @@
+.panel-map {
+  position: relative;
+  background: url('~assets/images/wood-map.jpg') center no-repeat;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-text {
+  padding: 20px;
+  text-align: center;
+  color:white;
+}
+
+.photo-credit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.panel-cta {
+  background-color: white;
+  color: var(--v-primary-darken3);
+  padding: 75px 25px 50px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inner-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 75px;
+}
+
+p, small, h2 {
+  user-select: none;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .panel-cta {
+    padding: 50px 25px 25px;
+  }
+}
+
+small a {
+  text-decoration: underline;
+
+  &:hover {
+    font-weight: bold;
+  }
+  &:active {
+    font-weight: normal;
+  }
+}
+

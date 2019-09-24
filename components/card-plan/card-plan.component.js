@@ -1,7 +1,10 @@
 import Vue from 'vue'
+import Clamp from 'vue-clamp'
 
 export default Vue.component('CardPlan', {
-  components: {},
+  components: {
+    Clamp,
+  },
   props: {
     plan: {
       type: Object,
@@ -19,14 +22,23 @@ export default Vue.component('CardPlan', {
         : false,
       moreFriendsCount: this.plan.friends ? this.plan.friends.length - 4 : 0,
       showMoreFriends: true,
-      hasLongDescription: this.plan.description.length > 87,
-      showMoreDescription: true,
       confirmLoading: false,
     }
   },
   computed: {
     date() {
-      return `${this.plan.startAt} - ${this.plan.endAt}`
+      const startAt = new Date(this.plan.startAt)
+      const endAt = new Date(this.plan.endAt)
+
+      const isSameYear = this.$dateFns.isSameYear(startAt, endAt)
+
+      const dateFormat = 'MMM d, yyyy'
+      const startFormat = isSameYear ? 'MMM d' : dateFormat
+
+      return `${this.$dateFns.format(
+        startAt,
+        startFormat
+      )} - ${this.$dateFns.format(endAt, dateFormat)}`
     },
     friendsList() {
       if (!this.plan.friends || !this.plan.friends.length) return []
@@ -34,13 +46,6 @@ export default Vue.component('CardPlan', {
       return this.plan.friends.length > 4 && this.showMoreFriends
         ? this.plan.friends.slice(0, 4)
         : this.plan.friends
-    },
-    description() {
-      const index =
-        this.hasLongDescription && this.showMoreDescription
-          ? 80
-          : this.plan.description.length
-      return this.plan.description.slice(0, index)
     },
     confirmed() {
       return this.plan.confirmation === 1
