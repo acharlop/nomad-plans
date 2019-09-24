@@ -4,7 +4,7 @@
       <v-list-item-title class="headline">{{ plan.place.name }}</v-list-item-title>
       <v-list-item-subtitle>
         <b>{{ date }}</b>
-        <small v-if="plan.startAt && plan.endAt" class="ml-2">{{ $dateFns.formatDistanceStrict(new Date(plan.startAt), new Date(plan.endAt)) }}</small>
+        <small v-if="plan.startAt && plan.endAt" class="ml-2">{{ dateRange }}</small>
       </v-list-item-subtitle>
     </v-list-item-content>
     <v-list-item-avatar
