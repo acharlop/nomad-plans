@@ -59,10 +59,9 @@
                   readonly
                   outlined
                   v-on="on"
-                  @focus.native="on"
                   clearable
                   tabindex="2"
-                  validate-on-blur
+                  required
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -98,6 +97,7 @@
                   persistent-hint
                   tabindex="3"
                   validate-on-blur
+                  required
                 ></v-text-field>
               </template>
               <v-date-picker

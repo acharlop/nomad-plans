@@ -123,6 +123,13 @@ export default Vue.component('PlanFormDialog', {
         this.setAllowedPlanRange(val)
       }
     },
+    startAtMenu: {
+      handler(newVal, oldVal) {
+        if (!newVal && oldVal) {
+          this.endAtMenu = true
+        }
+      },
+    },
   },
   mounted() {
     this.safeSetup()
