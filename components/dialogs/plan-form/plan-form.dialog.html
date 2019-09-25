@@ -13,8 +13,8 @@
         <v-toolbar-title>{{ isEdit ? 'Edit Plan' : 'Create new plan' }}</v-toolbar-title>
         <v-spacer />
         <v-toolbar-items>
-          <v-btn dark text @click="close">
-            <v-icon >mdi-close</v-icon>
+          <v-btn dark text @click="close" tabindex="9" @keydown.tab="searchFocus">
+            <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
@@ -37,6 +37,8 @@
               label="Place"
               :rules="placeRules"
               class="search-input"
+              tabindex="1"
+              validate-on-blur
             >
             </v-text-field>
           <v-row class="ma-0 mt-2">
@@ -59,6 +61,8 @@
                   v-on="on"
                   @focus.native="on"
                   clearable
+                  tabindex="2"
+                  validate-on-blur
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -91,7 +95,9 @@
                   v-on="on"
                   clearable
                   :hint="dateRange"
-                  :persistent-hint="!!startAt && !!endAt"
+                  persistent-hint
+                  tabindex="3"
+                  validate-on-blur
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -115,12 +121,14 @@
             ticks="always"
             tick-size="4"
             class="mb-5 px-5"
+            tabindex="4"
           ></v-slider>
 
           <v-textarea
             v-model="description"
             label="Note"
             outlined
+            tabindex="5"
           ></v-textarea>
         </v-form>
       </v-col>
@@ -128,10 +136,25 @@
 
     <!-- footer -->
     <v-card-actions class="ma-2 mt-0">
-      <v-btn v-if="isEdit" color="error" text :disabled="deleteLoading || submitLoading" @click="remove" :loading="deleteLoading">delete</v-btn>
+      <v-btn
+        v-if="isEdit"
+        color="error"
+        text
+        :disabled="deleteLoading || submitLoading"
+        @click="remove"
+        :loading="deleteLoading"
+        tabindex="8"
+      >delete</v-btn>
       <div class="flex-grow-1"></div>
-      <v-btn color="primary darken-1" text @click="close" class="mr-2">cancel</v-btn>
-      <v-btn class="white--text" color="amber darken-1" :disabled="!valid || submitLoading || deleteLoading" @click="submit" :loading="submitLoading">{{ isEdit ? 'save' : 'add'}}</v-btn>
+      <v-btn color="primary darken-1" text @click="close" class="mr-2" tabindex="7">cancel</v-btn>
+      <v-btn
+        class="white--text"
+        color="amber darken-1"
+        :disabled="!valid || submitLoading || deleteLoading"
+        @click="submit"
+        :loading="submitLoading"
+        tabindex="6"
+      >{{ isEdit ? 'save' : 'add'}}</v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>

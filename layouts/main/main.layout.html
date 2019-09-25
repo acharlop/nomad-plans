@@ -1,7 +1,7 @@
 <v-app xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <app-bar></app-bar>
   <side-drawer></side-drawer>
-  <v-content v-resize.quiet="handleResize">
+  <v-content v-resize="handleResize">
     <nuxt />
   </v-content>
   <v-footer fixed app clipped-right class="light-green darken-3 white--text" >
