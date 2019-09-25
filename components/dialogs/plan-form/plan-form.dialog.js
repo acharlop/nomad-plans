@@ -148,6 +148,9 @@ export default Vue.component('PlanFormDialog', {
         this.close()
       })
     },
+    searchFocus() {
+      this.$refs.searchInput.$refs.input.focus()
+    },
     placeSelected(data) {
       if (!data.name) return
 
@@ -190,7 +193,12 @@ export default Vue.component('PlanFormDialog', {
     limitDatesByPlans(val) {
       let allowed = true
       this.plannedDates.forEach((range) => {
-        if (range.startAt <= val && val <= range.endAt) {
+        const isWithinInterval = this.$dateFns.isWithinInterval(new Date(val), {
+          start: new Date(range.startAt),
+          end: new Date(range.endAt),
+        })
+
+        if (isWithinInterval) {
           allowed = false
         }
       })
@@ -199,8 +207,8 @@ export default Vue.component('PlanFormDialog', {
     limitDatesByRange(val) {
       const { startAfter, endBefore } = this.allowedPlanRange
 
-      const isBefore = !startAfter || val > startAfter
-      const isAfter = !endBefore || val < endBefore
+      const isBefore = !startAfter || val >= startAfter
+      const isAfter = !endBefore || val <= endBefore
 
       return !this.allowedPlanRange.set || (isBefore && isAfter)
     },
@@ -287,6 +295,8 @@ export default Vue.component('PlanFormDialog', {
         this.$autocomplete.addListener('place_changed', () => {
           this.placeSelected(this.$autocomplete.getPlace())
         })
+
+        this.searchFocus()
       })
     },
   },
