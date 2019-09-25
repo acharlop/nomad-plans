@@ -13,7 +13,7 @@ export default ({ store, redirect, route }) => {
 
   // case 2
   if (!isAuthenticated && isProtectedRoute(route)) {
-    redirect('/landing')
+    redirect('/login')
   }
 }
 
