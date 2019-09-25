@@ -1,9 +1,9 @@
 import addDays from 'date-fns/addDays'
-import formatDistanceStrict from 'date-fns/formatDistanceStrict'
+import formatDistance from 'date-fns/formatDistance'
 
 export const dateDistance = (start, end) => {
   if (!start || !end) return ''
 
   const fakeEnd = addDays(new Date(end), 1)
-  return formatDistanceStrict(new Date(start), fakeEnd)
+  return formatDistance(new Date(start), fakeEnd)
 }
