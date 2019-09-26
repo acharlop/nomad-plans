@@ -3,7 +3,11 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import downArrowSimulator from 'vue2-google-maps/src/utils/simulateArrowDown'
 import { bindProps, getPropsValues } from 'vue2-google-maps/src/utils/bindProps'
 import { gmapApi } from 'vue2-google-maps'
-import { dateDistance } from '@/utils/date'
+import {
+  formatDistance,
+  isWithinAnyInterval,
+  intervalContainingDate,
+} from '@/utils/date'
 
 const mappedProps = {
   bounds: {
@@ -52,11 +56,10 @@ export default Vue.component('PlanFormDialog', {
       dateRules: [(v) => !!v || 'Date is required'],
       submitLoading: false,
       deleteLoading: false,
-      allowedPlanRange: {
-        startAfter: '',
-        endBefore: '',
-        set: false,
-      },
+      startAfter: '',
+      endBefore: '',
+      startDatePicker: '',
+      endDatePicker: '',
     }
   },
   computed: {
@@ -74,7 +77,7 @@ export default Vue.component('PlanFormDialog', {
     },
     google: gmapApi,
     dateRange() {
-      return dateDistance(this.startAt, this.endAt)
+      return formatDistance(this.startAt, this.endAt)
     },
   },
   watch: {
@@ -109,24 +112,51 @@ export default Vue.component('PlanFormDialog', {
         this.placeName = ''
       }
     },
-    startAt(val) {
-      if (!val && !this.endAt) {
-        this.resetAllowedPlanRange()
-      } else if (val && !this.endAt) {
-        this.setAllowedPlanRange(val)
+    startAt(day) {
+      if (!this.endAt) {
+        this.setAllowedRange(day)
       }
+
+      this.validateDatesOrder()
     },
-    endAt(val) {
-      if (!val && !this.startAt) {
-        this.resetAllowedPlanRange()
-      } else if (val && !this.startAt) {
-        this.setAllowedPlanRange(val)
+    endAt(day) {
+      if (!this.startAt) {
+        this.setAllowedRange(day)
       }
+
+      this.validateDatesOrder()
     },
     startAtMenu: {
       handler(newVal, oldVal) {
+        // handle on close
         if (!newVal && oldVal) {
-          this.endAtMenu = true
+          // open next date picker
+          if (!this.endAt) this.endAtMenu = true
+        }
+
+        // handle on open
+        if (newVal && !oldVal) {
+          // reset allowed range if no end picked
+          if (!this.endAt) this.resetAllowedRange()
+          // set allowed range if start picked
+          if (this.endAt) this.setAllowedRange(this.endAt)
+        }
+      },
+    },
+    endAtMenu: {
+      handler(newVal, oldVal) {
+        // handle on close
+        if (!newVal && oldVal) {
+          // open next date picker
+          if (!this.startAt) this.startAtMenu = true
+        }
+
+        // handle on open
+        if (newVal && !oldVal) {
+          // reset allowed range if no end picked
+          if (!this.startAt) this.resetAllowedRange()
+          // set allowed range if start picked
+          if (this.startAt) this.setAllowedRange(this.startAt)
         }
       },
     },
@@ -144,7 +174,9 @@ export default Vue.component('PlanFormDialog', {
       this.startAtMenu = false
       this.endAtMenu = false
       this.placeName = ''
-      this.resetAllowedPlanRange()
+      this.startAfter = ''
+      this.endBefore = ''
+      this.datePicker = ''
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
       }
@@ -190,74 +222,38 @@ export default Vue.component('PlanFormDialog', {
       }
     },
     // date picker allowed dates functions
-    allowedDates(val) {
-      const hasDates = this.startAt || this.endAt
-
-      return hasDates
-        ? this.limitDatesByRange(val)
-        : this.limitDatesByPlans(val)
+    allowedDates(day) {
+      return !isWithinAnyInterval(this.plannedDates, day)
     },
-    limitDatesByPlans(val) {
-      let allowed = true
-      this.plannedDates.forEach((range) => {
-        const isWithinInterval = this.$dateFns.isWithinInterval(new Date(val), {
-          start: new Date(range.startAt),
-          end: new Date(range.endAt),
-        })
+    setAllowedRange(day) {
+      const { startAfter, endBefore } = intervalContainingDate(
+        this.plannedDates,
+        day
+      )
 
-        if (isWithinInterval) {
-          allowed = false
-        }
-      })
-      return allowed
+      this.startAfter = startAfter
+      this.endBefore = endBefore
+
+      this.setDatePickers(startAfter.slice(0, 7))
     },
-    limitDatesByRange(val) {
-      const { startAfter, endBefore } = this.allowedPlanRange
-
-      const isBefore = !startAfter || val >= startAfter
-      const isAfter = !endBefore || val <= endBefore
-
-      return !this.allowedPlanRange.set || (isBefore && isAfter)
+    setDatePickers(yearMonth) {
+      this.startDatePicker = this.startAt || yearMonth
+      this.endDatePicker = this.endAt || yearMonth
     },
-    setAllowedPlanRange(val) {
-      const { plannedDates: planned } = this
-
-      if (!val || !planned.length) return
-
-      let startAfter = this.startAt || ''
-      let endBefore = this.endAt || ''
-
-      if (planned.length === 1) {
-        if (val < planned[0].startAt) {
-          endBefore = planned[0].startAt
-        } else {
-          startAfter = planned[0].endAt
-        }
-      }
-
-      for (let i = 0; i < planned.length; i++) {
-        if (
-          val < planned[i].startAt &&
-          (!endBefore || endBefore > planned[i].startAt)
-        ) {
-          endBefore = planned[i].startAt
-        }
-
-        if (
-          val > planned[i].endAt &&
-          (!startAfter || startAfter < planned[i].endAt)
-        ) {
-          startAfter = planned[i].endAt
-        }
-      }
-
-      this.allowedPlanRange = { startAfter, endBefore, set: true }
+    resetAllowedRange() {
+      this.startAfter = ''
+      this.endBefore = ''
     },
-    resetAllowedPlanRange() {
-      this.allowedPlanRange = {
-        startAfter: '',
-        endBefore: '',
-        set: false,
+    validateDatesOrder() {
+      const isAfter = this.$dateFns.isAfter(
+        new Date(this.startAt),
+        new Date(this.endAt)
+      )
+
+      if (isAfter) {
+        const tmp = this.startAt
+        this.startAt = this.endAt
+        this.endAt = tmp
       }
     },
     // setup functions

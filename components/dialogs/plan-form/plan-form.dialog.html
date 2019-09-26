@@ -67,9 +67,10 @@
               <v-date-picker
                 v-model="startAt"
                 :allowed-dates="allowedDates"
-                :min="allowedPlanRange.startAfter"
-                :max="allowedPlanRange.endBefore || endAt"
+                :min="startAfter"
+                :max="endBefore"
                 @input="startAtMenu = false"
+                :picker-date.sync="startDatePicker"
               ></v-date-picker>
             </v-menu>
 
@@ -96,15 +97,15 @@
                   :hint="dateRange"
                   persistent-hint
                   tabindex="3"
-                  validate-on-blur
                   required
                 ></v-text-field>
               </template>
               <v-date-picker
                 v-model="endAt"
                 :allowed-dates="allowedDates"
-                :min="allowedPlanRange.startAfter || startAt"
-                :max="allowedPlanRange.endBefore"
+                :min="startAfter"
+                :max="endBefore"
+                :picker-date.sync="endDatePicker"
                 @input="endAtMenu = false"
               ></v-date-picker>
             </v-menu>
