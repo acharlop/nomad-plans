@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Clamp from 'vue-clamp'
-import { dateDistance } from '~/utils/date'
+import { formatDistance } from '~/utils/date'
 
 export default Vue.component('CardPlan', {
   components: {
@@ -52,7 +52,7 @@ export default Vue.component('CardPlan', {
       return this.plan.confirmation === 1
     },
     dateRange() {
-      return dateDistance(this.plan.startAt, this.plan.endAt)
+      return formatDistance(this.plan.startAt, this.plan.endAt)
     },
   },
   mounted() {},
