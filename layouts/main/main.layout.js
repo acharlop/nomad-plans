@@ -33,10 +33,12 @@ export default Vue.component('MainLayout', {
   methods: {
     ...mapMutations('layout', ['closeDialogs', 'toggleSideDrawer']),
     handleResize() {
-      if (this.currentWidth === window.innerWidth || !this.showSideDrawer)
-        return
+      if (this.currentWidth === window.innerWidth) return
 
-      if (window.innerWidth > 600 && this.currentWidth < 600) {
+      if (
+        this.showSideDrawer &&
+        (window.innerWidth > 600 && this.currentWidth < 600)
+      ) {
         this.toggleSideDrawer()
       }
 
