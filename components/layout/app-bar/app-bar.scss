@@ -1,0 +1,8 @@
+.v-btn {
+  ::before {
+    background-color: transparent;
+  }
+  &.active {
+    background-color: rgba(255, 255, 255, 0.32);
+  }
+}

@@ -8,7 +8,13 @@
   <v-btn class="ma-2 d-none d-sm-inline" text @click="showDialogPlanForm">
     <v-icon left> mdi-plus-circle-outline</v-icon> NEW PLAN
   </v-btn>
-  <v-btn class="ma-2 d-none d-sm-inline" text @click="toggleSideDrawer">PLANS</v-btn>
+  <v-btn
+    v-blur
+    text
+    class="ma-2 d-none d-sm-inline"
+    :class="{ active: showSideDrawer }"
+    @click="toggleSideDrawer"
+  >PLANS</v-btn>
   <!-- buttons form sm and down -->
   <v-btn
     icon
@@ -27,7 +33,7 @@
     color="transparent"
     @click="toggleSideDrawer"
     >
-    <v-icon color="white" size="24">mdi-map-outline</v-icon>
+    <v-icon color="white" size="24">{{ showSideDrawer ? 'mdi-map-outline' : 'mdi-format-list-bulleted'}}</v-icon>
   </v-btn>
 
   <ProfileMenu />
