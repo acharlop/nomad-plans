@@ -91,7 +91,7 @@ export default Vue.component('PlanFormDialog', {
         this.endAt = editPlan.endAt
         this.description = editPlan.description
         this.confirmation = editPlan.confirmation
-        this.setAllowedPlanRange(editPlan.startAt)
+        this.setAllowedRange(editPlan.startAt)
       }
     },
     show(newVal) {
@@ -299,7 +299,7 @@ export default Vue.component('PlanFormDialog', {
           this.placeSelected(this.$autocomplete.getPlace())
         })
 
-        this.searchFocus()
+        if (!this.isEdit) this.searchFocus()
       })
     },
   },
