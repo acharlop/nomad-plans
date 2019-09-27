@@ -7,13 +7,13 @@
   <v-col
     md="8"
     sm="6"
-    class="d-none d-sm-flex fill-height panel-map"
+    class="d-none d-sm-flex fill-height panel-map "
   >
-    <div class="map-text">
+    <div class="map-text ">
       <h1 >Traveling Together<br />With Your Best Nomad Friends</h1>
-      <p>See where your Nomad friends are right now, what their plans for next<br/>
-        moth or season. Add your plans to share them with those whom you<br />
-        loving to spend time with.
+      <p>See where your Nomad friends are right now, what their plans for the next<br/>
+        month or season. Track and share your our trip plans to travel with those whom you<br />
+        are loving to spend time with more often.
       </p>
     </div>
     <div class="photo-credit">
@@ -31,19 +31,48 @@
     <v-row>
       <v-col class="wrapper">
         <div class="inner-wrapper" >
-          <v-avatar size="82" color="secondary" class="mb-10">
-            <v-icon dark size="74">mdi-earth</v-icon>
-          </v-avatar>
-          <h2 class="mb-4">Nomad Plans</h2>
-          <p v-if="isNewUser">Sign up for Beta access</p>
-          <v-text-field
-            ref="email"
-            type="email"
-            required
-            outlined
-            label="Email"
-          ></v-text-field>
-          <v-btn @click="$router.push('/login')">Go to Login</v-btn>
+          <img class="we-image" src="~assets/images/NP-team.jpg" alt="NP team">
+          <h2 class="mb-4 primary--text text--darken-3">Nomad Plans</h2>
+          <p class="caption white--text primary pa-3 px-10" style="width: -webkit-fill-available;"> - Hey, <i>%Coworker%</i>! </br>
+            Where are you going next?
+          </p>
+
+          <p style="font-size: 14px">We are building a free and helpful tool </br> 
+            for tracking and sharing your Nomad trip plans
+            with your Facebook friends. 🤗</br></br>
+            We hope it will increase your chances to meet
+            each other again on the road! ✈️🚗🚂⛴ </p>
+ 
+
+          <p class="subtitle-2">... and we need your help with Beta 🙏</p>
+           
+          <div class="d-flex flex-row">
+            <v-text-field
+              ref="email"
+              type="email"
+              required
+              outlined
+              label="Email"
+              style="width:270px;"
+              class="px-2"
+            ></v-text-field>
+            <v-btn x-large class="white--text" color="amber darken-1"  @click="saveEmail" :loading="submitLoading">{{ 'save'}}</v-btn>
+
+          </div>
+
+          <p style="font-size: 12px">Leave your email address here and we'll notify you once it is ready.
+           Promising not to use it for other purposes 😐 </p>
+
+          <p class="pa=7 blue--text" style="font-size: 12px"> 
+            <v-btn icon large class="ma-1 i-page blue">
+                <a style="text-decoration: none;" href="https://fb.com/nomadplans.co" target="_blank"><v-icon color="white">mdi-facebook </v-icon></a>
+            </v-btn></br>
+            Or follow us on Facebook
+          
+          </p>
+
+          <!-- <v-btn @click="$router.push('/login')">Go to Login</v-btn> -->
+
         </div>
       </v-col>
     </v-row>
