@@ -18,6 +18,12 @@ describe('AppBarComponent', () => {
           },
           getters: {},
         },
+        layout: {
+          namespaced: true,
+          state: {
+            showSideDrawer: true,
+          },
+        },
       },
     }
   })

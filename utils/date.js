@@ -1,5 +1,4 @@
 import addDays from 'date-fns/addDays'
-import subDays from 'date-fns/subDays'
 import formatDistanceStrict from 'date-fns/formatDistanceStrict'
 import differenceInMonths from 'date-fns/differenceInMonths'
 import differenceInWeeks from 'date-fns/differenceInWeeks'
@@ -52,10 +51,8 @@ export const intervalContainingDate = (ranges = [], day) => {
   // build array of valid ranges
   const validRanges = [{ start: '', end: max }]
   ranges.forEach((range) => {
-    const start = addDays(new Date(range.endAt), 1)
-    const end = subDays(new Date(range.startAt), 1)
-    validRanges[validRanges.length - 1].start = start
-    validRanges.push({ start: '', end })
+    validRanges[validRanges.length - 1].start = new Date(range.endAt)
+    validRanges.push({ start: '', end: new Date(range.startAt) })
   })
   validRanges[validRanges.length - 1].start = min
 

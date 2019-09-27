@@ -1,7 +1,15 @@
 import Vue from 'vue'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 import ProfileMenu from '@/components/menus/profile'
+
+// TODO register globally
+// Register a global custom directive called `v-blur` that prevents focus
+Vue.directive('blur', {
+  inserted: (el) => {
+    el.onfocus = (ev) => ev.target.blur()
+  },
+})
 
 export default Vue.component('AppBar', {
   components: {
@@ -13,7 +21,11 @@ export default Vue.component('AppBar', {
       title: 'Nomad Plans',
     }
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      showSideDrawer: (state) => state.layout.showSideDrawer,
+    }),
+  },
   mounted() {},
   methods: {
     ...mapMutations('layout', ['showDialogPlanForm', 'toggleSideDrawer']),
