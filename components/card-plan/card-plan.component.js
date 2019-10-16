@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Clamp from 'vue-clamp'
 import { formatDistance } from '~/utils/date'
+import Place from '~/models/place'
 
 export default Vue.component('CardPlan', {
   components: {
@@ -15,6 +16,7 @@ export default Vue.component('CardPlan', {
       type: String,
       default: '',
     },
+    place: Place,
   },
   data() {
     return {
@@ -55,7 +57,9 @@ export default Vue.component('CardPlan', {
       return formatDistance(this.plan.startAt, this.plan.endAt)
     },
   },
-  mounted() {},
+  mounted() {
+    this.place = new Place(this.plan.place)
+  },
   methods: {
     confirmPlan() {
       this.confirmLoading = true

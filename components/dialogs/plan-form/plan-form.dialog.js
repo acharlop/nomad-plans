@@ -5,9 +5,10 @@ import { bindProps, getPropsValues } from 'vue2-google-maps/src/utils/bindProps'
 import { gmapApi } from 'vue2-google-maps'
 import {
   formatDistance,
-  isWithinAnyInterval,
   intervalContainingDate,
+  isWithinAnyInterval,
 } from '@/utils/date'
+import Place from '~/models/place'
 
 const mappedProps = {
   bounds: {
@@ -85,8 +86,8 @@ export default Vue.component('PlanFormDialog', {
       if (newVal) {
         const { editPlan } = this
 
-        this.place = editPlan.place
-        this.placeName = editPlan.place.name
+        this.place = new Place(editPlan.place)
+        this.placeName = this.place.formattedNameLong
         this.startAt = editPlan.startAt
         this.endAt = editPlan.endAt
         this.description = editPlan.description
@@ -160,6 +161,9 @@ export default Vue.component('PlanFormDialog', {
         }
       },
     },
+    place(newVal) {
+      if (newVal) this.placeName = newVal.formattedName()
+    },
   },
   mounted() {
     this.safeSetup()
@@ -191,23 +195,14 @@ export default Vue.component('PlanFormDialog', {
       this.$refs.searchInput.$refs.input.focus()
     },
     placeSelected(data) {
-      if (!data.name) return
-
-      this.placeName = data.name
-
-      this.place = {
-        name: data.name,
-        address: data.formatted_address,
-        lat: data.geometry.location.lat(),
-        lng: data.geometry.location.lng(),
-      }
+      this.place = new Place(data)
     },
     submit() {
       if (this.$refs.form.validate()) {
         this.submitLoading = true
 
         const plan = {
-          place: this.place,
+          place: this.place.toJSON(),
           startAt: this.startAt,
           endAt: this.endAt,
           confirmation: this.confirmation,
