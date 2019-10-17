@@ -14,6 +14,7 @@ export default Vue.component('LandingPageComponent', {
     return {
       legalDialog: false,
       legalDialogTab: 'service',
+      submitLoading: false,
     }
   },
   computed: {
@@ -31,5 +32,6 @@ export default Vue.component('LandingPageComponent', {
     hideDialog() {
       this.legalDialog = false
     },
+    saveEmail() {}
   },
 })
