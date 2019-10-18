@@ -1,5 +1,4 @@
 export default class Place {
-  displayName = ''
   formattedAddress = ''
   geometry = {
     location: {
@@ -8,7 +7,6 @@ export default class Place {
     },
     viewport: {},
   }
-  htmlAddress = ''
   internationalPhoneNumber = ''
   name = ''
   place = {
@@ -24,7 +22,6 @@ export default class Place {
   constructor(data) {
     // already saved
     if (data.place) {
-      this.displayName = data.displayName
       this.formattedAddress = data.formattedAddress
       this.geometry = data.geometry
       this.internationalPhoneNumber = data.internationalPhoneNumber
@@ -37,7 +34,7 @@ export default class Place {
     }
 
     // fresh place from autocomplete
-    this.formattedAddress = data.formatted_address
+    this.formattedAddress = data.formatted_address || ''
     this.internationalPhoneNumber = data.international_phone_number || ''
     this.geometry = {
       location: {
@@ -46,21 +43,29 @@ export default class Place {
       },
       viewport: data.geometry.viewport.toJSON(),
     }
-    this.name = data.name
-    this.placeId = data.place_id
-    this.types = data.types
-    this.website = data.website
+    this.name = data.name || ''
+    this.placeId = data.place_id || ''
+    this.types = data.types || []
+    this.website = data.website || ''
 
     this.createPlace(data.address_components)
   }
 
-  createPlace(addressComponents) {
+  lat() {
+    return this.geometry.location.lat
+  }
+  lng() {
+    return this.geometry.location.lng
+  }
+
+  createPlace(addressComponents = []) {
     addressComponents.forEach((component) => {
       const types = component.types
       if (
         types.includes('locality') ||
         types.includes('colloquial_area') ||
-        types.includes('postal_town')
+        types.includes('postal_town') ||
+        types.includes('natural_feature')
       ) {
         this.place.city = component.long_name
       }
@@ -86,8 +91,6 @@ export default class Place {
   }
 
   formattedName(long = true) {
-    if (this.types.includes('political'))
-      return this.formattedAddress.replace(`/^${this.place.zip} //`)
     const { city, state, countryCode, country } = this.place
 
     // country
@@ -101,13 +104,14 @@ export default class Place {
 
     const formattedCity = city ? `${city}, ` : ''
     const suffix = `${formattedCity}${formattedState}${
-      long ? country : countryCode
+      long || this.name === city ? country : countryCode
     }`
 
     // city
     if (
       this.types.includes('locality') ||
-      this.types.includes('colloquial_area')
+      this.types.includes('colloquial_area') ||
+      this.name === city
     )
       return suffix
 
@@ -121,7 +125,6 @@ export default class Place {
 
   toJSON() {
     return {
-      displayName: this.displayName,
       formattedAddress: this.formattedAddress,
       geometry: this.geometry,
       internationalPhoneNumber: this.internationalPhoneNumber,
