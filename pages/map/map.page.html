@@ -7,6 +7,6 @@
   <GmapMarker
     :key="index"
     v-for="(plan, index) in myPlans"
-    :position="google && new google.maps.LatLng(plan.place.lat, plan.place.lng)"
+    :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
   ></GmapMarker>
 </GmapMap>
