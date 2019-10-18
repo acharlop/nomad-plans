@@ -1,7 +1,7 @@
 <v-card width="100%" class="mb-6">
   <v-list-item>
     <v-list-item-content>
-      <v-list-item-title class="headline">{{ place.formattedNameShort() }}</v-list-item-title>
+      <v-list-item-title class="headline">{{ placeName }}</v-list-item-title>
       <v-list-item-subtitle>
         <b>{{ date }}</b>
         <small v-if="plan.startAt && plan.endAt" class="ml-2">{{ dateRange }}</small>

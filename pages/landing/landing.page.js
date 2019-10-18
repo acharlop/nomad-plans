@@ -32,6 +32,6 @@ export default Vue.component('LandingPageComponent', {
     hideDialog() {
       this.legalDialog = false
     },
-    saveEmail() {}
+    saveEmail() {},
   },
 })
