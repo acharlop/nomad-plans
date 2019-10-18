@@ -86,7 +86,7 @@ export default Vue.component('PlanFormDialog', {
       if (newVal) {
         const { editPlan } = this
 
-        this.place = new Place(editPlan.place)
+        this.place = editPlan.place
         this.placeName = this.place.formattedNameLong
         this.startAt = editPlan.startAt
         this.endAt = editPlan.endAt

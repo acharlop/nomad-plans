@@ -1,4 +1,5 @@
 import { StoreDB } from '@/services/firebase'
+import Place from '~/models/place'
 
 const defaultState = {
   mine: [],
@@ -54,6 +55,7 @@ export const actions = {
           plans.push({
             ...plan.data(),
             id: plan.id,
+            place: new Place(plan.data().place),
           })
         })
         commit('setPlans', plans)
