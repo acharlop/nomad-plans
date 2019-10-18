@@ -16,7 +16,6 @@ export default Vue.component('CardPlan', {
       type: String,
       default: '',
     },
-    place: Place,
   },
   data() {
     return {
@@ -26,6 +25,7 @@ export default Vue.component('CardPlan', {
       moreFriendsCount: this.plan.friends ? this.plan.friends.length - 4 : 0,
       showMoreFriends: true,
       confirmLoading: false,
+      place: undefined,
     }
   },
   computed: {
@@ -55,6 +55,9 @@ export default Vue.component('CardPlan', {
     },
     dateRange() {
       return formatDistance(this.plan.startAt, this.plan.endAt)
+    },
+    placeName() {
+      return this.place ? this.place.formattedNameShort() : ''
     },
   },
   mounted() {

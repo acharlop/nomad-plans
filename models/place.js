@@ -38,7 +38,7 @@ export default class Place {
 
     // fresh place from autocomplete
     this.formattedAddress = data.formatted_address
-    this.internationalPhoneNumber = data.international_phone_number
+    this.internationalPhoneNumber = data.international_phone_number || ''
     this.geometry = {
       location: {
         lat: data.geometry.location.lat(),
