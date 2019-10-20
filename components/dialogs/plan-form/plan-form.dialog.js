@@ -61,6 +61,7 @@ export default Vue.component('PlanFormDialog', {
       endBefore: '',
       startDatePicker: '',
       endDatePicker: '',
+      maxDescriptionLength: 442,
     }
   },
   computed: {
