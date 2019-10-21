@@ -80,5 +80,9 @@ export const intervalContainingDate = (ranges = [], day) => {
 }
 
 export const formatDate = (date = '', dateFormat = 'MMM dd, yyyy') => {
-  return DFNformat(new Date(date), dateFormat)
+  if (date && dateFormat) {
+    return DFNformat(new Date(date), dateFormat)
+  }
+
+  return ''
 }
