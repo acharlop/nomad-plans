@@ -258,9 +258,8 @@ export default Vue.component('PlanFormDialog', {
       )
 
       if (isAfter) {
-        const tmp = this.startAt
         this.startAt = this.endAt
-        this.endAt = tmp
+        this.startAtMenu = true
       }
     },
     // setup functions
