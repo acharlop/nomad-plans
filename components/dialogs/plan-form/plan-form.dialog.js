@@ -86,16 +86,20 @@ export default Vue.component('PlanFormDialog', {
     },
   },
   watch: {
-    editPlan(editPlan) {
-      if (!editPlan) return
+    isEdit(newVal) {
+      if (!newVal) return
+
+      const { editPlan } = this
 
       this.place = editPlan.place
-      this.placeName = editPlan.place.formattedNameLong
+      this.placeName = editPlan.place.formattedName()
       this.startAt = editPlan.startAt
       this.endAt = editPlan.endAt
       this.description = editPlan.description
       this.confirmation = editPlan.confirmation
       this.setAllowedRange(editPlan.startAt)
+      this.formattedStartDate = formatDate(editPlan.startAt)
+      this.formattedEndDate = formatDate(editPlan.endAt)
     },
     show(newVal) {
       if (newVal && !this.isEdit) {
