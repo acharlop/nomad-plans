@@ -185,6 +185,8 @@ export default Vue.component('PlanFormDialog', {
       this.$refs.form.reset()
       this.submitLoading = false
       this.deleteLoading = false
+      this.startAt = ''
+      this.endAt = ''
       this.startAtMenu = false
       this.endAtMenu = false
       this.placeName = ''
