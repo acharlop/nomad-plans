@@ -5,6 +5,7 @@ import differenceInWeeks from 'date-fns/differenceInWeeks'
 import DFNisWithinInterval from 'date-fns/isWithinInterval'
 import { minTime, maxTime } from 'date-fns/constants'
 import lightFormat from 'date-fns/lightFormat'
+import DFNformat from 'date-fns/format'
 
 // TODO split each function into it's own file
 
@@ -76,4 +77,12 @@ export const intervalContainingDate = (ranges = [], day) => {
     !endBefore || endBefore === max ? '' : lightFormat(endBefore, 'yyyy-MM-dd')
 
   return { startAfter, endBefore }
+}
+
+export const formatDate = (date = '', dateFormat = 'MMM dd, yyyy') => {
+  if (date && dateFormat) {
+    return DFNformat(new Date(date), dateFormat)
+  }
+
+  return ''
 }
