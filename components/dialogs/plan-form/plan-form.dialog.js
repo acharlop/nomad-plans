@@ -126,7 +126,7 @@ export default Vue.component('PlanFormDialog', {
 
       this.formattedStartDate = formatDate(day)
 
-      this.validateDatesOrder()
+      this.validateDatesOrder('startAt')
     },
     endAt(day) {
       if (!this.startAt) {
@@ -135,7 +135,7 @@ export default Vue.component('PlanFormDialog', {
 
       this.formattedEndDate = formatDate(day)
 
-      this.validateDatesOrder()
+      this.validateDatesOrder('endAt')
     },
     startAtMenu: {
       handler(newVal, oldVal) {
@@ -251,18 +251,23 @@ export default Vue.component('PlanFormDialog', {
       this.startAfter = ''
       this.endBefore = ''
     },
-    validateDatesOrder() {
+    validateDatesOrder(menu) {
       if (!this.startAt || !this.endAt) {
         return
       }
 
-      const isAfter = this.$dateFns.isAfter(
-        new Date(this.startAt),
-        new Date(this.endAt)
-      )
+      if (!this.$dateFns.isAfter(new Date(this.startAt), new Date(this.endAt)))
+        return
 
-      if (isAfter) {
+      if (menu === 'startAt') {
+        this.endAt = this.startAt
+        this.startAtMenu = false
+        this.endAtMenu = true
+      }
+
+      if (menu === 'endAt') {
         this.startAt = this.endAt
+        this.endAtMenu = false
         this.startAtMenu = true
       }
     },
