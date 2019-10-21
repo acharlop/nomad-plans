@@ -63,6 +63,8 @@ export default Vue.component('PlanFormDialog', {
       startDatePicker: '',
       endDatePicker: '',
       maxDescriptionLength: 442,
+      formattedStartDate: '',
+      formattedEndDate: '',
     }
   },
   computed: {
@@ -82,26 +84,18 @@ export default Vue.component('PlanFormDialog', {
     dateRange() {
       return formatDistance(this.startAt, this.endAt)
     },
-    formattedStartDate() {
-      return formatDate(this.startAt)
-    },
-    formattedEndDate() {
-      return formatDate(this.endAt)
-    },
   },
   watch: {
-    isEdit(newVal) {
-      if (newVal) {
-        const { editPlan } = this
+    editPlan(editPlan) {
+      if (!editPlan) return
 
-        this.place = editPlan.place
-        this.placeName = this.place.formattedNameLong
-        this.startAt = editPlan.startAt
-        this.endAt = editPlan.endAt
-        this.description = editPlan.description
-        this.confirmation = editPlan.confirmation
-        this.setAllowedRange(editPlan.startAt)
-      }
+      this.place = editPlan.place
+      this.placeName = editPlan.place.formattedNameLong
+      this.startAt = editPlan.startAt
+      this.endAt = editPlan.endAt
+      this.description = editPlan.description
+      this.confirmation = editPlan.confirmation
+      this.setAllowedRange(editPlan.startAt)
     },
     show(newVal) {
       if (newVal && !this.isEdit) {
@@ -126,12 +120,16 @@ export default Vue.component('PlanFormDialog', {
         this.setAllowedRange(day)
       }
 
+      this.formattedStartDate = formatDate(day)
+
       this.validateDatesOrder()
     },
     endAt(day) {
       if (!this.startAt) {
         this.setAllowedRange(day)
       }
+
+      this.formattedEndDate = formatDate(day)
 
       this.validateDatesOrder()
     },
@@ -189,6 +187,8 @@ export default Vue.component('PlanFormDialog', {
       this.startAfter = ''
       this.endBefore = ''
       this.datePicker = ''
+      this.formattedStartDate = ''
+      this.formattedEndDate = ''
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
       }
@@ -248,6 +248,10 @@ export default Vue.component('PlanFormDialog', {
       this.endBefore = ''
     },
     validateDatesOrder() {
+      if (!this.startAt || !this.endAt) {
+        return
+      }
+
       const isAfter = this.$dateFns.isAfter(
         new Date(this.startAt),
         new Date(this.endAt)
