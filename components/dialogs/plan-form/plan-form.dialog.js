@@ -7,6 +7,7 @@ import {
   formatDistance,
   intervalContainingDate,
   isWithinAnyInterval,
+  formatDate,
 } from '@/utils/date'
 import Place from '~/models/place'
 
@@ -80,6 +81,12 @@ export default Vue.component('PlanFormDialog', {
     google: gmapApi,
     dateRange() {
       return formatDistance(this.startAt, this.endAt)
+    },
+    formattedStartDate() {
+      return formatDate(this.startAt)
+    },
+    formattedEndDate() {
+      return formatDate(this.endAt)
     },
   },
   watch: {

@@ -53,7 +53,7 @@
             >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                  v-model="startAt"
+                  :value="formattedStartDate"
                   label="Start Date"
                   :rules="dateRules"
                   readonly
@@ -87,7 +87,7 @@
             >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                  v-model="endAt"
+                  :value="formattedEndDate"
                   label="End Date"
                   :rules="dateRules"
                   readonly
