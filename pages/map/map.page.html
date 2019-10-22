@@ -3,6 +3,7 @@
   :zoom="3"
   map-type-id="terrain"
   style="width: 100%; height: 100%"
+  v-if="$nuxt.isOnline"
 >
   <GmapMarker
     :key="index"
@@ -10,3 +11,5 @@
     :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
   ></GmapMarker>
 </GmapMap>
+
+<div v-else-if="$nuxt.isOffline">Offline maps coming soon</div>
