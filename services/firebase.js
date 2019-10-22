@@ -7,6 +7,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(process.env.firebase)
 }
 
+export const StoreDB = firebase.firestore()
+StoreDB.enablePersistence()
+
 const authProvider = new firebase.auth.FacebookAuthProvider()
 authProvider.addScope('email')
 authProvider.addScope('user_birthday')
@@ -19,5 +22,4 @@ export const FacebookAuthProvider = authProvider
 
 export const auth = firebase.auth()
 export const DB = firebase.database()
-export const StoreDB = firebase.firestore()
 export default firebase
