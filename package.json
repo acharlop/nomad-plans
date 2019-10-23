@@ -5,7 +5,7 @@
   "author": "Avi Charlop",
   "private": true,
   "engines": {
-    "node": ">=10.16.0",
+    "node": ">=10.16.0 <13.x",
     "yarn": ">=1.15.0"
   },
   "scripts": {
