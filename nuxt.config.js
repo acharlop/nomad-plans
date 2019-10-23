@@ -67,7 +67,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // '@nuxtjs/pwa',
+    '@nuxtjs/pwa',
     '@nuxtjs/date-fns',
   ],
   /*
@@ -82,6 +82,18 @@ module.exports = {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     optionsPath: '~/assets/vuetify.options.js',
+  },
+  /*
+   * PWA configuration
+   */
+  pwa: {
+    manifest: {
+      name: 'Nomad Plans',
+      lang: 'en',
+    },
+    icons: {
+      // https://pwa.nuxtjs.org/modules/icon.html#options
+    },
   },
   /*
    ** Build configuration
