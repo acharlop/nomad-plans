@@ -3,6 +3,8 @@ import { mapState, mapMutations } from 'vuex'
 
 import AppBar from '@/components/layout/app-bar'
 import SideDrawer from '@/components/layout/side-drawer'
+import Footer from '@/components/layout/footer'
+
 import PlanFormDialog from '@/components/dialogs/plan-form'
 import InvitesDialog from '@/components/dialogs/invites'
 import LegalDialog from '@/components/dialogs/legal'
@@ -11,6 +13,7 @@ export default Vue.component('MainLayout', {
   components: {
     AppBar,
     SideDrawer,
+    Footer,
     PlanFormDialog,
     InvitesDialog,
     LegalDialog,

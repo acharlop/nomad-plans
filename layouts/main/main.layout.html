@@ -4,9 +4,7 @@
   <v-content v-resize="handleResize">
     <nuxt />
   </v-content>
-  <v-footer fixed app clipped-right class="light-green darken-3 white--text" >
-    <span>&copy; Nomad Plans 2019</span>
-  </v-footer>
+  <Footer></Footer>
 
   <!-- dialogs -->
   <LegalDialog :visible="legalDialog" @close="closeDialogs"></LegalDialog>
