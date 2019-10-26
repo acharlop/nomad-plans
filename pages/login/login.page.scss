@@ -20,8 +20,8 @@
 
 .panel-cta {
   background-color: white;
-  color: var(--v-primary-darken3);
-  padding: 75px 25px 50px;
+  color: var(--v-primary-darken2);
+  // padding: 75px 25px 50px;
 }
 
 .wrapper {
@@ -60,5 +60,11 @@ small a {
   &:active {
     font-weight: normal;
   }
+}
+
+.logo{
+  width: 320px;
+  height: 320px;
+  margin: 15px;
 }
 
