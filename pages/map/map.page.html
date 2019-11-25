@@ -9,6 +9,8 @@
     :key="index"
     v-for="(plan, index) in myPlans"
     :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
+    @click="markerClicked(plan.id)"
+    :icon="{ ...icon, ...iconOptions(plan) }"
   ></GmapMarker>
 </GmapMap>
 

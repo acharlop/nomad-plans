@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Clamp from 'vue-clamp'
+import { mapState, mapMutations } from 'vuex'
 import { formatDistance } from '~/utils/date'
 
 export default Vue.component('CardPlan', {
@@ -28,6 +29,12 @@ export default Vue.component('CardPlan', {
     }
   },
   computed: {
+    ...mapState({
+      highlightId: (state) => state.plans.highlightId,
+    }),
+    isHighlighted() {
+      return this.plan.id === this.highlightId
+    },
     date() {
       const startAt = new Date(this.plan.startAt)
       const endAt = new Date(this.plan.endAt)
@@ -61,6 +68,10 @@ export default Vue.component('CardPlan', {
   },
   mounted() {},
   methods: {
+    ...mapMutations('plans', ['toggleHighlightedId']),
+    planClicked() {
+      this.toggleHighlightedId(this.plan.id)
+    },
     confirmPlan() {
       this.confirmLoading = true
 

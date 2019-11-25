@@ -1,5 +1,9 @@
-<v-card width="100%" class="mb-6">
-  <v-list-item>
+<v-card
+  width="100%"
+  class="mb-6"
+  :color="isHighlighted ? 'secondary' : 'white'"
+>
+  <v-list-item @click="planClicked" :ripple="false">
     <v-list-item-content>
       <v-list-item-title class="headline">{{ placeName }}</v-list-item-title>
       <v-list-item-subtitle>
@@ -15,7 +19,7 @@
     </v-list-item-avatar>
   </v-list-item>
 
-  <v-card-text :class="{ 'pt-1': plan.description }" v-if="plan.description">
+  <v-card-text :class="{ 'pt-1': plan.description }" v-if="plan.description" @click="planClicked">
     <!-- description -->
     <v-hover v-slot:default="{ hover }">
       <Clamp
