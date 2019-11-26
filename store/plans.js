@@ -5,12 +5,16 @@ const defaultState = {
   mine: [],
   friends: [],
   editId: undefined,
+  highlightId: undefined,
 }
 
 export const state = () => defaultState
 export const getters = {
   editPlan(state) {
     return state.mine.filter((plan) => plan.id === state.editId)[0]
+  },
+  highlightedPlanId(state) {
+    return state.mine.filter((plan) => plan.id === state.highlightId)[0]
   },
   plannedDates(state) {
     const dates = []
@@ -35,6 +39,15 @@ export const mutations = {
   },
   removePlanEditId(state) {
     state.editId = undefined
+  },
+  setHighlightedId(state, payload) {
+    state.highlightId = payload
+  },
+  removeHighlightedId(state) {
+    state.highlightId = undefined
+  },
+  toggleHighlightedId(state, payload) {
+    state.highlightId = state.highlightId ? undefined : payload
   },
 }
 export const actions = {
