@@ -36,7 +36,7 @@ export default Vue.component('AuthButton', {
     logout() {
       this.signOut()
         .then(() => {
-          this.$router.push('/landing')
+          this.$router.push('/login')
         })
         .catch((e) => {
           console.error(e)
