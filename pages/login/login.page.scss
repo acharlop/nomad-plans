@@ -31,14 +31,15 @@
 }
 
 .photo-credit {
+  font-size: 10px;
   position: absolute;
   bottom: 0;
   right: 0;
+  padding: 2px;
 }
 
 .panel-cta {
   background-color: rgba(255, 255, 255, 0.8);
-  
   color: var(--v-primary-darken2);
   // padding: 75px 25px 50px;
 }
