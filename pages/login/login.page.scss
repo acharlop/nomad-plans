@@ -1,25 +1,45 @@
-.panel-map {
+.back-image {
   position: relative;
-  background: url('~assets/images/wood-map.jpg') center no-repeat;
+  background:  url('~assets/images/landing-left.jpg') center no-repeat;
   background-size: cover;
+
+}
+
+.panel-map {
+  background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
-  justify-content: center;
+  padding-bottom: 10%;  
 }
 
 .map-text {
-  padding: 20px;
-  text-align: center;
+  font-family: 'Ubuntu';
+  padding: 10%;
+  padding-right:25%;
+  text-align: left;
   color:white;
 }
 
+.map-text-header {
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.map-text-text {
+  font-family: 'roboto';
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .photo-credit {
+  font-size: 10px;
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
+  padding: 2px;
 }
 
 .panel-cta {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   color: var(--v-primary-darken2);
   // padding: 75px 25px 50px;
 }
@@ -40,10 +60,12 @@
   margin-bottom: 75px;
 }
 
-p, small, h2 {
+p, small, h2, h1 {
   user-select: none;
   cursor: default;
 }
+
+
 
 @media (max-width: 600px) {
   .panel-cta {
@@ -63,8 +85,8 @@ small a {
 }
 
 .logo{
-  width: 320px;
-  height: 320px;
+  width: 275px;
+  height: 275px;
   margin: 15px;
 }
 
