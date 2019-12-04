@@ -101,7 +101,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/date-fns',
   ],
   /*
@@ -120,15 +120,15 @@ module.exports = {
   /*
    * PWA configuration
    */
-  pwa: {
-    manifest: {
-      name: 'Nomad Plans',
-      lang: 'en',
-    },
-    icons: {
-      // https://pwa.nuxtjs.org/modules/icon.html#options
-    },
-  },
+  // pwa: {
+  //   manifest: {
+  //     name: 'Nomad Plans',
+  //     lang: 'en',
+  //   },
+  //   icons: {
+  //     // https://pwa.nuxtjs.org/modules/icon.html#options
+  //   },
+  // },
   /*
    ** Build configuration
    */
