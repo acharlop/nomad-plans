@@ -8,7 +8,7 @@ if (!firebase.apps.length) {
 }
 
 export const StoreDB = firebase.firestore()
-StoreDB.enablePersistence()
+StoreDB.enablePersistence({ synchronizeTabs: true })
 
 const authProvider = new firebase.auth.FacebookAuthProvider()
 authProvider.addScope('email')

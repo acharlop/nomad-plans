@@ -7,16 +7,7 @@ export default Vue.component('MapPage', {
   components: {},
   props: [],
   data() {
-    return {
-      icon: {
-        path:
-          'M37 18.9091C37 29.3523 25.9 49.6364 18.5 52C11.1 49.6364 0 29.3523 0 18.9091C0 8.46589 8.28273 0 18.5 0C28.7173 0 37 8.46589 37 18.9091Z',
-        fillColor: '#FD1313',
-        fillOpacity: 1,
-        rotation: 0,
-        strokeWeight: 0,
-      },
-    }
+    return {}
   },
   computed: {
     ...mapState({
@@ -31,9 +22,17 @@ export default Vue.component('MapPage', {
     markerClicked(planId) {
       this.toggleHighlightedId(planId)
     },
-    iconOptions(plan) {
+    icon(plan) {
       return {
-        scale: this.highlightId === plan.id ? 1.25 : 1,
+        path:
+          'M37 18.9091C37 29.3523 25.9 49.6364 18.5 52C11.1 49.6364 0 29.3523 0 18.9091C0 8.46589 8.28273 0 18.5 0C28.7173 0 37 8.46589 37 18.9091Z',
+        fillColor: '#FD1313',
+        fillOpacity: 1,
+        rotation: 0,
+        strokeWeight: 0,
+        scale: this.highlightId === plan.id ? 1.15 : 1,
+        anchor: new this.google.maps.Point(25, 51),
+        // origin: new this.google.maps.Point(0, 0),
       }
     },
   },
