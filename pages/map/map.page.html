@@ -1,7 +1,6 @@
 <GmapMap
   :center="{ lat: 10, lng: 10 }"
   :zoom="3"
-  map-type-id="terrain"
   style="width: 100%; height: 100%"
   v-if="$nuxt.isOnline"
 >
@@ -10,7 +9,7 @@
     v-for="(plan, index) in myPlans"
     :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
     @click="markerClicked(plan.id)"
-    :icon="{ ...icon, ...iconOptions(plan) }"
+    :icon="icon(plan)"
   ></GmapMarker>
 </GmapMap>
 
