@@ -1,13 +1,44 @@
-<v-footer fixed app clipped-right class="light-green darken-3 white--text" style="z-index: 4">
+<v-footer fixed app clipped-right class="light-green darken-3 white--text" style="z-index: 6">
   <v-card flat color="transparent" style="width: 100%">
-    <v-subheader class="white--text pl-0">Timeline</v-subheader>
-    <v-slider
-      v-model="currentDate"
-      :step="0"
-      thumb-label="always"
-      color="white"
-      track-color="white"
-      thumb-color="secondary"
-    ></v-slider>
+    <v-row>
+      <v-flex>
+        <v-subheader class="white--text pl-0">Timeline</v-subheader>
+        <v-slider
+          v-model="currentDate"
+          :step="0"
+          thumb-label="always"
+          color="white"
+          track-color="white"
+          thumb-color="secondary"
+        ></v-slider>
+      </v-flex>
+      <v-divider :vertical="true" class="ml-1 mr-2 divider"></v-divider>
+
+      <v-flex align="center" justify="center" class="filters flex-column py-2">
+        <v-select
+          v-model="chips"
+          :items="filterItems"
+          chips
+          label="Filters"
+          placeholder="Show all filters"
+          multiple
+          deletable-chips
+          dense
+        >
+          <template v-slot:selection="{ attrs, item, index, select, selected }">
+            <v-chip
+              v-bind="attrs"
+              :input-value="selected"
+              @click:close="remove(item)"
+              small
+              close
+              :ripple="false"
+            >
+              <span >{{ item }}</span>
+            </v-chip>
+          </template>
+        </v-select>
+      </v-flex>
+    </v-row>
   </v-card>
 </v-footer>

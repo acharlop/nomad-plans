@@ -1,5 +1,10 @@
-.v-slider__thumb-label {
-  * span {
-    display: none !important;
-  }
+@import '~/assets/variables';
+
+.divider {
+  border-color: $grey !important;
+}
+
+.filters {
+  width: 336px;
+  max-width: 336px;
 }

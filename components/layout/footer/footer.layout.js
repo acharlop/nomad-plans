@@ -6,9 +6,16 @@ export default Vue.component('Footer', {
   data() {
     return {
       currentDate: 50,
+      filterItems: ['Unsure', 'Probably', 'Confirmed'],
+      chips: [],
     }
   },
   computed: {},
   mounted() {},
-  methods: {},
+  methods: {
+    remove(item) {
+      this.chips.splice(this.chips.indexOf(item), 1)
+      this.chips = [...this.chips]
+    },
+  },
 })
