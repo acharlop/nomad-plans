@@ -5,8 +5,8 @@
   "author": "Avi Charlop",
   "private": true,
   "engines": {
-    "node": ">=10.16.0 <13.x",
-    "yarn": ">=1.15.0 <1.19.x"
+    "node": "10.16.x",
+    "yarn": ">=1.15.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
