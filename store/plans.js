@@ -6,6 +6,9 @@ const defaultState = {
   friends: [],
   editId: undefined,
   highlightId: undefined,
+  filters: {
+    confirmations: [],
+  },
 }
 
 export const state = () => defaultState
@@ -13,7 +16,7 @@ export const getters = {
   editPlan(state) {
     return state.mine.filter((plan) => plan.id === state.editId)[0]
   },
-  highlightedPlanId(state) {
+  highlightedPlan(state) {
     return state.mine.filter((plan) => plan.id === state.highlightId)[0]
   },
   plannedDates(state) {
@@ -28,6 +31,13 @@ export const getters = {
     })
 
     return dates.filter((d) => d)
+  },
+  myFilteredPlans(state) {
+    if (state.filters.confirmations.length) return state.mine
+
+    return state.mine.filter((plan) =>
+      state.filters.confirmations.includes(plan.confirmation)
+    )
   },
 }
 export const mutations = {
