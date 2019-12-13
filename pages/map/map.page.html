@@ -3,10 +3,11 @@
   :zoom="3"
   style="width: 100%; height: 100%"
   v-if="$nuxt.isOnline"
+  ref="mapRef"
 >
   <GmapMarker
     :key="index"
-    v-for="(plan, index) in myPlans"
+    v-for="(plan, index) in myFilteredPlans()"
     :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
     @click="markerClicked(plan.id)"
     :icon="icon(plan)"

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 import { gmapApi } from 'vue2-google-maps'
 
 export default Vue.component('MapPage', {
@@ -11,7 +11,6 @@ export default Vue.component('MapPage', {
   },
   computed: {
     ...mapState({
-      myPlans: (state) => state.plans.mine,
       highlightId: (state) => state.plans.highlightId,
     }),
     google: gmapApi,
@@ -19,6 +18,7 @@ export default Vue.component('MapPage', {
   mounted() {},
   methods: {
     ...mapMutations('plans', ['toggleHighlightedId']),
+    ...mapGetters('plans', ['highlightedPlan', 'myFilteredPlans']),
     markerClicked(planId) {
       this.toggleHighlightedId(planId)
     },

@@ -33,11 +33,11 @@ export const getters = {
     return dates.filter((d) => d)
   },
   myFilteredPlans(state) {
-    if (state.filters.confirmations.length) return state.mine
-
-    return state.mine.filter((plan) =>
-      state.filters.confirmations.includes(plan.confirmation)
-    )
+    return !state.filters.confirmations.length
+      ? state.mine
+      : state.mine.filter((plan) =>
+          state.filters.confirmations.includes(plan.confirmation)
+        )
   },
 }
 export const mutations = {
