@@ -59,6 +59,9 @@ export const mutations = {
   toggleHighlightedId(state, payload) {
     state.highlightId = state.highlightId ? undefined : payload
   },
+  setConfirmationsFilters(state, payload) {
+    state.filters.confirmations = payload
+  },
 }
 export const actions = {
   createPlan({ rootState, state }, plan) {
