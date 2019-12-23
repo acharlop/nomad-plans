@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 
 import CardPlan from '@/components/card-plan'
 
@@ -42,5 +42,6 @@ export default Vue.component('SideDrawer', {
   },
   methods: {
     ...mapMutations('layout', ['showDialogInvite', 'showDialogPlanForm']),
+    ...mapGetters('plans', ['myFilteredPlans']),
   },
 })

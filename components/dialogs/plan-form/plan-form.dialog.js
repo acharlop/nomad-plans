@@ -10,6 +10,7 @@ import {
   formatDate,
 } from '@/utils/date'
 import Place from '~/models/place'
+import { confirmations } from '~/utils/confirmations'
 
 const mappedProps = {
   bounds: {
@@ -49,7 +50,7 @@ export default Vue.component('PlanFormDialog', {
       place: {},
       startAt: '',
       endAt: '',
-      confirmations: ['Not Sure', 'Most Likely', 'Confirmed'],
+      confirmations: confirmations.t.all,
       confirmation: 0,
       description: '',
       startAtMenu: false,
