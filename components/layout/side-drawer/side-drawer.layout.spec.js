@@ -32,6 +32,9 @@ describe('SideDrawerLayoutComponent', () => {
           actions: {
             getPlans: jest.fn(),
           },
+          getters: {
+            myFilteredPlans: jest.fn(() => []),
+          },
         },
       },
     }
