@@ -39,7 +39,6 @@ describe('LandingPageComponent', () => {
     wrapper.showDialog = jest.fn()
 
     const a = wrapper.findAll('a')
-    console.log(wrapper.callToJSON)
     expect(a.length).toBe(2)
     expect(a.at(1).innerHTML).toEqual('Privacy Policy')
     a.at(1).trigger('click')
