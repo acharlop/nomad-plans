@@ -22,7 +22,7 @@ export default Vue.component('Footer', {
       },
       set(value) {
         this.filteredCurrentYear = value
-      }
+      },
     },
     nextYear() {
       return this.currentYear + 1
