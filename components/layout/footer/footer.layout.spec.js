@@ -1,10 +1,37 @@
 import FooterComponent from './index.vue'
 import { mount } from '@/test/test-utils'
 
+let storeOptions
+let myFilteredPlans
+
 describe('FooterComponent', () => {
+  beforeEach(() => {
+    myFilteredPlans = jest.fn(() => [])
+
+    storeOptions = {
+      modules: {
+        plans: {
+          namespaced: true,
+          state: {
+            mine: [],
+            friends: [],
+          },
+          actions: {
+            getPlans: jest.fn(),
+          },
+          getters: {
+            myFilteredPlans,
+          },
+          mutations: {
+            setConfirmationsFilters: jest.fn(),
+          },
+        },
+      },
+    }
+  })
   // is vue component
   test('is Vue component', () => {
-    const wrapper = mount(FooterComponent)
+    const wrapper = mount(FooterComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
   // Inspect the raw component options

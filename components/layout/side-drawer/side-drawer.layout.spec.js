@@ -4,11 +4,13 @@ import { mount } from '@/test/test-utils'
 let storeOptions
 let toggleSideDrawer
 let toggleSideDrawerTab
+let myFilteredPlans
 
 describe('SideDrawerLayoutComponent', () => {
   beforeEach(() => {
     toggleSideDrawer = jest.fn()
     toggleSideDrawerTab = jest.fn()
+    myFilteredPlans = jest.fn(() => [])
 
     storeOptions = {
       modules: {
@@ -33,7 +35,7 @@ describe('SideDrawerLayoutComponent', () => {
             getPlans: jest.fn(),
           },
           getters: {
-            myFilteredPlans: jest.fn(() => []),
+            myFilteredPlans,
           },
         },
       },
