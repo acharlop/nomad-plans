@@ -40,9 +40,10 @@
     "@nuxtjs/vuetify": "^1.9.1",
     "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
-    "fastify": "^1.14.6",
-    "firebase": "^6.6.2",
+    "fastify": "^2.11.0",
+    "firebase": "^7.6.1",
     "nuxt": "^2.11.0",
+    "pino-pretty": "^3.5.0",
     "vue-clamp": "^0.2.2",
     "vue-facebook-login-component": "^1.4.0",
     "vue2-google-maps": "^0.10.7",
@@ -63,7 +64,7 @@
     "jest": "^24.9.0",
     "jest-serializer-vue": "^2.0.2",
     "lint-staged": "^9.5.0",
-    "nodemon": "^1.19.4",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "vue-jest": "^4.0.0-beta.2"
   }
