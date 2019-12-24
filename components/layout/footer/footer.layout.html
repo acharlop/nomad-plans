@@ -2,15 +2,19 @@
   <v-card flat color="transparent" style="width: 100%">
     <v-row>
       <v-flex>
-        <v-subheader class="white--text pl-0">Timeline</v-subheader>
-        <v-slider
-          v-model="currentDate"
-          :step="0"
-          thumb-label="always"
-          color="white"
-          track-color="white"
-          thumb-color="secondary"
-        ></v-slider>
+        <v-subheader class="white--text pl-1">Timeline</v-subheader>
+        <v-row class="mx-1">
+          <v-btn :disabled="!hasPlansYearPrev" small @click="currentYear = prevYear">{{ prevYear }}</v-btn>
+          <v-slider
+            v-model="currentDate"
+            :step="0"
+            thumb-label="always"
+            color="white"
+            track-color="white"
+            thumb-color="secondary"
+          ></v-slider>
+          <v-btn :disabled="!hasPlansYearNext" small @click="currentYear = nextYear">{{ nextYear }}</v-btn>
+        </v-row>
       </v-flex>
       <v-divider :vertical="true" class="ml-1 mr-2 divider" :hidden="$vuetify.breakpoint.xsOnly"></v-divider>
 
