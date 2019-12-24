@@ -40,7 +40,8 @@ export default Vue.component('MainLayout', {
 
       if (
         this.showSideDrawer &&
-        (window.innerWidth > 600 && this.currentWidth < 600)
+        window.innerWidth > 600 &&
+        this.currentWidth < 600
       ) {
         this.toggleSideDrawer()
       }
