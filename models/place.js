@@ -7,7 +7,6 @@ export default class Place {
     },
     viewport: {},
   }
-
   internationalPhoneNumber = ''
   name = ''
   place = {
@@ -16,7 +15,6 @@ export default class Place {
     country: '',
     countryCode: '',
   }
-
   placeId = ''
   types = []
   website = ''
@@ -56,7 +54,6 @@ export default class Place {
   lat() {
     return this.geometry.location.lat
   }
-
   lng() {
     return this.geometry.location.lng
   }
