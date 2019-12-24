@@ -24,8 +24,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "prettier --write **/**.{js,vue}",
-      "pre-push": "eslint --ext .js,.vue --ignore-path .gitignore ."
+      "pre-commit": "yarn prettier:fix",
+      "pre-push": "yarn lint"
     }
   },
   "dependencies": {
