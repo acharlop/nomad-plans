@@ -20,17 +20,12 @@
     "test": "jest --no-cache",
     "test:watch": "jest --watch --no-cache",
     "test:cover": "jest --collect-coverage",
-    "test:ci": "yarn test:cover"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --ext .js,.vue --ignore-path .gitignore . --fix",
-      "prettier --write **/**.{js,vue}"
-    ]
+    "test:ci": "yarn build && yarn test:cover"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "prettier --write **/**.{js,vue}",
+      "pre-push": "eslint --ext .js,.vue --ignore-path .gitignore . --fix"
     }
   },
   "dependencies": {
