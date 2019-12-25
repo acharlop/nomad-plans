@@ -4,10 +4,24 @@
   border-color: $grey !important;
 }
 
+.slider {
+  height: 35px;
+}
+
 .filters {
   width: 336px;
 }
 
 .filters-width-max {
   max-width: 336px;
+}
+
+.labels {
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  div {
+    flex: 1;
+  }
 }

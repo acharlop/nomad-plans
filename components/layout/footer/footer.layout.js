@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import { confirmations } from '~/utils/confirmations'
 
 const thisYear = new Date().getFullYear()
@@ -13,6 +14,20 @@ export default Vue.component('Footer', {
       filterItems: confirmations.t.all,
       chips: [],
       filteredCurrentYear: thisYear,
+      months: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ],
     }
   },
   computed: {
@@ -48,6 +63,12 @@ export default Vue.component('Footer', {
     },
     hasPlansYearPrev() {
       return this.prevYear >= this.firstPlanYear
+    },
+    sliderSteps() {
+      return differenceInCalendarDays(
+        new Date(this.nextYear, 0, 1),
+        new Date(this.currentYear, 0, 1)
+      )
     },
   },
   watch: {
