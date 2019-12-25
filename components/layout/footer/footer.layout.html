@@ -2,17 +2,25 @@
   <v-card flat color="transparent" style="width: 100%">
     <v-row>
       <v-flex>
-        <v-subheader class="white--text pl-1">Timeline</v-subheader>
+        <v-subheader class="white--text pl-1" style="height: 35px;">Timeline</v-subheader>
         <v-row class="mx-1">
           <v-btn :disabled="!hasPlansYearPrev" small @click="currentYear = prevYear">{{ prevYear }}</v-btn>
-          <v-slider
-            v-model="currentDate"
-            :step="0"
-            thumb-label="always"
-            color="white"
-            track-color="white"
-            thumb-color="secondary"
-          ></v-slider>
+          <v-col class="pt-0">
+            <v-slider
+              class="slider"
+              v-model="currentDate"
+              step="1"
+              min="1"
+              :max="sliderSteps"
+              thumb-label="always"
+              color="white"
+              track-color="white"
+              thumb-color="secondary"
+            ></v-slider>
+            <v-row class="labels mx-2">
+              <div v-for="month in months">{{month}}</div>
+            </v-row>
+          </v-col>
           <v-btn :disabled="!hasPlansYearNext" small @click="currentYear = nextYear">{{ nextYear }}</v-btn>
         </v-row>
       </v-flex>
