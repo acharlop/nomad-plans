@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
+import getDayOfYear from 'date-fns/getDayOfYear'
 import { confirmations } from '~/utils/confirmations'
 
 const thisYear = new Date().getFullYear()
@@ -10,7 +11,7 @@ export default Vue.component('Footer', {
   props: [],
   data() {
     return {
-      currentDate: 50,
+      currentDate: 1,
       filterItems: confirmations.t.all,
       chips: [],
       filteredCurrentYear: thisYear,
@@ -85,6 +86,9 @@ export default Vue.component('Footer', {
     remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1)
       this.chips = [...this.chips]
+    },
+    setMonth(month) {
+      this.currentDate = getDayOfYear(new Date(this.currentYear, month))
     },
   },
 })
