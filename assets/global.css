@@ -42,3 +42,6 @@ body {
 .v-slider__thumb-label > div {
   display: none !important;
 }
+.slider .v-messages {
+  display: none !important;
+}

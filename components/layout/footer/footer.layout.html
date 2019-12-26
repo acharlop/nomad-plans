@@ -17,8 +17,14 @@
               track-color="white"
               thumb-color="secondary"
             ></v-slider>
-            <v-row class="labels mx-2">
-              <div v-for="month in months">{{month}}</div>
+            <v-row class="labels mr-2">
+              <div
+                v-for="(month, index) in months"
+                v-if="$vuetify.breakpoint.mdAndUp || index % 2 === 0"
+                :id="month.toLowerCase()"
+              >
+                <span @click="setMonth(index)">{{month}}</span>
+              </div>
             </v-row>
           </v-col>
           <v-btn :disabled="!hasPlansYearNext" small @click="currentYear = nextYear">{{ nextYear }}</v-btn>
