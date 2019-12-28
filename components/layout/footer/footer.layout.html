@@ -30,7 +30,7 @@
           <v-btn :disabled="!hasPlansYearNext" small @click="currentYear = nextYear">{{ nextYear }}</v-btn>
         </v-row>
       </v-flex>
-      <v-divider :vertical="true" class="ml-1 mr-2 divider" :hidden="$vuetify.breakpoint.xsOnly"></v-divider>
+      <v-divider :vertical="true" class="ml-1 mr-2 divider"></v-divider>
 
       <v-flex align="center" justify="center" class="filters flex-column py-2" :class="{ 'filters-width-max': !$vuetify.breakpoint.xsOnly }">
         <v-select
