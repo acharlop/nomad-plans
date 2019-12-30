@@ -30,26 +30,26 @@
           <v-btn :disabled="!hasPlansYearNext" small @click="currentYear = nextYear">{{ nextYear }}</v-btn>
         </v-row>
       </v-flex>
+
       <v-divider :vertical="true" class="ml-1 mr-2 divider"></v-divider>
 
-      <v-flex align="center" justify="center" class="filters flex-column py-2" :class="{ 'filters-width-max': !$vuetify.breakpoint.xsOnly }">
+      <v-flex align="center" justify="center" class="filters flex-column pa-2" :class="{ 'filters-width-max': !$vuetify.breakpoint.xsOnly }">
         <v-select
-          v-model="chips"
+          v-model="filters"
           :items="filterItems"
-          chips
-          label="Filters"
-          placeholder="Show all filters"
+          label="Filter by likelihood"
+          clearable
           multiple
-          deletable-chips
+          outlined
+          dark
           dense
         >
           <template v-slot:selection="{ attrs, item, index, select, selected }">
             <v-chip
               v-bind="attrs"
               :input-value="selected"
-              @click:close="remove(item)"
+              color="secondary"
               small
-              close
               :ripple="false"
             >
               <span >{{ item }}</span>

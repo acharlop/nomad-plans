@@ -1,7 +1,7 @@
 @import '~/assets/variables';
 
 .divider {
-  border-color: $grey !important;
+  border-color: --v-primary-darken1 !important;
 }
 
 .slider {
@@ -9,17 +9,18 @@
 }
 
 .filters {
-  width: 336px;
+  width: 327px;
 }
 
 .filters-width-max {
-  max-width: 336px;
+  max-width: 334px;
 }
 
 .labels {
   justify-content: center;
   align-items: center;
   color: white;
+  font-size: 14px;
 
   div {
     flex: 1;
