@@ -13,7 +13,7 @@ export default Vue.component('Footer', {
     return {
       currentDate: 1,
       filterItems: confirmations.t.all,
-      chips: [],
+      value: [],
       filteredCurrentYear: thisYear,
       months: [
         'Jan',
@@ -73,19 +73,19 @@ export default Vue.component('Footer', {
     },
   },
   watch: {
-    chips(newVal) {
+    value(newVal) {
       this.setConfirmationsFilters(confirmations.t2i(newVal))
     },
   },
   mounted() {
-    this.chips = []
+    this.value = []
   },
   methods: {
     ...mapMutations('plans', ['setConfirmationsFilters']),
     ...mapGetters('plans', ['myFilteredPlans']),
     remove(item) {
-      this.chips.splice(this.chips.indexOf(item), 1)
-      this.chips = [...this.chips]
+      this.value.splice(this.value.indexOf(item), 1)
+      this.value = [...this.value]
     },
     setMonth(month) {
       this.currentDate = getDayOfYear(new Date(this.currentYear, month))
