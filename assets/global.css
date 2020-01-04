@@ -45,3 +45,7 @@ body {
 .slider .v-messages {
   display: none !important;
 }
+
+.filters .v-text-field__details {
+  display: none !important;
+}

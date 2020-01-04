@@ -9,11 +9,8 @@
 }
 
 .filters {
-  width: 327px;
-}
-
-.filters-width-max {
-  max-width: 334px;
+  width: 337px;
+  max-width: 337px;
 }
 
 .labels {
@@ -40,5 +37,9 @@
 @media (max-width: 599px) {
   .divider {
     display: none !important;
+  }
+
+  .filters {
+    max-width: 100%;
   }
 }
