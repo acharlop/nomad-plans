@@ -37,15 +37,3 @@ body {
 .pac-icon-marker {
   display: none;
 }
-
-/* slider */
-.v-slider__thumb-label > div {
-  display: none !important;
-}
-.slider .v-messages {
-  display: none !important;
-}
-
-.filters .v-text-field__details {
-  display: none !important;
-}
