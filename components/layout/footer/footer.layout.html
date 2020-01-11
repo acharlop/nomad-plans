@@ -1,6 +1,6 @@
 <v-footer fixed app clipped-right class="light-green darken-3 white--text" style="z-index: 6">
   <v-card flat color="transparent" style="width: 100%">
-    <v-row>
+    <v-row align="center">
       <v-flex>
         <v-subheader class="white--text pl-1" style="height: 35px;">Timeline</v-subheader>
         <v-row class="mx-1">
@@ -8,7 +8,7 @@
           <v-col class="pt-0">
             <v-slider
               class="slider"
-              v-model="currentDate"
+              v-model="sliderValue"
               step="1"
               min="1"
               :max="sliderSteps"
@@ -16,14 +16,18 @@
               color="white"
               track-color="white"
               thumb-color="secondary"
-            ></v-slider>
+              :hide-details="true"
+            >
+              <template v-slot:thumb-label="item">
+                {{dayOfYearToDate(item.value)}}
+              </template></v-slider>
             <v-row class="labels mr-2">
               <div
                 v-for="(month, index) in months"
                 v-if="$vuetify.breakpoint.mdAndUp || index % 2 === 0"
                 :id="month.toLowerCase()"
               >
-                <span @click="setMonth(index)">{{month}}</span>
+                <span @click="setMonth(index)" :class="{ active: selectedMonth === index }">{{month}}</span>
               </div>
             </v-row>
           </v-col>
@@ -33,7 +37,7 @@
 
       <v-divider :vertical="true" class="ml-1 mr-2 divider"></v-divider>
 
-      <v-flex align="center" justify="center" class="filters flex-column pa-2" :class="{ 'filters-width-max': !$vuetify.breakpoint.xsOnly }">
+      <v-flex class="filters flex-column pa-2">
         <v-select
           v-model="filters"
           :items="filterItems"
@@ -43,6 +47,7 @@
           outlined
           dark
           dense
+          :hide-details="true"
         >
           <template v-slot:selection="{ attrs, item, index, select, selected }">
             <v-chip

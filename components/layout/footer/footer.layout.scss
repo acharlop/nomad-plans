@@ -1,7 +1,7 @@
 @import '~/assets/variables';
 
 .divider {
-  border-color: --v-primary-darken1 !important;
+  border-color: var(--v-primary-darken1) !important;
 }
 
 .slider {
@@ -9,11 +9,8 @@
 }
 
 .filters {
-  width: 327px;
-}
-
-.filters-width-max {
-  max-width: 334px;
+  width: 337px;
+  max-width: 337px;
 }
 
 .labels {
@@ -27,6 +24,10 @@
 
     span {
       cursor: pointer;
+
+      &.active {
+        color: var(--v-secondary-base);
+      }
     }
   }
 }
@@ -40,5 +41,9 @@
 @media (max-width: 599px) {
   .divider {
     display: none !important;
+  }
+
+  .filters {
+    max-width: 100%;
   }
 }
