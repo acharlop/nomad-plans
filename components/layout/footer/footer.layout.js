@@ -12,6 +12,7 @@ export default Vue.component('Footer', {
   props: [],
   data() {
     return {
+      day: new Date(),
       sliderValue: 1,
       filterItems: confirmations.t.all,
       filters: [],
@@ -39,6 +40,7 @@ export default Vue.component('Footer', {
       },
       set(value) {
         this.filteredCurrentYear = value
+        this.day.setYear(value)
       },
     },
     nextYear() {
@@ -87,9 +89,6 @@ export default Vue.component('Footer', {
         ) - 1
       )
     },
-    selectedDay() {
-      return lightFormat(new Date(this.currentYear, 0, this.sliderValue), 'd')
-    },
   },
   watch: {
     filters(newVal) {
@@ -104,6 +103,9 @@ export default Vue.component('Footer', {
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {
       this.currentDate = getDayOfYear(new Date(this.currentYear, month))
+    },
+    dayOfYearToDate(day = 1) {
+      return lightFormat(this.day.setDate(day), 'd')
     },
   },
 })

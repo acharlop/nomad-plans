@@ -1,7 +1,7 @@
 @import '~/assets/variables';
 
 .divider {
-  border-color: --v-primary-darken1 !important;
+  border-color: var(--v-primary-darken1) !important;
 }
 
 .slider {

@@ -16,7 +16,11 @@
               color="white"
               track-color="white"
               thumb-color="secondary"
-            ></v-slider>
+              :hide-details="true"
+            >
+              <template v-slot:thumb-label="item">
+                {{dayOfYearToDate(item.value)}}
+              </template></v-slider>
             <v-row class="labels mr-2">
               <div
                 v-for="(month, index) in months"
@@ -43,6 +47,7 @@
           outlined
           dark
           dense
+          :hide-details="true"
         >
           <template v-slot:selection="{ attrs, item, index, select, selected }">
             <v-chip
