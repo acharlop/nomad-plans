@@ -102,7 +102,7 @@ export default Vue.component('Footer', {
     ...mapMutations('plans', ['setConfirmationsFilters']),
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {
-      this.currentDate = getDayOfYear(new Date(this.currentYear, month))
+      this.sliderValue = getDayOfYear(new Date(this.currentYear, month))
     },
     dayOfYearToDate(day = 1) {
       return lightFormat(this.day.setDate(day), 'd')
