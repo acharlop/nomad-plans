@@ -8,7 +8,7 @@
           <v-col class="pt-0">
             <v-slider
               class="slider"
-              v-model="currentDate"
+              v-model="sliderValue"
               step="1"
               min="1"
               :max="sliderSteps"
@@ -23,7 +23,7 @@
                 v-if="$vuetify.breakpoint.mdAndUp || index % 2 === 0"
                 :id="month.toLowerCase()"
               >
-                <span @click="setMonth(index)">{{month}}</span>
+                <span @click="setMonth(index)" :class="{ active: selectedMonth === index }">{{month}}</span>
               </div>
             </v-row>
           </v-col>

@@ -24,6 +24,10 @@
 
     span {
       cursor: pointer;
+
+      &.active {
+        color: var(--v-secondary-base);
+      }
     }
   }
 }
