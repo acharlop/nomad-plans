@@ -50,7 +50,7 @@ export default Vue.component('Footer', {
       return this.myFilteredPlans()
     },
     firstPlanYear() {
-      return length
+      return this.plans.length
         ? parseInt(this.plans[this.plans.length - 1].startAt.substring(0, 4))
         : thisYear
     },
