@@ -27,15 +27,15 @@ export const formatDistance = (start, end) => {
   return formatDistanceStrict(startDate, fakeEnd, { unit })
 }
 
-export const isWithinInterval = (range, day) => {
+export const isWithinInterval = (day, range) => {
   return DFNisWithinInterval(new Date(day), {
     start: new Date(range.startAt),
     end: new Date(range.endAt),
   })
 }
 
-export const isWithinAnyInterval = (ranges = [], day) => {
-  return ranges.some((range) => isWithinInterval(range, day))
+export const isWithinAnyInterval = (day, ranges = []) => {
+  return ranges.some((range) => isWithinInterval(day, range))
 }
 
 export const intervalContainingDate = (ranges = [], day) => {
