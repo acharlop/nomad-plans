@@ -233,7 +233,7 @@ export default Vue.component('PlanFormDialog', {
     },
     // date picker allowed dates functions
     allowedDates(day) {
-      return !isWithinAnyInterval(this.plannedDates, day)
+      return !isWithinAnyInterval(day, this.plannedDates)
     },
     setAllowedRange(day) {
       const { startAfter, endBefore } = intervalContainingDate(

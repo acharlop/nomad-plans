@@ -5,18 +5,18 @@ import getDayOfYear from 'date-fns/getDayOfYear'
 import lightFormat from 'date-fns/lightFormat'
 import { confirmations } from '~/utils/confirmations'
 
-const thisYear = new Date().getFullYear()
+const today = new Date()
 
 export default Vue.component('Footer', {
   components: {},
   props: [],
   data() {
     return {
-      day: new Date(),
-      sliderValue: 1,
+      today,
+      sliderValue: getDayOfYear(today),
       filterItems: confirmations.t.all,
       filters: [],
-      filteredCurrentYear: thisYear,
+      filteredCurrentYear: today.getFullYear(),
       months: [
         'Jan',
         'Feb',
@@ -40,7 +40,7 @@ export default Vue.component('Footer', {
       },
       set(value) {
         this.filteredCurrentYear = value
-        this.day.setYear(value)
+        this.today.setYear(value)
       },
     },
     nextYear() {
@@ -55,12 +55,12 @@ export default Vue.component('Footer', {
     firstPlanYear() {
       return this.plans.length
         ? parseInt(this.plans[this.plans.length - 1].startAt.substring(0, 4))
-        : thisYear
+        : today.getFullYear()
     },
     finalPlanYear() {
       return this.plans.length
         ? parseInt(this.plans[0].endAt.substring(0, 4))
-        : thisYear
+        : today.getFullYear()
     },
     hasPlansYearNext() {
       return this.nextYear <= this.finalPlanYear
@@ -76,36 +76,37 @@ export default Vue.component('Footer', {
         ) - 1
       )
     },
-    selectedDate() {
-      return lightFormat(
-        new Date(this.currentYear, 0, this.sliderValue),
-        'yyyy-MM-dd'
-      )
+    day() {
+      return new Date(this.currentYear, 0, this.sliderValue)
     },
     selectedMonth() {
-      return (
-        parseInt(
-          lightFormat(new Date(this.currentYear, 0, this.sliderValue), 'M')
-        ) - 1
-      )
+      return this.day.getMonth()
     },
   },
   watch: {
     filters(newVal) {
       this.setConfirmationsFilters(confirmations.t2i(newVal))
     },
+    day(newVal) {
+      this.setHighlightedDate(this.selectedDate())
+    },
   },
   mounted() {
     this.filters = []
+    this.setHighlightedDate(this.selectedDate())
   },
   methods: {
-    ...mapMutations('plans', ['setConfirmationsFilters']),
+    ...mapMutations('plans', ['setConfirmationsFilters', 'setHighlightedDate']),
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {
-      this.sliderValue = getDayOfYear(new Date(this.currentYear, month))
+      this.day.setMonth(month, 1)
+      this.sliderValue = getDayOfYear(this.day)
     },
     dayOfYearToDate(day = 1) {
       return lightFormat(this.day.setDate(day), 'd')
+    },
+    selectedDate() {
+      return lightFormat(this.day, 'yyyy-MM-dd')
     },
   },
 })
