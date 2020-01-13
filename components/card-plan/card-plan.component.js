@@ -73,6 +73,12 @@ export default Vue.component('CardPlan', {
       return this.plan.place.formattedNameShort()
     },
   },
+  watch: {
+    isHighlighted(newVal) {
+      if (newVal)
+        this.$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    },
+  },
   mounted() {},
   methods: {
     ...mapMutations('plans', ['toggleHighlightedId']),

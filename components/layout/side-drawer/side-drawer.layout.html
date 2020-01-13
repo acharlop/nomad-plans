@@ -30,7 +30,7 @@
         </div>
         <!-- plans -->
         <div class="side-drawer-wrapper" v-if="myFilteredPlans().length">
-          <card-plan v-for="plan in myFilteredPlans()" :plan="plan" :key="plan.id" :id="'plan-' + plan.id"></card-plan>
+          <card-plan v-for="plan in myFilteredPlans()" :plan="plan" :key="plan.id"></card-plan>
         </div>
       </v-tab-item>
       <!-- friends plans -->
