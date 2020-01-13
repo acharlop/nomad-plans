@@ -3,7 +3,7 @@ import { mount } from '@/test/test-utils'
 
 let propsData
 
-// TODO fix testing with date-fns
+// TODO [testing] fix testing with date-fns
 
 xdescribe('CardPlanComponentComponent', () => {
   beforeEach(() => {
