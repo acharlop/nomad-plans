@@ -19,7 +19,6 @@ export default Vue.component('SideDrawer', {
       sideDrawerTab: (state) => state.layout.sideDrawerTab,
       myPlans: (state) => state.plans.mine,
       friendsPlans: (state) => state.plans.friends,
-      highlightId: (state) => state.plans.highlightId,
     }),
     visible: {
       get() {
@@ -36,15 +35,6 @@ export default Vue.component('SideDrawer', {
       set() {
         this.$store.commit('layout/toggleSideDrawerTab')
       },
-    },
-  },
-  watch: {
-    highlightId(newVal) {
-      if (!newVal) return
-
-      document
-        .getElementById(`plan-${newVal}`)
-        .scrollIntoView({ behavior: 'smooth', block: 'center' })
     },
   },
   created() {

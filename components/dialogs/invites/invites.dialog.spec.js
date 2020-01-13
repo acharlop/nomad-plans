@@ -20,7 +20,7 @@ describe('LegalDialogComponent', () => {
     expect(wrapper.emitted('close')).toBeFalsy()
   })
 
-  // TODO fix error - [Vue warn]: Error in v-on handler: "TypeError: Cannot read property 'select' of null"
+  // TODO [testing] fix error - [Vue warn]: Error in v-on handler: "TypeError: Cannot read property 'select' of null"
   xtest('copies link to clip board', () => {
     const wrapper = mount(InvitesDialogComponent)
     const buttons = wrapper.findAll('button')

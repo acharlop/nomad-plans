@@ -13,7 +13,7 @@ export default Vue.component('Footer', {
   data() {
     return {
       today,
-      sliderValue: getDayOfYear(today),
+      sliderValue: getDayOfYear(today), // TODO [filters] set/get this from vuex
       filterItems: confirmations.t.all,
       filters: [],
       filteredCurrentYear: today.getFullYear(),
@@ -96,6 +96,7 @@ export default Vue.component('Footer', {
     this.setHighlightedDate(this.selectedDate())
   },
   methods: {
+    // TODO [filters] map all plan ids for the year to array that can be filtered
     ...mapMutations('plans', ['setConfirmationsFilters', 'setHighlightedDate']),
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {

@@ -10,7 +10,7 @@ describe('fake', () => {
 
 let storeOptions
 
-// TODO fix mock implementation of -> import { gmapApi } from 'vue2-google-maps'
+// TODO [testing] fix mock implementation of -> import { gmapApi } from 'vue2-google-maps'
 
 xdescribe('MapPageComponent', () => {
   beforeEach(() => {

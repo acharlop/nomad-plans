@@ -7,7 +7,7 @@ import { minTime, maxTime } from 'date-fns/constants'
 import lightFormat from 'date-fns/lightFormat'
 import DFNformat from 'date-fns/format'
 
-// TODO split each function into it's own file
+// TODO [structure] split each function into it's own file
 
 export const formatDistance = (start, end) => {
   if (!start || !end) return ''
