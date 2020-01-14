@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Clamp from 'vue-clamp'
 import { mapState, mapMutations } from 'vuex'
-import { formatDistance, isWithinInterval } from '~/utils/date'
+import { formatDistance } from '~/utils/date'
 
 export default Vue.component('CardPlan', {
   components: {
@@ -31,16 +31,9 @@ export default Vue.component('CardPlan', {
   computed: {
     ...mapState({
       highlightId: (state) => state.plans.highlightId,
-      highlightedDate: (state) => state.plans.highlightedDate,
     }),
     isHighlighted() {
-      return (
-        this.plan.id === this.highlightId ||
-        isWithinInterval(this.highlightedDate, {
-          startAt: this.plan.startAt,
-          endAt: this.plan.endAt,
-        })
-      )
+      return this.plan.id === this.highlightId
     },
     date() {
       const startAt = new Date(this.plan.startAt)

@@ -1,9 +1,10 @@
 import Vue from 'vue'
-import { mapGetters, mapMutations } from 'vuex'
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import getDaysInYear from 'date-fns/getDaysInYear'
 import getDayOfYear from 'date-fns/getDayOfYear'
 import lightFormat from 'date-fns/lightFormat'
 import { confirmations } from '~/utils/confirmations'
+import { dayInPlan } from '@/utils/date'
 
 const today = new Date()
 
@@ -13,7 +14,7 @@ export default Vue.component('Footer', {
   data() {
     return {
       today,
-      sliderValue: getDayOfYear(today), // TODO [filters] set/get this from vuex
+      sliderValue: getDayOfYear(today),
       filterItems: confirmations.t.all,
       filters: [],
       filteredCurrentYear: today.getFullYear(),
@@ -31,9 +32,13 @@ export default Vue.component('Footer', {
         'Nov',
         'Dec',
       ],
+      yearPlansIds: [undefined],
     }
   },
   computed: {
+    ...mapState({
+      highlightId: (state) => state.plans.highlightId,
+    }),
     currentYear: {
       get() {
         return this.filteredCurrentYear
@@ -41,6 +46,7 @@ export default Vue.component('Footer', {
       set(value) {
         this.filteredCurrentYear = value
         this.today.setYear(value)
+        this.setYearPlansIds(value)
       },
     },
     nextYear() {
@@ -68,13 +74,8 @@ export default Vue.component('Footer', {
     hasPlansYearPrev() {
       return this.prevYear >= this.firstPlanYear
     },
-    sliderSteps() {
-      return (
-        differenceInCalendarDays(
-          new Date(this.nextYear, 0, 1),
-          new Date(this.currentYear, 0, 1)
-        ) - 1
-      )
+    daysInYear() {
+      return getDaysInYear(new Date(this.currentYear, 0, 1))
     },
     day() {
       return new Date(this.currentYear, 0, this.sliderValue)
@@ -87,17 +88,18 @@ export default Vue.component('Footer', {
     filters(newVal) {
       this.setConfirmationsFilters(confirmations.t2i(newVal))
     },
-    day(newVal) {
-      this.setHighlightedDate(this.selectedDate())
+    sliderValue(newVal) {
+      this.highlightIdForDay(newVal)
+    },
+    plans(newVal) {
+      this.setYearPlansIds()
     },
   },
   mounted() {
     this.filters = []
-    this.setHighlightedDate(this.selectedDate())
   },
   methods: {
-    // TODO [filters] map all plan ids for the year to array that can be filtered
-    ...mapMutations('plans', ['setConfirmationsFilters', 'setHighlightedDate']),
+    ...mapMutations('plans', ['setConfirmationsFilters', 'setHighlightedId']),
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {
       this.day.setMonth(month, 1)
@@ -106,8 +108,32 @@ export default Vue.component('Footer', {
     dayOfYearToDate(day = 1) {
       return lightFormat(this.day.setDate(day), 'd')
     },
-    selectedDate() {
-      return lightFormat(this.day, 'yyyy-MM-dd')
+    highlightIdForDay(day) {
+      if (this.highlightId !== this.yearPlansIds[day])
+        this.setHighlightedId(this.yearPlansIds[day])
+    },
+    setYearPlansIds(year = this.currentYear) {
+      this.yearPlansIds = [undefined]
+
+      const day = new Date(year, 0, 1)
+      let hasPlan = false
+
+      for (let i = 1; i <= this.daysInYear; i++) {
+        day.setMonth(0, i)
+        hasPlan = false
+
+        for (const plan of this.plans) {
+          if (dayInPlan(day, plan)) {
+            this.yearPlansIds.push(plan.id)
+            hasPlan = true
+            break
+          }
+        }
+
+        if (!hasPlan) this.yearPlansIds.push(undefined)
+      }
+
+      this.highlightIdForDay(this.sliderValue)
     },
   },
 })

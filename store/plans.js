@@ -6,7 +6,6 @@ const defaultState = {
   friends: [],
   editId: undefined,
   highlightId: undefined,
-  highlightedDate: undefined,
   filters: {
     confirmations: [],
   },
@@ -48,8 +47,8 @@ export const mutations = {
   removePlanEditId(state) {
     state.editId = undefined
   },
-  setHighlightedDate(state, payload) {
-    state.highlightedDate = payload
+  setHighlightedId(state, payload) {
+    state.highlightId = state.highlightId = payload
   },
   toggleHighlightedId(state, payload) {
     state.highlightId = state.highlightId === payload ? undefined : payload
