@@ -27,6 +27,17 @@ export const formatDistance = (start, end) => {
   return formatDistanceStrict(startDate, fakeEnd, { unit })
 }
 
+export const dayInPlan = (day, plan) => {
+  const { startAt, endAt } = plan
+
+  return !day || !startAt || !endAt
+    ? false
+    : DFNisWithinInterval(new Date(day), {
+        start: new Date(startAt),
+        end: new Date(endAt),
+      })
+}
+
 export const isWithinInterval = (day, range) => {
   return DFNisWithinInterval(new Date(day), {
     start: new Date(range.startAt),
