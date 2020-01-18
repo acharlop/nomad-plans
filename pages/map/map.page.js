@@ -11,8 +11,8 @@ export default Vue.component('MapPage', {
     return {
       // TODO pan to top of map so antarctica is initially hidden
       center: {
-        lat: 10,
-        lng: 10,
+        lat: 30,
+        lng: 0,
       },
       zoom: 2, // TODO customize per screen height
       options: {
@@ -71,5 +71,6 @@ export default Vue.component('MapPage', {
     },
     boundChange(val) {},
     zoomChange(val) {},
+    centerChange(val) {},
   },
 })

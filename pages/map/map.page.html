@@ -5,9 +5,10 @@
   ref="mapRef"
   :center="center"
   :zoom="zoom"
+  :options="options"
   @bounds_changed="boundChange"
   @zoom_changed="zoomChange"
-  :options="options"
+  @center_changed="centerChange"
 >
   <GmapMarker
     :key="index"
