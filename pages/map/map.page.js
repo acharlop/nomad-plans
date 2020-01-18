@@ -8,13 +8,42 @@ export default Vue.component('MapPage', {
   components: {},
   props: [],
   data() {
-    return {}
+    return {
+      // TODO pan to top of map so antarctica is initially hidden
+      center: {
+        lat: 10,
+        lng: 10,
+      },
+      zoom: 2, // TODO customize per screen height
+      options: {
+        zoomControl: true,
+        mapTypeControl: true,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+        disableDefaultUi: false,
+        maxZoom: 14,
+        minZoom: 2, // TODO customize per screen height https://stackoverflow.com/questions/17412397/zoom-google-map-to-fit-the-world-on-any-screen
+        restriction: {
+          latLngBounds: {
+            north: 85,
+            south: -85,
+            west: -180,
+            east: 180,
+          },
+        },
+      },
+    }
   },
   computed: {
     ...mapState({
       highlightId: (state) => state.plans.highlightId,
     }),
     google: gmapApi,
+    map() {
+      return this.$refs.mapRef
+    },
   },
   mounted() {},
   methods: {
@@ -40,5 +69,7 @@ export default Vue.component('MapPage', {
         // origin: new this.google.maps.Point(0, 0),
       }
     },
+    boundChange(val) {},
+    zoomChange(val) {},
   },
 })
