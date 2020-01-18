@@ -29,6 +29,13 @@ export const getters = {
 
     return dates.filter((d) => d)
   },
+  highlightedPlanIndex(state) {
+    if (!state.mine.length || !state.highlightId) return undefined
+
+    const index = state.mine.findIndex((plan) => plan.id === state.highlightId)
+
+    return index >= 0 ? index : undefined
+  },
   myFilteredPlans(state) {
     return !state.filters.confirmations.length
       ? state.mine

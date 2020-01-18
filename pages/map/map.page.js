@@ -25,6 +25,7 @@ export default Vue.component('MapPage', {
         disableDefaultUi: false,
         maxZoom: 14,
         minZoom: 2, // TODO customize per screen height https://stackoverflow.com/questions/17412397/zoom-google-map-to-fit-the-world-on-any-screen
+        strictBounds: true,
         restriction: {
           latLngBounds: {
             north: 85,
@@ -44,11 +45,25 @@ export default Vue.component('MapPage', {
     map() {
       return this.$refs.mapRef
     },
+    myHighlightedPlan() {
+      return this.myFilteredPlans()[this.highlightedPlanIndex()]
+    },
+  },
+  watch: {
+    myHighlightedPlan(plan) {
+      const zoom = plan ? 6 : 2
+      const panTo = plan ? plan.place.geometry.location : { lat: 20, lng: 0 }
+
+      this.map.$mapPromise.then((map) => {
+        map.setZoom(zoom)
+        map.panTo(panTo)
+      })
+    },
   },
   mounted() {},
   methods: {
     ...mapMutations('plans', ['toggleHighlightedId']),
-    ...mapGetters('plans', ['myFilteredPlans']),
+    ...mapGetters('plans', ['myFilteredPlans', 'highlightedPlanIndex']),
     markerClicked(planId) {
       this.toggleHighlightedId(planId)
     },
