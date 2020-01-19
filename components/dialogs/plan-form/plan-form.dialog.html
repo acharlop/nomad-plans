@@ -63,6 +63,7 @@
                   tabindex="2"
                   required
                   :class="{ 'mr-3': !$vuetify.breakpoint.xsOnly }"
+                  @click:clear="clearDate('startAt')"
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -99,6 +100,7 @@
                   tabindex="3"
                   required
                   :class="{ 'ml-3': !$vuetify.breakpoint.xsOnly }"
+                  @click:clear="clearDate('endAt')"
                 ></v-text-field>
               </template>
               <v-date-picker
