@@ -11,6 +11,7 @@ export default {
         primary: colors.lightGreen.base,
         secondary: colors.amber.base,
         anchor: colors.amber.darken2,
+        grey: colors.grey.base,
       },
     },
   },
