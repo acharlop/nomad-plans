@@ -140,36 +140,14 @@ export default Vue.component('PlanFormDialog', {
     },
     startAtMenu: {
       handler(newVal, oldVal) {
-        // handle on close
-        if (!newVal && oldVal) {
-          // open next date picker
-          if (!this.endAt) this.endAtMenu = true
-        }
-
-        // handle on open
-        if (newVal && !oldVal) {
-          // reset allowed range if no end picked
-          if (!this.endAt) this.resetAllowedRange()
-          // set allowed range if start picked
-          if (this.endAt) this.setAllowedRange(this.endAt)
-        }
+        const isOpen = newVal && !oldVal
+        this.dateToggle('startAt', isOpen)
       },
     },
     endAtMenu: {
       handler(newVal, oldVal) {
-        // handle on close
-        if (!newVal && oldVal) {
-          // open next date picker
-          if (!this.startAt) this.startAtMenu = true
-        }
-
-        // handle on open
-        if (newVal && !oldVal) {
-          // reset allowed range if no end picked
-          if (!this.startAt) this.resetAllowedRange()
-          // set allowed range if start picked
-          if (this.startAt) this.setAllowedRange(this.startAt)
-        }
+        const isOpen = newVal && !oldVal
+        this.dateToggle('endAt', isOpen)
       },
     },
     place(newVal) {
@@ -212,6 +190,23 @@ export default Vue.component('PlanFormDialog', {
     placeSelected(data) {
       this.place = new Place(data)
     },
+    dateToggle(key, isOpen) {
+      if (!this.show || this.searchFocused) return
+
+      const secondary = key === 'startAt' ? 'endAt' : 'startAt'
+
+      // handle on close
+      if (!isOpen) {
+        // open next date picker when date is picked
+        if (this[key] && !this[secondary]) this[`${secondary}Menu`] = true
+      }
+
+      // handle on open
+      if (isOpen) {
+        // date picked ? set allowed range : reset allowed range
+        this[key] ? this.setAllowedRange(this[key]) : this.resetAllowedRange()
+      }
+    },
     submit() {
       if (this.$refs.form.validate()) {
         this.submitLoading = true
@@ -230,6 +225,9 @@ export default Vue.component('PlanFormDialog', {
           this.close()
         })
       }
+    },
+    clearDate(range) {
+      this[range] = ''
     },
     // date picker allowed dates functions
     allowedDates(day) {
@@ -259,20 +257,16 @@ export default Vue.component('PlanFormDialog', {
         return
       }
 
-      if (!this.$dateFns.isAfter(new Date(this.startAt), new Date(this.endAt)))
+      // start < end (ok)
+      if (this.$dateFns.isBefore(new Date(this.startAt), new Date(this.endAt)))
         return
 
-      if (menu === 'startAt') {
-        this.endAt = this.startAt
-        this.startAtMenu = false
-        this.endAtMenu = true
-      }
-
+      // start > end
       if (menu === 'endAt') {
         this.startAt = this.endAt
-        this.endAtMenu = false
-        this.startAtMenu = true
       }
+
+      this.endAt = ''
     },
     // setup functions
     safeSetup() {

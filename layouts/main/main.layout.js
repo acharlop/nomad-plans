@@ -32,6 +32,9 @@ export default Vue.component('MainLayout', {
       showSideDrawer: (state) => state.layout.showSideDrawer,
     }),
   },
+  beforeMount() {
+    this.closeDialogs()
+  },
   mounted() {},
   methods: {
     ...mapMutations('layout', ['closeDialogs', 'toggleSideDrawer']),

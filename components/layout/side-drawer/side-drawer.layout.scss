@@ -12,14 +12,14 @@
   height: 100%;
   overflow-y: auto;
   padding-top: $app-bar-height-small;
-  background-color: $grey;
+  background-color: var(--v-grey-lighten3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .side-drawer-container {
-  background-color: $grey;
+  background-color: var(--v-grey-lighten3);
   width: 100%;
   height: 100%;
 }

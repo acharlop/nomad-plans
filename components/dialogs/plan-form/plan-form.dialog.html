@@ -42,13 +42,13 @@
             >
             </v-text-field>
           <v-row class="ma-0 mt-2">
+            <!-- START at dropdown -->
             <v-menu
               v-model="startAtMenu"
               :close-on-content-click="false"
               :nudge-top="20"
               transition="scale-transition"
               offset-y
-              :class="{ 'mr-3': !$vuetify.breakpoint.xsOnly }"
               content-class="menu"
             >
               <template v-slot:activator="{ on }">
@@ -62,6 +62,8 @@
                   clearable
                   tabindex="2"
                   required
+                  :class="{ 'mr-3': !$vuetify.breakpoint.xsOnly }"
+                  @click:clear="clearDate('startAt')"
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -74,7 +76,7 @@
               ></v-date-picker>
             </v-menu>
 
-
+            <!-- END at dropdown -->
             <v-menu
               v-model="endAtMenu"
               :close-on-content-click="false"
@@ -82,7 +84,6 @@
               :nudge-left="30"
               transition="scale-transition"
               offset-y
-              :class="{ 'ml-3': !$vuetify.breakpoint.xsOnly }"
               content-class="menu"
             >
               <template v-slot:activator="{ on }">
@@ -98,6 +99,8 @@
                   persistent-hint
                   tabindex="3"
                   required
+                  :class="{ 'ml-3': !$vuetify.breakpoint.xsOnly }"
+                  @click:clear="clearDate('endAt')"
                 ></v-text-field>
               </template>
               <v-date-picker

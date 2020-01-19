@@ -6,6 +6,7 @@ import DFNisWithinInterval from 'date-fns/isWithinInterval'
 import { minTime, maxTime } from 'date-fns/constants'
 import lightFormat from 'date-fns/lightFormat'
 import DFNformat from 'date-fns/format'
+import parseISO from 'date-fns/parseISO'
 
 // TODO [structure] split each function into it's own file
 
@@ -92,7 +93,7 @@ export const intervalContainingDate = (ranges = [], day) => {
 
 export const formatDate = (date = '', dateFormat = 'MMM dd, yyyy') => {
   if (date && dateFormat) {
-    return DFNformat(new Date(date), dateFormat)
+    return DFNformat(parseISO(date), dateFormat)
   }
 
   return ''
