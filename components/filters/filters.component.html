@@ -7,15 +7,15 @@
     multiple
     outlined
     dark
-    dense
+    :dense="$vuetify.breakpoint.xsOnly"
     :hide-details="true"
   >
-    <template v-slot:selection="{ attrs, item, index, select, selected }">
+    <template v-slot:selection="{ attrs, item, selected }">
       <v-chip
         v-bind="attrs"
         :input-value="selected"
         color="secondary"
-        small
+        :small="$vuetify.breakpoint.xsOnly"
         :ripple="false"
       >
         <span>{{ item }}</span>
