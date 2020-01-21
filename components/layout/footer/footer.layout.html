@@ -27,7 +27,7 @@
                 v-if="$vuetify.breakpoint.mdAndUp || index % 2 === 0"
                 :id="month.toLowerCase()"
               >
-                <span @click="setMonth(index)" :class="{ active: selectedMonth === index }">{{month}}</span>
+                <span @click="setMonth(index)" :class="{ active: day.getMonth() === index }">{{month}}</span>
               </div>
             </v-row>
           </v-col>

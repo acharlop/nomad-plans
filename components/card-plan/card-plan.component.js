@@ -68,14 +68,17 @@ export default Vue.component('CardPlan', {
   },
   watch: {
     isHighlighted(newVal) {
-      if (newVal)
+      if (newVal && !this.settingPlan)
         this.$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+
+      this.settingPlan = false
     },
   },
   mounted() {},
   methods: {
     ...mapMutations('plans', ['toggleHighlightedId']),
     planClicked() {
+      this.settingPlan = true
       this.toggleHighlightedId(this.plan.id)
     },
     confirmPlan() {
