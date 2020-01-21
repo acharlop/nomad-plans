@@ -1,0 +1,11 @@
+.filters {
+  width: 337px;
+  max-width: 337px;
+}
+
+
+@media (max-width: 599px) {
+  .filters {
+    max-width: 100%;
+  }
+}
