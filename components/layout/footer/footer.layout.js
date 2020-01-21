@@ -2,22 +2,21 @@ import Vue from 'vue'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import getDaysInYear from 'date-fns/getDaysInYear'
 import getDayOfYear from 'date-fns/getDayOfYear'
-import lightFormat from 'date-fns/lightFormat'
 import { confirmations } from '~/utils/confirmations'
 import { dayInPlan } from '@/utils/date'
 
-const today = new Date()
+const day = new Date()
 
 export default Vue.component('Footer', {
   components: {},
   props: [],
   data() {
     return {
-      today,
-      sliderValue: getDayOfYear(today),
+      day,
+      sliderValue: getDayOfYear(day),
       filterItems: confirmations.t.all,
       filters: [],
-      filteredCurrentYear: today.getFullYear(),
+      filteredCurrentYear: day.getFullYear(),
       months: [
         'Jan',
         'Feb',
@@ -61,12 +60,12 @@ export default Vue.component('Footer', {
     firstPlanYear() {
       return this.plans.length
         ? parseInt(this.plans[this.plans.length - 1].startAt.substring(0, 4))
-        : today.getFullYear()
+        : day.getFullYear()
     },
     finalPlanYear() {
       return this.plans.length
         ? parseInt(this.plans[0].endAt.substring(0, 4))
-        : today.getFullYear()
+        : day.getFullYear()
     },
     hasPlansYearNext() {
       return this.nextYear <= this.finalPlanYear
@@ -76,12 +75,6 @@ export default Vue.component('Footer', {
     },
     daysInYear() {
       return getDaysInYear(new Date(this.currentYear, 0, 1))
-    },
-    day() {
-      return new Date(this.currentYear, 0, this.sliderValue)
-    },
-    selectedMonth() {
-      return this.day.getMonth()
     },
   },
   watch: {
@@ -106,7 +99,8 @@ export default Vue.component('Footer', {
       this.sliderValue = getDayOfYear(this.day)
     },
     dayOfYearToDate(day = 1) {
-      return lightFormat(this.day.setDate(day), 'd')
+      this.day.setMonth(this.getMonth, day)
+      return this.day.getDate()
     },
     highlightIdForDay(day) {
       if (this.highlightId !== this.yearPlansIds[day])
