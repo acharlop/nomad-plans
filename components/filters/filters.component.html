@@ -1,0 +1,25 @@
+<v-flex class="filters flex-column pa-2">
+  <v-select
+    v-model="filters"
+    :items="filterItems"
+    label="Filter by likelihood"
+    clearable
+    multiple
+    outlined
+    dark
+    :dense="$vuetify.breakpoint.xsOnly"
+    :hide-details="true"
+  >
+    <template v-slot:selection="{ attrs, item, selected }">
+      <v-chip
+        v-bind="attrs"
+        :input-value="selected"
+        color="secondary"
+        :small="$vuetify.breakpoint.xsOnly"
+        :ripple="false"
+      >
+        <span>{{ item }}</span>
+      </v-chip>
+    </template>
+  </v-select>
+</v-flex>

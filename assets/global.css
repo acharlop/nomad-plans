@@ -37,3 +37,8 @@ body {
 .pac-icon-marker {
   display: none;
 }
+
+/* slider text input */
+.date-text-field input {
+  text-align: center !important;
+}

@@ -4,46 +4,8 @@
   border-color: var(--v-primary-darken1) !important;
 }
 
-.slider {
-  height: 35px;
-}
-
-.filters {
-  width: 337px;
-  max-width: 337px;
-}
-
-.labels {
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 14px;
-
-  div {
-    flex: 1;
-
-    span {
-      cursor: pointer;
-
-      &.active {
-        color: var(--v-secondary-base);
-      }
-    }
-  }
-}
-
-@media (max-width: 750px) and (min-width: 600px), (max-width: 350px)  {
-  #mar, #jul, #nov {
-    display: none;
-  }
-}
-
 @media (max-width: 599px) {
   .divider {
     display: none !important;
-  }
-
-  .filters {
-    max-width: 100%;
   }
 }
