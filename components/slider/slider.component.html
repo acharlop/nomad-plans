@@ -1,0 +1,56 @@
+<v-flex>
+  <v-row class="mx-2" style="pointer-events: none">
+    <v-subheader class="white--text pl-1" style="height: 35px;"
+      >Timeline</v-subheader
+    >
+    <v-spacer></v-spacer>
+    <v-text-field
+      class="date-text-field"
+      :value="inputValue"
+      readonly
+      single-line
+      dense
+      dark
+      :hide-details="true"
+    ></v-text-field>
+    <v-spacer></v-spacer>
+  </v-row>
+  <v-row class="mx-2">
+    <!-- Previous year Button -->
+    <v-btn :disabled="!hasPlansYearPrev" small @click="setYear(prevYear)">{{
+      prevYear
+    }}</v-btn>
+    <v-col class="pt-0">
+      <!-- Slider -->
+      <v-slider
+        class="slider"
+        v-model="sliderValue"
+        step="1"
+        min="1"
+        :max="daysInYear"
+        color="white"
+        track-color="white"
+        thumb-color="secondary"
+        :hide-details="true"
+      ></v-slider>
+      <!-- Month labels -->
+      <v-row class="labels mr-2">
+        <div
+          v-for="(month, index) in months"
+          v-if="$vuetify.breakpoint.mdAndUp || index % 2 === 0"
+          :id="month.toLowerCase()"
+        >
+          <span
+            @click="setMonth(index)"
+            :class="{ active: getMonth === index }"
+            >{{ month }}</span
+          >
+        </div>
+      </v-row>
+    </v-col>
+    <!-- Next year Button -->
+    <v-btn :disabled="!hasPlansYearNext" small @click="setYear(nextYear)">{{
+      nextYear
+    }}</v-btn>
+  </v-row>
+</v-flex>
