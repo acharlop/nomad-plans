@@ -51,13 +51,11 @@ export default Vue.component('MapPage', {
   },
   watch: {
     myHighlightedPlan(plan) {
-      const zoom = plan ? 6 : 2
-      const panTo = plan ? plan.place.geometry.location : { lat: 20, lng: 0 }
-
-      this.map.$mapPromise.then((map) => {
-        map.setZoom(zoom)
-        map.panTo(panTo)
-      })
+      if (plan) {
+        this.map.$mapPromise.then((map) => {
+          map.panTo(plan.place.geometry.location)
+        })
+      }
     },
   },
   mounted() {},
