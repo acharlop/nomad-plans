@@ -46,7 +46,7 @@ export const getters = {
         (plan) =>
           !confirmations.length || confirmations.includes(plan.confirmed)
       )
-      .filter((plan) => !hidePast || plan.endAt > today)
+      .filter((plan) => !hidePast || plan.endAt >= today)
   },
 }
 export const mutations = {

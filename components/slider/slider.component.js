@@ -85,10 +85,14 @@ export default Vue.component('Slider', {
       this.sliderValue = getDayOfYear(new Date(this.year, month, 1))
     },
     setYear(year) {
+      const day = new Date(this.year, 0, this.sliderValue)
+      day.setFullYear(year)
       this.year = year
       this.setPlansYearMap(year)
+      this.sliderValue = getDayOfYear(day)
     },
     setDay(day) {
+      if (!day) return
       // TODO figure out why {'__ob__'} is fetched
       const map = JSON.parse(JSON.stringify(this.plansYearMap[day]))
 
