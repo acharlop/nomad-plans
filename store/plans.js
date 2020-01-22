@@ -40,7 +40,7 @@ export const getters = {
     return !state.filters.confirmations.length
       ? state.mine
       : state.mine.filter((plan) =>
-          state.filters.confirmations.includes(plan.confirmation)
+          state.filters.confirmations.includes(plan.confirmed)
         )
   },
 }
@@ -94,7 +94,7 @@ export const actions = {
       .set(plan, { merge: true })
   },
   confirmPlan({ state }, planId) {
-    const plan = { confirmation: 1 }
+    const plan = { confirmed: true }
 
     return StoreDB.collection('plans')
       .doc(planId)

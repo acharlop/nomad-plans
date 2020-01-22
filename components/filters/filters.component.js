@@ -8,13 +8,13 @@ export default Vue.component('Filters', {
   data() {
     return {
       filters: [],
-      filterItems: confirmations.t.all,
+      filterItems: confirmations.t.all.reverse(),
     }
   },
   computed: {},
   watch: {
     filters(newVal) {
-      this.setConfirmationsFilters(confirmations.t2i(newVal))
+      this.setConfirmationsFilters(confirmations.t2b(newVal))
     },
   },
   mounted() {

@@ -1,20 +1,15 @@
-const unsure = 'Unsure'
 const maybe = 'Maybe'
 const confirmed = 'Confirmed'
-const all = [unsure, maybe, confirmed]
+
+const all = [maybe, confirmed]
+const boolMap = [false, true]
 
 export const confirmations = {
   t: {
-    unsure,
     maybe,
     confirmed,
-    all: [unsure, maybe, confirmed],
+    all: [maybe, confirmed],
   },
-  i: {
-    '-1': 'UNSURE',
-    '0': 'MAYBE',
-    '1': 'CONFIRMED',
-    all: [-1, 0, 1],
-  },
-  t2i: (textArray) => textArray.map((t) => all.indexOf(t) - 1),
+  boolMap,
+  t2b: (textArray) => textArray.map((t) => boolMap[all.indexOf(t)]),
 }
