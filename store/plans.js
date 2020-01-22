@@ -8,6 +8,7 @@ const defaultState = {
   highlightId: undefined,
   filters: {
     confirmations: [],
+    hidePast: false,
   },
 }
 
@@ -37,11 +38,15 @@ export const getters = {
     return index >= 0 ? index : undefined
   },
   myFilteredPlans(state) {
-    return !state.filters.confirmations.length
-      ? state.mine
-      : state.mine.filter((plan) =>
-          state.filters.confirmations.includes(plan.confirmed)
-        )
+    const { hidePast, confirmations } = state.filters
+    const today = new Date().toISOString().split('T')[0]
+
+    return state.mine
+      .filter(
+        (plan) =>
+          !confirmations.length || confirmations.includes(plan.confirmed)
+      )
+      .filter((plan) => !hidePast || plan.endAt > today)
   },
 }
 export const mutations = {
@@ -62,6 +67,9 @@ export const mutations = {
   },
   setConfirmationsFilters(state, payload) {
     state.filters.confirmations = payload
+  },
+  setPastFilter(state, payload) {
+    state.filters.hidePast = payload
   },
 }
 export const actions = {

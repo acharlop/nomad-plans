@@ -9,8 +9,14 @@ describe('FiltersComponent', () => {
       modules: {
         plans: {
           namespaced: true,
+          state: {
+            filters: {
+              hidePast: false,
+            },
+          },
           mutations: {
             setConfirmationsFilters: jest.fn(),
+            setPastFilter: jest.fn(),
           },
         },
       },
