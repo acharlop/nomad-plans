@@ -11,5 +11,8 @@ export const confirmations = {
     all: [maybe, confirmed],
   },
   boolMap,
-  t2b: (textArray) => textArray.map((t) => boolMap[all.indexOf(t)]),
+  t2b: (textArray) =>
+    textArray
+      .map((t) => boolMap[all.indexOf(t)])
+      .filter((e) => e !== undefined),
 }
