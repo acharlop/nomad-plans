@@ -44,17 +44,17 @@ export default Vue.component('Slider', {
       return this.year - 1
     },
     plans() {
-      return this.myFilteredPlans()
+      return this.myFilteredPlans() || []
     },
     firstPlanYear() {
       return this.plans.length
         ? parseInt(this.plans[this.plans.length - 1].startAt.substring(0, 4))
-        : day.getFullYear()
+        : this.year
     },
     finalPlanYear() {
       return this.plans.length
         ? parseInt(this.plans[0].endAt.substring(0, 4))
-        : day.getFullYear()
+        : this.year
     },
     hasPlansYearNext() {
       return this.nextYear <= this.finalPlanYear
@@ -73,7 +73,7 @@ export default Vue.component('Slider', {
     sliderValue(newVal) {
       this.setDay(newVal)
     },
-    plans() {
+    plans(newVal) {
       this.setPlansYearMap()
     },
   },
