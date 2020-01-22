@@ -57,7 +57,7 @@ export default Vue.component('CardPlan', {
         : this.plan.friends
     },
     confirmed() {
-      return this.plan.confirmation === 1
+      return this.plan.confirmed
     },
     dateRange() {
       return formatDistance(this.plan.startAt, this.plan.endAt)

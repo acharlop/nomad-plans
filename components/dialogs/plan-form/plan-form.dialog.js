@@ -50,8 +50,8 @@ export default Vue.component('PlanFormDialog', {
       place: {},
       startAt: '',
       endAt: '',
-      confirmations: confirmations.t.all,
-      confirmation: 0,
+      confirmations: confirmations.t,
+      confirmed: 0,
       description: '',
       startAtMenu: false,
       endAtMenu: false,
@@ -97,14 +97,14 @@ export default Vue.component('PlanFormDialog', {
       this.startAt = editPlan.startAt
       this.endAt = editPlan.endAt
       this.description = editPlan.description
-      this.confirmation = editPlan.confirmation
+      this.confirmed = editPlan.confirmed ? 1 : 0
       this.setAllowedRange(editPlan.startAt)
       this.formattedStartDate = formatDate(editPlan.startAt)
       this.formattedEndDate = formatDate(editPlan.endAt)
     },
     show(newVal) {
       if (newVal && !this.isEdit) {
-        this.confirmation = 0
+        this.confirmed = 0
       }
       if (newVal) {
         this.safeSetup()
@@ -215,7 +215,7 @@ export default Vue.component('PlanFormDialog', {
           place: this.place.toJSON(),
           startAt: this.startAt,
           endAt: this.endAt,
-          confirmation: this.confirmation,
+          confirmed: !!this.confirmed,
           description: this.description,
         }
 
