@@ -40,17 +40,17 @@
         :hide-details="true"
       ></v-slider>
       <!-- Month labels -->
-      <v-row class="labels mr-2">
+      <v-row
+        no-gutters
+        :class="[{ 'h-30': $vuetify.breakpoint.smAndUp }, 'month-labels']"
+      >
         <div
           v-for="(month, index) in months"
-          v-if="$vuetify.breakpoint.mdAndUp || index % 2 === 0"
-          :id="month.toLowerCase()"
+          :id="'month-' + (index + 1)"
+          @click="setMonth(index)"
+          :class="{ active: getMonth === index }"
         >
-          <span
-            @click="setMonth(index)"
-            :class="{ active: getMonth === index }"
-          >{{ month }}</span
-          >
+          {{ month }}
         </div>
       </v-row>
     </v-col>
