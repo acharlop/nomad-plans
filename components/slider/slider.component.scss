@@ -3,8 +3,17 @@
   max-width: 100px;
 }
 
+.fit {
+  width: fit-content;
+  flex-grow: 0;
+}
+
+.h-30 {
+  height: 30px;
+}
+
 .slider {
-  height: 35px;
+  margin-top: -2px;
 }
 
 .labels {
