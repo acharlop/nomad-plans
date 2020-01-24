@@ -7,8 +7,8 @@
     <v-list-item-content>
       <v-list-item-title class="headline">{{ placeName }}</v-list-item-title>
       <v-list-item-subtitle>
-        <b>{{ date }}</b>
-        <small v-if="plan.startAt && plan.endAt" class="ml-2">{{ dateRange }}</small>
+        <b>{{ dateRange }}</b>
+        <small class="ml-2">{{ dateDistance }}</small>
       </v-list-item-subtitle>
     </v-list-item-content>
     <v-list-item-avatar
