@@ -111,7 +111,7 @@ export default Vue.component('Slider', {
       for (let i = 1; i <= this.daysInYear; i++) {
         day.setMonth(0, i)
 
-        date = formatDate(day.toISOString(), dateFormat)
+        date = formatDate(day.toISOString())
         month = day.getMonth()
         planId = undefined
 

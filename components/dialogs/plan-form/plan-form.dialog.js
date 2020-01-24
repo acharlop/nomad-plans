@@ -3,11 +3,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import downArrowSimulator from 'vue2-google-maps/src/utils/simulateArrowDown'
 import { bindProps, getPropsValues } from 'vue2-google-maps/src/utils/bindProps'
 import { gmapApi } from 'vue2-google-maps'
-import {
-  formatDistance,
-  isWithinAnyInterval,
-  formatDate,
-} from '@/utils/date'
+import { formatDistance, isWithinAnyInterval, formatDate } from '@/utils/date'
 import Place from '~/models/place'
 import { confirmations } from '~/utils/confirmations'
 
