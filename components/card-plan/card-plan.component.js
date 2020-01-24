@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Clamp from 'vue-clamp'
 import { mapState, mapMutations } from 'vuex'
-import { formatDistance } from '~/utils/date'
+import { formatDistance, formatRange } from '~/utils/date'
 
 export default Vue.component('CardPlan', {
   components: {
@@ -35,19 +35,8 @@ export default Vue.component('CardPlan', {
     isHighlighted() {
       return this.plan.id === this.highlightId
     },
-    date() {
-      const startAt = new Date(this.plan.startAt)
-      const endAt = new Date(this.plan.endAt)
-
-      const isSameYear = this.$dateFns.isSameYear(startAt, endAt)
-
-      const dateFormat = 'MMM d, yyyy'
-      const startFormat = isSameYear ? 'MMM d' : dateFormat
-
-      return `${this.$dateFns.format(
-        startAt,
-        startFormat
-      )} - ${this.$dateFns.format(endAt, dateFormat)}`
+    dateRange() {
+      return formatRange(this.plan.startAt, this.plan.endAt)
     },
     friendsList() {
       if (!this.plan.friends || !this.plan.friends.length) return []
@@ -59,7 +48,7 @@ export default Vue.component('CardPlan', {
     confirmed() {
       return this.plan.confirmed
     },
-    dateRange() {
+    dateDistance() {
       return formatDistance(this.plan.startAt, this.plan.endAt)
     },
     placeName() {

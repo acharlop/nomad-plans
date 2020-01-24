@@ -69,10 +69,8 @@
               <v-date-picker
                 v-model="startAt"
                 :allowed-dates="allowedDates"
-                :min="startAfter"
-                :max="endBefore"
                 @input="startAtMenu = false"
-                :picker-date.sync="startDatePicker"
+                :picker-date.sync="startAtPickerDate"
               ></v-date-picker>
             </v-menu>
 
@@ -106,9 +104,7 @@
               <v-date-picker
                 v-model="endAt"
                 :allowed-dates="allowedDates"
-                :min="startAfter"
-                :max="endBefore"
-                :picker-date.sync="endDatePicker"
+                :picker-date.sync="endAtPickerDate"
                 @input="endAtMenu = false"
               ></v-date-picker>
             </v-menu>

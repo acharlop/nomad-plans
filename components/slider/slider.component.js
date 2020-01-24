@@ -5,7 +5,6 @@ import getDaysInYear from 'date-fns/getDaysInYear'
 import { dayInPlan, formatDate } from '~/utils/date'
 
 const day = new Date()
-const dateFormat = 'MMM d, yyyy'
 
 export default Vue.component('Slider', {
   components: {},
@@ -15,7 +14,7 @@ export default Vue.component('Slider', {
       year: day.getFullYear(),
       month: day.getMonth(),
       sliderValue: getDayOfYear(day),
-      inputValue: formatDate(day.toISOString(), dateFormat),
+      inputValue: formatDate(day.toISOString()),
       months: [
         'Jan',
         'Feb',
@@ -112,7 +111,7 @@ export default Vue.component('Slider', {
       for (let i = 1; i <= this.daysInYear; i++) {
         day.setMonth(0, i)
 
-        date = formatDate(day.toISOString(), dateFormat)
+        date = formatDate(day.toISOString())
         month = day.getMonth()
         planId = undefined
 
