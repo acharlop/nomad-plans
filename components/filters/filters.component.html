@@ -18,7 +18,7 @@
         :small="$vuetify.breakpoint.smAndDown"
         :ripple="false"
       >
-        <span>{{ item }}</span>
+        <span>{{ item === past ? 'Future' : item }}</span>
       </v-chip>
     </template>
   </v-select>
