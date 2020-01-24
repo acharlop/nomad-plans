@@ -9,6 +9,7 @@ export default Vue.component('Filters', {
   props: [],
   data() {
     return {
+      past,
       filters: [],
       filterItems: [...confirmations.t.all.reverse(), past],
     }

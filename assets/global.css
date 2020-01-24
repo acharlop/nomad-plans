@@ -44,3 +44,8 @@ body {
   pointer-events: none;
   max-height: 22px !important;
 }
+
+/* filters input */
+.filters .v-input__slot {
+  padding: 0 6px !important;
+}
