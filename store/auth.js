@@ -12,7 +12,6 @@ const defaultState = {
     userId: empty,
   },
   isAuthenticated: false,
-  isNewUser: true,
 }
 
 export const state = () => defaultState
@@ -38,12 +37,6 @@ export const mutations = {
       facebookUID: newUser.uid,
       userId: payload.uid,
     }
-  },
-  setNewUser(state, payload) {
-    state.isNewUser = payload
-  },
-  toggleNewUser(state) {
-    state.isNewUser = !state.isNewUser
   },
   setLoggedIn(state, payload) {
     state.isAuthenticated = payload

@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import { mapState, mapMutations } from 'vuex'
 
 import AuthButton from '@/components/auth-button'
 import LegalDialog from '@/components/dialogs/legal'
@@ -16,14 +15,9 @@ export default Vue.component('LoginPageComponent', {
       legalDialogTab: 'service',
     }
   },
-  computed: {
-    ...mapState({
-      isNewUser: (state) => state.auth.isNewUser,
-    }),
-  },
+  computed: {},
   created() {},
   methods: {
-    ...mapMutations('auth', ['toggleNewUser']),
     showDialog(tab) {
       this.legalDialogTab = tab
       this.legalDialog = true
