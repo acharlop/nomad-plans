@@ -15,7 +15,7 @@ export default Vue.component('MapPage', {
         lng: 0,
       },
       zoom: 2, // TODO customize per screen height
-      options: {
+      mapOptions: {
         zoomControl: true,
         mapTypeControl: true,
         scaleControl: false,
@@ -23,6 +23,7 @@ export default Vue.component('MapPage', {
         rotateControl: false,
         fullscreenControl: false,
         disableDefaultUi: false,
+        controlSize: this.$vuetify.breakpoint.smAndDown ? 25 : 35,
         maxZoom: 14,
         minZoom: 2, // TODO customize per screen height https://stackoverflow.com/questions/17412397/zoom-google-map-to-fit-the-world-on-any-screen
         strictBounds: true,
