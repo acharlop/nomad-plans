@@ -112,9 +112,9 @@
 
           <v-subheader class="pl-0">Likelihood</v-subheader>
 
-          <v-btn-toggle mandatory v-model="confirmed" class="mb-6" style="width: 100%">
-            <v-btn width="50%" color="secondary" >{{ confirmations.maybe }}</v-btn>
-            <v-btn width="50%" color="primary">{{ confirmations.confirmed }}</v-btn>
+          <v-btn-toggle mandatory v-model="confirmed" class="mb-6 confirmed-toggle" style="width: 100%">
+            <v-btn id="toggle-1" width="50%" color="secondary" :outlined="confirmed !== 0">{{ confirmations.maybe }}</v-btn>
+            <v-btn id="toggle-2" width="50%" color="primary" :outlined="confirmed !== 1">{{ confirmations.confirmed }}</v-btn>
           </v-btn-toggle>
 
           <v-textarea
