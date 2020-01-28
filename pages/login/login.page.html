@@ -4,63 +4,45 @@
   no-gutters
   class="d-flex fill-height back-image"
 >
-
-<v-col
-md="4"
-sm="6"
-xs="12"
-align="center"
-justify="center"
-class="d-flex fill-height panel-cta"
->
-<v-row>
-  <v-col class="wrapper">
-    <div class="inner-wrapper" >
+  <!-- left action panel -->
+  <v-col
+    md="4"
+    sm="6"
+    xs="12"
+    align="center"
+    justify="center"
+    class="d-flex fill-height panel-cta"
+  >
+    <div class="left-wrapper" >
       <img class="logo" src="~assets/images/Logo-landing.svg" alt="Nomad Plans Logo">
-      <auth-button style="color: white;" class="ma-2"></auth-button>
-      <small>{{ isNewUser ? 'Already' : 'Don\'t' }} have an account?
-          <a @click="toggleNewUser">
-            <b>Sign {{ isNewUser ? 'In' : 'Up' }}</b>
-          </a>
-          <span v-if="!isNewUser">
-          </span>
-      </small>
-       </br>
-      <small v-if="isNewUser" class="legal">By signing up you agree to
-        <a @click.stop="showDialog('privacy')">Privacy Policy</a>
-        <br />
-        and <a @click.stop="showDialog('service')">Terms of Service</a>
-        <LegalDialog :tab="legalDialogTab" :visible="legalDialog" @close="hideDialog"></LegalDialog>
-      </small>
+      <auth-button class="my-2"></auth-button>
+      <div class="mt-6">
+        <small class="legal">By signing in you agree to
+          <a @click.stop="showDialog('privacy')">Privacy Policy</a>
+          <br />
+          and <a @click.stop="showDialog('service')">Terms of Service</a>
+        </small>
+      </div>
     </div>
-    <!-- <div>
-        
-     
-    </div> -->
   </v-col>
-</v-row>
-</v-col>
-
+  <!-- dialog -->
+  <LegalDialog :tab="legalDialogTab" :visible="legalDialog" @close="hideDialog"></LegalDialog>
+  <!-- right panel picture -->
   <v-col
     md="8"
     sm="6"
     class="d-none d-sm-flex fill-height panel-map"
   >
     <div class="map-text">
-      <span class="map-text-header">Traveling Together </br> With Your Best Nomad Friends. </span> </br>
-      <!-- <span class="map-text-text">See where your Nomad friends are right now, what their plans for the next
-        month or season. Add your plans to share them with those whom you
-        loving to spend time with.
-      </span> -->
+      <span class="map-text-header">Traveling Together<br />With Your Best Nomad Friends.</span>
+      <br/>
       <span class="map-text-text"><b>In Version 1.</b> Dream big, plan easy and have all your trips at a glance: on the map and in the list, with a timeline.<br/>
-        <b>In Version 2 </b> (in progress). Share your plans with your Nomad Facebook friends and meet more often around the world! 
+        <b>In Version 2.</b>(in progress). Share your plans with your Nomad Facebook friends and meet more often around the world!
       </span>
     </div>
-
+    <!-- photo credit -->
     <div class="photo-credit">
       <a href="http://www.freepik.com" target="_blank" rel="noopener noreferrer">Designed by rawpixel.com / Freepik</a>
     </div>
   </v-col>
-
- 
 </v-row>
