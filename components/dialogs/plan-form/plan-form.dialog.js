@@ -3,7 +3,12 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import downArrowSimulator from 'vue2-google-maps/src/utils/simulateArrowDown'
 import { bindProps, getPropsValues } from 'vue2-google-maps/src/utils/bindProps'
 import { gmapApi } from 'vue2-google-maps'
-import { formatDistance, isWithinAnyInterval, formatDate } from '@/utils/date'
+import {
+  formatDistance,
+  isWithinAnyInterval,
+  areIntervalsOverlapping,
+  formatDate,
+} from '@/utils/date'
 import Place from '~/models/place'
 import { confirmations } from '~/utils/confirmations'
 
@@ -115,12 +120,12 @@ export default Vue.component('PlanFormDialog', {
     startAt(day) {
       this.formattedStartDate = formatDate(day)
 
-      this.validateDatesOrder('startAt')
+      this.validateDates('startAt')
     },
     endAt(day) {
       this.formattedEndDate = formatDate(day)
 
-      this.validateDatesOrder('endAt')
+      this.validateDates('endAt')
     },
     startAtMenu: {
       handler(newVal, oldVal) {
@@ -216,24 +221,28 @@ export default Vue.component('PlanFormDialog', {
     allowedDates(day) {
       return !isWithinAnyInterval(day, this.plannedDates)
     },
-    validateDatesOrder(menu) {
+    validateDates(menu) {
+      const { startAt, endAt } = this
       // valid order if
       // no start
       // no end
       // start same day as end
+      if (!startAt || !endAt || startAt === endAt) {
+        return
+      }
+
       // start < end
+      // plan doesn't overlap with other plans
       if (
-        !this.startAt ||
-        !this.endAt ||
-        this.startAt === this.endAt ||
-        this.$dateFns.isBefore(new Date(this.startAt), new Date(this.endAt))
+        this.$dateFns.isBefore(new Date(startAt), new Date(endAt)) &&
+        !areIntervalsOverlapping({ startAt, endAt }, this.plannedDates)
       ) {
         return
       }
 
       // start > end
       if (menu === 'endAt') {
-        this.startAt = this.endAt
+        this.startAt = endAt
       }
 
       this.endAt = ''
