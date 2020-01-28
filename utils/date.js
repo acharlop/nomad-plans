@@ -3,6 +3,7 @@ import formatDistanceStrict from 'date-fns/formatDistanceStrict'
 import differenceInMonths from 'date-fns/differenceInMonths'
 import differenceInWeeks from 'date-fns/differenceInWeeks'
 import DFNisWithinInterval from 'date-fns/isWithinInterval'
+import DFNareIntervalsOverlapping from 'date-fns/areIntervalsOverlapping'
 import DFNformat from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import isSameYear from 'date-fns/isSameYear'
@@ -53,15 +54,25 @@ export const dayInPlan = (day, plan) => {
       })
 }
 
-export const isWithinInterval = (day, range) => {
-  return DFNisWithinInterval(parseISO(day), {
+export const isWithinInterval = (day, range) =>
+  DFNisWithinInterval(parseISO(day), {
     start: parseISO(range.startAt),
     end: parseISO(range.endAt),
   })
-}
-
 export const isWithinAnyInterval = (day, ranges = []) => {
   return ranges.some((range) => isWithinInterval(day, range))
+}
+
+export const areIntervalsOverlapping = (plan, ranges) => {
+  const start = parseISO(plan.startAt)
+  const end = parseISO(plan.endAt)
+
+  return ranges.some((range) =>
+    DFNareIntervalsOverlapping(
+      { start, end },
+      { start: parseISO(range.startAt), end: parseISO(range.endAt) }
+    )
+  )
 }
 
 export const formatDate = (date = '', dateFormat = DATE_FORMAT_WORD) => {
