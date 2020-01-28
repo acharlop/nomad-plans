@@ -21,7 +21,7 @@ module.exports = {
     'prefer-template': 'error',
     'key-spacing': ['error', { mode: 'minimum' }],
     'eol-last': ['error', 'always'],
-    'no-console': 'error',
+    'no-console': ['error', { allow: ['error']}],
     'no-debugger': 'error',
   },
 }
