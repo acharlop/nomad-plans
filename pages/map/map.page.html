@@ -1,11 +1,11 @@
-<!-- TOD add loader -->
+<!-- TODO add loader -->
 <GmapMap
   style="width: 100%; height: 100%"
   v-if="$nuxt.isOnline"
   ref="mapRef"
   :center="center"
   :zoom="zoom"
-  :options="options"
+  :options="mapOptions"
   @bounds_changed="boundChange"
   @zoom_changed="zoomChange"
   @center_changed="centerChange"
