@@ -1,25 +1,21 @@
-<v-flex class="filters flex-column pa-2">
-  <v-select
-    v-model="filters"
-    :items="filterItems"
-    label="Filter"
-    clearable
-    multiple
-    outlined
-    dark
-    :dense="$vuetify.breakpoint.smAndDown"
-    :hide-details="true"
-  >
-    <template v-slot:selection="{ attrs, item, selected }">
-      <v-chip
-        v-bind="attrs"
-        :input-value="selected"
-        color="secondary"
-        :small="$vuetify.breakpoint.smAndDown"
-        :ripple="false"
-      >
-        <span>{{ item === past ? 'Future' : item }}</span>
-      </v-chip>
-    </template>
-  </v-select>
+<v-flex no-gutters class="filters">
+  <v-col no-gutters class="mr-2">
+    <v-subheader class="subheader white--text">Filters</v-subheader>
+    <div class="filter-actions">
+      <v-checkbox
+        dark
+        dense
+        :hide-details="true"
+        v-model="unconfirmed"
+        label="Hide unconfirmed"
+      ></v-checkbox>
+      <v-checkbox
+        dark
+        dense
+        :hide-details="true"
+        v-model="past"
+        label="Hide my past"
+      ></v-checkbox>
+    </div>
+  </v-col>
 </v-flex>

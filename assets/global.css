@@ -49,3 +49,29 @@ body {
 .filters .v-input__slot {
   padding: 0 6px !important;
 }
+
+/* confirmed toggle */
+.confirmed-toggle .v-btn--active span {
+  color: white !important;
+}
+
+.confirmed-toggle .v-btn {
+  border-width: 2px !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+}
+
+.confirmed-toggle #toggle-1  {
+  border-color: #D7A30D !important;
+}
+
+.confirmed-toggle #toggle-1:hover  {
+  border-color: #EEB405 !important;
+}
+
+.confirmed-toggle #toggle-2  {
+  border-color: #77A53F !important;
+}
+.confirmed-toggle #toggle-2:hover  {
+  border-color: #83B545 !important;
+}
