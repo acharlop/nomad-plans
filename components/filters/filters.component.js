@@ -1,38 +1,34 @@
 import Vue from 'vue'
 import { mapMutations, mapState } from 'vuex'
-import { confirmations } from '~/utils/confirmations'
-
-const past = 'Hide Past Plans'
 
 export default Vue.component('Filters', {
   components: {},
   props: [],
   data() {
     return {
-      past,
-      filters: [],
-      filterItems: [...confirmations.t.all.reverse(), past],
+      past: false,
+      unconfirmed: false,
     }
   },
   computed: {
     ...mapState({
       hidePast: (state) => state.plans.filters.hidePast,
+      hideUnconfirmed: (state) => state.plans.filters.hideUnconfirmed,
     }),
   },
   watch: {
-    filters(newVal) {
-      this.setConfirmationsFilters(confirmations.t2b(newVal))
-
-      const hidePast = newVal.includes(past)
-      if (hidePast !== this.hidePast) {
-        this.setPastFilter(hidePast)
-      }
+    past(newVal) {
+      this.setPastFilter(newVal)
+    },
+    unconfirmed(newVal) {
+      this.setUnconfirmedFilter(newVal)
     },
   },
   mounted() {
-    this.filters = []
+    this.past = this.hidePast
+    this.unconfirmed = this.hideUnconfirmed
   },
   methods: {
-    ...mapMutations('plans', ['setConfirmationsFilters', 'setPastFilter']),
+    ...mapMutations('plans', ['setUnconfirmedFilter', 'setPastFilter']),
   },
 })

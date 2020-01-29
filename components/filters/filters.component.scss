@@ -1,11 +1,32 @@
 .filters {
   width: 337px;
   max-width: 337px;
+
+  .v-input {
+    margin: 0;
+  }
+}
+
+.subheader {
+  padding: 0;
+  margin-left: 10px;
+  height: fit-content;
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
 }
 
 
 @media (max-width: 699px) {
   .filters {
     max-width: 100%;
+  }
+
+  .filter-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2px 2px 0;
   }
 }
