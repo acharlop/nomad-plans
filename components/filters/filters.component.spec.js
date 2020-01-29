@@ -15,7 +15,7 @@ describe('FiltersComponent', () => {
             },
           },
           mutations: {
-            setConfirmationsFilters: jest.fn(),
+            setUnconfirmedFilter: jest.fn(),
             setPastFilter: jest.fn(),
           },
         },
