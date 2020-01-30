@@ -11,7 +11,14 @@ export default Vue.component('SideDrawer', {
   },
   props: [],
   data() {
-    return {}
+    return {
+      skeletons: [
+        'heading, text, actions',
+        'heading, text, sentences, actions',
+        'heading, text, actions',
+        'heading, text, paragraph, actions',
+      ],
+    }
   },
   computed: {
     ...mapState({
@@ -19,6 +26,7 @@ export default Vue.component('SideDrawer', {
       sideDrawerTab: (state) => state.layout.sideDrawerTab,
       myPlans: (state) => state.plans.mine,
       friendsPlans: (state) => state.plans.friends,
+      isLoading: (state) => state.plans.isLoading,
     }),
     visible: {
       get() {

@@ -35,6 +35,7 @@ export default Vue.component('Slider', {
   computed: {
     ...mapState({
       highlightId: (state) => state.plans.highlightId,
+      isLoading: (state) => state.plans.isLoading,
     }),
     nextYear() {
       return this.year + 1

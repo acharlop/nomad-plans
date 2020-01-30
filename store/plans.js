@@ -10,6 +10,7 @@ const defaultState = {
     hidePast: false,
     hideUnconfirmed: false,
   },
+  isLoading: false,
 }
 
 export const state = () => defaultState
@@ -68,7 +69,11 @@ export const mutations = {
   setPastFilter(state, payload) {
     state.filters.hidePast = payload
   },
+  setLoading(state, payload) {
+    state.isLoading = payload
+  },
 }
+
 export const actions = {
   createPlan({ rootState, state }, plan) {
     return StoreDB.collection('plans').add({
@@ -77,6 +82,8 @@ export const actions = {
     })
   },
   getPlans({ commit, rootState }) {
+    commit('setLoading', true)
+
     StoreDB.collection('plans')
       .where('userId', '==', rootState.auth.user.userId)
       .orderBy('startAt', 'desc')
@@ -91,6 +98,7 @@ export const actions = {
           })
         })
         commit('setPlans', plans)
+        commit('setLoading', false)
       })
   },
   editPlan({ state }, plan) {

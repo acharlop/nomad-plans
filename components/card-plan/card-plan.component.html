@@ -19,11 +19,12 @@
     </v-list-item-avatar>
   </v-list-item>
 
-  <v-card-text :class="{ 'pt-1': plan.description }" v-if="plan.description" @click="planClicked">
+  <v-card-text :class="[{ 'pt-1': plan.description }, 'pb-0']" v-if="plan.description" @click="planClicked">
     <!-- description -->
     <v-hover v-slot:default="{ hover }">
       <Clamp
         tag="p"
+        class="mb-0"
         autoresize
         :max-lines="3"
         :expanded="hover"

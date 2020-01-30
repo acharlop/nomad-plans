@@ -32,6 +32,10 @@
   height: 100%;
 }
 
+.no-overflow {
+  overflow-y: hidden !important;
+}
+
 .nav-drawer {
   top: $app-bar-height-small !important;
 }
