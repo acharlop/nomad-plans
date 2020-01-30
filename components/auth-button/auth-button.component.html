@@ -1,4 +1,4 @@
-<button class="auth-button" @click="isAuthenticated ? logout() : login()">
+<v-btn class="auth-button" color="#4267b2" :loading="loading" @click="authenticated ? logout() : login()">
   <v-icon class="icon">mdi-facebook</v-icon>
-  <div class="text">Sign {{ isAuthenticated ? 'out' : 'in' }} with Facebook</div>
-</button>
+  {{ authenticated ? 'Log out' : 'Continue with Facebook' }}
+</v-btn>
