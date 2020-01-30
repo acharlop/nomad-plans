@@ -20,14 +20,16 @@ export default Vue.component('AuthButton', {
   watch: {
     isLoading: {
       handler(newVal, oldVal) {
-        const setLoading = () => { this.loading = newVal }
+        const setLoading = () => {
+          this.loading = newVal
+        }
 
         if (oldVal && !newVal) {
-          setTimeout(_ => setLoading(), 300)
+          setTimeout((_) => setLoading(), 300)
         } else {
           setLoading()
         }
-      }
+      },
     },
   },
   created() {
