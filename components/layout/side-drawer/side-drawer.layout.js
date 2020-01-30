@@ -17,7 +17,7 @@ export default Vue.component('SideDrawer', {
         'heading, text, sentences, actions',
         'heading, text, actions',
         'heading, text, paragraph, actions',
-      ]
+      ],
     }
   },
   computed: {
