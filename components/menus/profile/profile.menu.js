@@ -11,6 +11,7 @@ export default Vue.component('ProfileMenu', {
   data() {
     return {
       profileMenu: false,
+      imgLoaded: false,
     }
   },
   computed: {

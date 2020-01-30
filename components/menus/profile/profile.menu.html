@@ -6,8 +6,13 @@
   offset-y
 >
   <template v-slot:activator="{ on }">
-    <v-avatar :size="36" class="ma-2 avatar" v-on="on">
-      <img :src="photoURL" alt="user avatar">
+    <v-avatar :size="$vuetify.breakpoint.smAndDown ? 24 : 36" class="ma-2 avatar" v-on="on">
+      <transition name="fade" appear>
+        <img v-show="imgLoaded" :src="photoURL" alt="user avatar" @load="imgLoaded = true">
+      </transition>
+      <transition name="fade" appear>
+        <v-icon v-show="!imgLoaded" :size="$vuetify.breakpoint.smAndDown ? 24 : 36">mdi-account-circle-outline</v-icon>
+      </transition>
     </v-avatar>
   </template>
 
