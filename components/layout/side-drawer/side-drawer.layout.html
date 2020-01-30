@@ -22,16 +22,26 @@
       <!-- my plans -->
       <v-tab-item key="mine" value="tab-mine" class="pa-4 fill-height">
         <!-- no plans for me -->
-        <div class="side-drawer-wrapper justify-center" v-if="!myFilteredPlans().length">
+        <div class="side-drawer-wrapper justify-center" v-if="!isLoading && !myFilteredPlans().length">
             <h2 class="mb-2 light-green--text text--darken-2" >"To travel is to live."</h2>
             <div class="caption mb-12 light-green--text text--darken-4">Hans Christian Anderson</div>
             <v-btn class="amber darken-1 white--text" text outlined @click="showDialogPlanForm">
               <v-icon left>mdi-plus-circle-outline</v-icon>new plan
             </v-btn>
         </div>
-        <!-- plans -->
-        <div class="side-drawer-wrapper" v-if="myFilteredPlans().length">
+        <!-- my plans -->
+        <div class="side-drawer-wrapper" v-if="!isLoading && myFilteredPlans().length">
           <card-plan v-for="plan in myFilteredPlans()" :plan="plan" :key="plan.id"></card-plan>
+        </div>
+        <!-- my plans loading -->
+        <div class="no-overflow" v-if="isLoading">
+          <v-skeleton-loader
+            v-for="skeleton in skeletons"
+            :type="skeleton"
+            :boilerplate="true"
+            :loading="true"
+            :elevation="2"
+          ></v-skeleton-loader>
         </div>
       </v-tab-item>
       <!-- friends plans -->

@@ -71,3 +71,29 @@ body {
   border-width: 2px !important;
   border-color: #A3CF6F !important;
 }
+
+/* skeleton loaders */
+.v-skeleton-loader {
+  background-color: white;
+  border-color: white;
+  margin-bottom: 24px;
+}
+
+.v-skeleton-loader__heading {
+  margin: 16px 0 0 16px !important;
+}
+
+.v-skeleton-loader:not(.v-skeleton-loader__paragraph) > .v-skeleton-loader__text {
+  margin: 10px 16px 15px !important;
+}
+
+.v-skeleton-loader__sentences, .v-skeleton-loader__paragraph {
+  margin: 0 16px 0 !important;
+  padding-top: 5px;
+}
+
+.v-skeleton-loader__actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px !important;
+}
