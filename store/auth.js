@@ -12,6 +12,7 @@ const defaultState = {
     userId: empty,
   },
   isAuthenticated: false,
+  isLoading: false,
 }
 
 export const state = () => defaultState
@@ -44,19 +45,25 @@ export const mutations = {
   resetUser(state) {
     state.user = defaultState.user
   },
+  setLoading(state, payload) {
+    state.isLoading = payload
+  },
 }
 
 export const actions = {
   signInWithFacebook({ commit }) {
     return new Promise((resolve, reject) => {
+      commit('setLoading', true)
       auth
         .signInWithPopup(FacebookAuthProvider)
         .then((response) => {
           commit('setUser', response.user)
           commit('setLoggedIn', true)
+          commit('setLoading', false)
           resolve()
         })
         .catch((error) => {
+          commit('setLoading', false)
           reject(error)
         })
     })
@@ -68,18 +75,21 @@ export const actions = {
         if (user) {
           commit('setUser', user)
           commit('setLoggedIn', true)
-          resolve(true)
         }
-        resolve(false)
+
+        resolve(!!user)
       })
     })
   },
 
   signOut({ commit }) {
     return new Promise((resolve, reject) => {
+      commit('setLoading', true)
+
       auth.signOut().then(() => {
         commit('resetUser')
         commit('setLoggedIn', false)
+        commit('setLoading', false)
         resolve()
       })
     })
