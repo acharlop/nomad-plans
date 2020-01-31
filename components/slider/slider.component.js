@@ -128,6 +128,6 @@ export default Vue.component('Slider', {
 
       this.setDay(this.sliderValue)
     },
-    changeInput(val) {}
+    changeInput(val) {},
   },
 })
