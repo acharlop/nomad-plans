@@ -101,3 +101,8 @@ body {
   justify-content: space-between;
   padding: 16px !important;
 }
+
+/* tabs fix wtf */
+.v-slide-group__prev--disabled {
+  display: none !important;
+}
