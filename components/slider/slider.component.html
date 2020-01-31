@@ -1,7 +1,7 @@
 <v-flex>
   <v-row no-gutters class="mx-2">
     <v-col class="fit">
-      <v-subheader class="pa-0 fit h-30 white--text">Timeline</v-subheader>
+      <v-spacer class="h-30"></v-spacer>
       <!-- Previous year Button -->
       <v-btn :disabled="!hasPlansYearPrev" small @click="setYear(prevYear)">{{
         prevYear
@@ -16,11 +16,14 @@
         <v-text-field
           class="date-text-field h-30"
           :value="inputValue"
-          readonly
           single-line
           dense
           dark
           :hide-details="true"
+          @keydown.down="sliderValue -= 1"
+          @keydown.up="sliderValue += 1"
+          @change="changeInput($event)"
+          @input="changeInput($event)"
         ></v-text-field>
         <v-btn text icon tile small color="white" @click="sliderValue +=1">
           <v-icon>mdi-chevron-right</v-icon>
@@ -55,7 +58,7 @@
       </v-row>
     </v-col>
     <v-col class="fit">
-      <v-subheader class="pa-0 fit h-30"></v-subheader>
+      <v-spacer class="h-30"></v-spacer>
       <!-- Next year Button -->
       <v-btn :disabled="!hasPlansYearNext" small @click="setYear(nextYear)">{{
         nextYear
