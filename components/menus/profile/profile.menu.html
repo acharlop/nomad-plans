@@ -1,8 +1,6 @@
 <v-menu
   v-model="profileMenu"
-  :nudge-width="210"
-  :nudge-left="210"
-  :nudge-top="-16"
+  :nudge-top="-18"
   offset-y
 >
   <template v-slot:activator="{ on }">
@@ -17,7 +15,7 @@
   </template>
 
   <v-card>
-    <v-list class="primary pb-0">
+    <v-list class="primary pb-0" flat width="380">
       <v-list-item class="pb-2">
         <v-list-item-content>
           <v-list-item-title>{{name}}</v-list-item-title>
@@ -27,46 +25,53 @@
 
       <v-divider></v-divider>
 
-      <v-list-item class="white">
-        <v-list-item-content>
-          <v-btn tile depressed color="transparent" block @click="showDialogInvite">Invite Friends</v-btn>
-        </v-list-item-content>
-      </v-list-item>
+      <v-list-item-group class="white">
 
-      <v-divider></v-divider>
+        <v-list-item target="_blank" href="https://fb.com/nomadplans.co">
+          <v-list-item-icon class="mr-4">
+            <v-icon color="#4267b2" large>mdi-facebook</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>NomadPlans Facebook page</v-list-item-content>
+        </v-list-item>
 
+        <v-divider></v-divider>
 
-      <v-list-item class="white">
-        <v-list-item-content>
-          <v-btn tile depressed color="transparent" block @click="showDialogLegal">Legal stuff</v-btn>
-        </v-list-item-content>
-      </v-list-item>
+        <v-list-item target="_blank" href="https://m.me/nomadplans.co">
+          <v-list-item-icon class="mr-4">
+            <v-icon color="#0078FF" large>mdi-facebook-messenger</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>NomadPlans Messenger</v-list-item-title>
+            <v-list-item-subtitle>Share your feature ideas or bug reports with us</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
 
-      <v-divider></v-divider>
+        <v-divider></v-divider>
 
-      <v-list-item class="white">
-        <v-list-item-content>
-          <div class="d-flex justify-center">
-            <auth-button></auth-button>
-          </div>
-        </v-list-item-content>
-      </v-list-item>
+        <v-list-item @click="showDialogInvite">
+          <v-list-item-content class="py-3">
+            <v-list-item-title>Invite Friends</v-list-item-title>
+            <v-list-item-subtitle>Share NomadPlans with your friends on Facebook</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
 
-      <v-divider></v-divider>
+        <v-divider></v-divider>
 
-      <v-list-item class="white">
-        <v-list-item-content>
-          <v-row justify="center">
-            <v-btn icon large class="ma-1 i-page">
-              <a style="text-decoration: none;" href="https://fb.com/nomadplans.co" target="_blank"><v-icon color="white">mdi-facebook</v-icon></a>
-            </v-btn>
+        <v-list-item @click="showDialogLegal">
+          <v-list-item-content class="py-5">
+            <v-list-item-title>Legal stuff</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-            <v-btn icon large class="ma-1 i-message" >
-              <a style="text-decoration: none;" href="https://m.me/nomadplans.co" target="_blank"><v-icon color="white">mdi-facebook-messenger</v-icon></a>
-            </v-btn>
-          </v-row>
-        </v-list-item-content>
-      </v-list-item>
+        <v-divider></v-divider>
+
+        <v-list-item @click="logout">
+          <v-list-item-content class="py-5">
+            <v-list-item-title>Log out</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+      </v-list-item-group>
     </v-list>
   </v-card>
 </v-menu>

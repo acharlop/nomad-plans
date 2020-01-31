@@ -50,6 +50,10 @@ body {
   padding: 0 6px !important;
 }
 
+.filters .v-label {
+  color: white !important;
+}
+
 /* confirmed toggle */
 .confirmed-toggle .v-btn--active span {
   color: white !important;
@@ -96,4 +100,9 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 16px !important;
+}
+
+/* tabs fix wtf */
+.v-slide-group__prev--disabled {
+  display: none !important;
 }

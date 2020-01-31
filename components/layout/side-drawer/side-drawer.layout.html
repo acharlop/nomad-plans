@@ -36,7 +36,8 @@
         <!-- my plans loading -->
         <div class="no-overflow" v-if="isLoading">
           <v-skeleton-loader
-            v-for="skeleton in skeletons"
+            v-for="(skeleton, index) in skeletons"
+            :key="index"
             :type="skeleton"
             :boilerplate="true"
             :loading="true"
