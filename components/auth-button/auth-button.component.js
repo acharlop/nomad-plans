@@ -6,14 +6,12 @@ export default Vue.component('AuthButton', {
   props: {},
   data() {
     return {
-      authenticated: false,
       loading: false,
     }
   },
   computed: {
     ...mapState({
       isNewUser: (state) => state.auth.isNewUser,
-      isAuthenticated: (state) => state.auth.isAuthenticated,
       isLoading: (state) => state.auth.isLoading,
     }),
   },
@@ -33,7 +31,6 @@ export default Vue.component('AuthButton', {
     },
   },
   created() {
-    this.authenticated = this.isAuthenticated
     this.loading = this.isLoading
 
     this.signInAutomatic()
@@ -45,20 +42,11 @@ export default Vue.component('AuthButton', {
       })
   },
   methods: {
-    ...mapActions('auth', ['signInWithFacebook', 'signOut', 'signInAutomatic']),
+    ...mapActions('auth', ['signInWithFacebook', 'signInAutomatic']),
     login() {
       this.signInWithFacebook()
         .then(() => {
           this.$router.push('/')
-        })
-        .catch((e) => {
-          console.error(e)
-        })
-    },
-    logout() {
-      this.signOut()
-        .then(() => {
-          this.$router.push('/login')
         })
         .catch((e) => {
           console.error(e)
