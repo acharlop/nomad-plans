@@ -1,12 +1,8 @@
 import Vue from 'vue'
-import { mapMutations, mapState } from 'vuex'
-
-import AuthButton from '@/components/auth-button'
+import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default Vue.component('ProfileMenu', {
-  components: {
-    AuthButton,
-  },
+  components: {},
   props: [],
   data() {
     return {
@@ -24,5 +20,15 @@ export default Vue.component('ProfileMenu', {
   mounted() {},
   methods: {
     ...mapMutations('layout', ['showDialogLegal', 'showDialogInvite']),
+    ...mapActions('auth', ['signOut']),
+    logout() {
+      this.signOut()
+        .then(() => {
+          this.$router.push('/login')
+        })
+        .catch((e) => {
+          console.error(e)
+        })
+    },
   },
 })
