@@ -13,18 +13,36 @@
         <v-btn text icon tile small color="white" @click="sliderValue -=1">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
-        <v-text-field
-          class="date-text-field h-30"
-          :value="inputValue"
-          single-line
-          dense
-          dark
-          :hide-details="true"
-          @keydown.down="sliderValue -= 1"
-          @keydown.up="sliderValue += 1"
-          @change="changeInput($event)"
-          @input="changeInput($event)"
-        ></v-text-field>
+        <!-- input and date picker -->
+        <v-menu
+          top
+          :nudge-top="18"
+          :nudge-left="95"
+          v-model="datePickerMenu"
+          transition="scale-transition"
+          origin="bottom center"
+          offset-y
+        >
+          <template v-slot:activator="{ on }">
+            <v-text-field
+              class="date-text-field h-30"
+              :value="inputValue"
+              single-line
+              dense
+              dark
+              readonly
+              v-on="on"
+              :hide-details="true"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="datePickerValue"
+            @input="datePickerMenu = false"
+            no-title
+            scrollable
+          ></v-date-picker>
+        </v-menu>
+
         <v-btn text icon tile small color="white" @click="sliderValue +=1">
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>

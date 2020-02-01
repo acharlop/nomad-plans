@@ -30,6 +30,8 @@ export default Vue.component('Slider', {
         'Dec',
       ],
       plansYearMap: [undefined],
+      datePickerMenu: false,
+      datePickerValue: '',
     }
   },
   computed: {
