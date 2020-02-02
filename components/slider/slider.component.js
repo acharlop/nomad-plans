@@ -88,7 +88,9 @@ export default Vue.component('Slider', {
     ...mapMutations('plans', ['setHighlightedId']),
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {
-      this.sliderValue = this.$dateFns.getDayOfYear(new Date(this.year, month, 1))
+      this.sliderValue = this.$dateFns.getDayOfYear(
+        new Date(this.year, month, 1)
+      )
     },
     setYear(year) {
       const day = new Date(this.year, 0, this.sliderValue)
