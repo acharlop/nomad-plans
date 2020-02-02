@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapState } from 'vuex'
-import getDayOfYear from 'date-fns/getDayOfYear'
-import getDaysInYear from 'date-fns/getDaysInYear'
-import { dayInPlan, formatDate } from '~/utils/date'
+import { dayInPlan, formatDate, DATE_FORMAT_NUMS } from '~/utils/date'
 
 const day = new Date()
 
@@ -13,7 +11,7 @@ export default Vue.component('Slider', {
     return {
       year: day.getFullYear(),
       month: day.getMonth(),
-      sliderValue: getDayOfYear(day),
+      sliderValue: this.$dateFns.getDayOfYear(day),
       inputValue: formatDate(day.toISOString()),
       months: [
         'Jan',
@@ -30,6 +28,8 @@ export default Vue.component('Slider', {
         'Dec',
       ],
       plansYearMap: [undefined],
+      datePickerMenu: false,
+      datePickerValue: '',
     }
   },
   computed: {
@@ -63,10 +63,16 @@ export default Vue.component('Slider', {
       return this.prevYear >= this.firstPlanYear
     },
     daysInYear() {
-      return getDaysInYear(new Date(this.year, 0, 1))
+      return this.$dateFns.getDaysInYear(new Date(this.year, 0, 1))
     },
     getMonth() {
       return this.month
+    },
+    datePickerMax() {
+      return `${this.year}-12-31`
+    },
+    datePickerMin() {
+      return `${this.year}-01-01`
     },
   },
   watch: {
@@ -82,21 +88,29 @@ export default Vue.component('Slider', {
     ...mapMutations('plans', ['setHighlightedId']),
     ...mapGetters('plans', ['myFilteredPlans']),
     setMonth(month) {
-      this.sliderValue = getDayOfYear(new Date(this.year, month, 1))
+      this.sliderValue = this.$dateFns.getDayOfYear(
+        new Date(this.year, month, 1)
+      )
     },
     setYear(year) {
       const day = new Date(this.year, 0, this.sliderValue)
       day.setFullYear(year)
       this.year = year
       this.setPlansYearMap(year)
-      this.sliderValue = getDayOfYear(day)
+      this.sliderValue = this.$dateFns.getDayOfYear(day)
     },
     setDay(day) {
       if (!day) return
+
+      if (!this.plansYearMap || !this.plansYearMap[day]) {
+        this.setPlansYearMap()
+        return
+      }
       // TODO figure out why {'__ob__'} is fetched
       const map = JSON.parse(JSON.stringify(this.plansYearMap[day]))
 
-      this.inputValue = map.date
+      this.datePickerValue = formatDate(map.date, DATE_FORMAT_NUMS)
+      this.inputValue = formatDate(map.date)
       this.month = map.month
 
       if (this.highlightId !== map.planId) this.setHighlightedId(map.planId)
@@ -112,7 +126,7 @@ export default Vue.component('Slider', {
       for (let i = 1; i <= this.daysInYear; i++) {
         day.setMonth(0, i)
 
-        date = formatDate(day.toISOString())
+        date = day.toISOString()
         month = day.getMonth()
         planId = undefined
 
@@ -128,6 +142,10 @@ export default Vue.component('Slider', {
 
       this.setDay(this.sliderValue)
     },
-    changeInput(val) {},
+    datePickerChange(newVal) {
+      const day = this.$dateFns.getDayOfYear(this.$dateFns.parseISO(newVal))
+      this.sliderValue = day
+      this.setDay(day)
+    },
   },
 })
