@@ -18,6 +18,7 @@
           top
           :nudge-top="18"
           :nudge-left="95"
+          :close-on-content-click="false"
           v-model="datePickerMenu"
           transition="scale-transition"
           origin="bottom center"
@@ -26,7 +27,7 @@
           <template v-slot:activator="{ on }">
             <v-text-field
               class="date-text-field h-30"
-              :value="inputValue"
+              v-model="inputValue"
               single-line
               dense
               dark
@@ -40,6 +41,10 @@
             @input="datePickerMenu = false"
             no-title
             scrollable
+            :show-current="false"
+            :min="datePickerMin"
+            :max="datePickerMax"
+            @change="datePickerChange"
           ></v-date-picker>
         </v-menu>
 
