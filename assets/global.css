@@ -41,6 +41,7 @@ body {
 /* slider text input */
 .date-text-field input {
   text-align: center !important;
+  cursor: pointer;
   max-height: 22px !important;
 }
 
