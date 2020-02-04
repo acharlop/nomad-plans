@@ -1,8 +1,11 @@
 <v-app dark>
   <v-content>
-    <v-container class="d-flex align-center pa-0" fluid fill-height>
-      <h1>{{ errorText }}</h1>
-      <NuxtLink to="/">Home page</NuxtLink>
-    </v-container>
+    <AppBar v-if="isAuthenticated" />
+    <div class="error-container">
+      <h1 class="error--text">{{ errorTitle }}</h1>
+      <h2 class="mb-8 mx-4" style="text-align: center">{{ errorText }}</h2>
+      <v-btn v-if="is404" color="primary" large to="/" nuxt>Go home</v-btn>
+      <v-btn v-else color="primary" large @click="reload()">Go home</v-btn>
+    </div>
   </v-content>
 </v-app>

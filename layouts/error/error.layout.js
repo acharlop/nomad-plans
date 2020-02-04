@@ -1,8 +1,12 @@
 import Vue from 'vue'
+import { mapState } from 'vuex'
+import AppBar from '@/components/layout/app-bar'
 
 export default Vue.component('ErrorLayout', {
   layout: 'empty',
-  components: {},
+  components: {
+    AppBar,
+  },
   props: {
     error: {
       type: Object,
@@ -10,18 +14,30 @@ export default Vue.component('ErrorLayout', {
     },
   },
   data() {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
-    }
+    return {}
   },
   computed: {
+    ...mapState({
+      isAuthenticated: (state) => state.auth.isAuthenticated,
+    }),
     errorText() {
-      return this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+      return this.is404
+        ? 'The link you clicked on may be broken or no longer exist.'
+        : `Something went wrong and returned a ${this.error.statusCode} error`
+    },
+    errorTitle() {
+      return this.is404 ? "This page doesn't exist" : 'Sorry, an error occurred'
+    },
+    is404() {
+      return this.error.statusCode === 404
     },
   },
   mounted() {},
-  methods: {},
+  methods: {
+    reload() {
+      window.location.replace('/')
+    },
+  },
   head() {
     return {
       title: this.errorText,

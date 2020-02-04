@@ -1,5 +1,5 @@
-import { mount } from '@/test/test-utils'
 import ErrorLayoutComponent from './index.vue'
+import { mount } from '@/test/test-utils'
 
 describe('ErrorLayoutComponent', () => {
   // is vue component

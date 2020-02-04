@@ -1,3 +1,22 @@
-h1 {
-  font-size: 20px;
+@import '~/assets/variables';
+
+/* vuetify overrides */
+.v-application {
+  width: 100vw !important;
+}
+
+main {
+  padding: 0 !important;
+}
+
+.error-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-bottom: 100px;
+  background: url('~assets/images/map.svg') no-repeat fixed center;
+  background-size: cover;
 }
