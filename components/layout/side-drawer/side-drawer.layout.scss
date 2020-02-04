@@ -36,8 +36,13 @@
   overflow-y: hidden !important;
 }
 
+/* height fixes */
+
 .nav-drawer {
   top: $app-bar-height-small !important;
+  bottom: $footer-height-small !important;
+  max-height: unset !important;
+  height: unset !important;
 }
 
 @media (min-width: 960px) {
@@ -46,5 +51,11 @@
   }
   .side-drawer {
     padding-top: $app-bar-height-large;
+  }
+}
+
+@media (max-width: 699px) {
+  .nav-drawer {
+    bottom: $footer-height-large !important;
   }
 }

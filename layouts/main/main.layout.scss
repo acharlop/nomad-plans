@@ -1,0 +1,12 @@
+@import '~/assets/variables';
+
+/* height fixes */
+main {
+  padding-bottom: $footer-height-small !important;
+}
+
+@media (max-width: 699px) {
+  main {
+    padding-bottom: $footer-height-large !important;
+  }
+}
