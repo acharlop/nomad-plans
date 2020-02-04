@@ -2,6 +2,16 @@ body {
   background-color: #F1F1F1;
 }
 
+main {
+  padding-bottom: 102px !important;
+}
+
+@media (max-width: 699px) {
+  main {
+    padding-bottom: 131px !important;
+  }
+}
+
 /* google auto complete */
 .pac-container {
   margin-top: 15px;
