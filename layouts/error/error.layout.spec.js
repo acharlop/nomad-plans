@@ -1,32 +1,79 @@
-import ErrorLayoutComponent from './index.vue'
+import ErrorLayoutComponent from '../error.vue'
 import { mount } from '@/test/test-utils'
 
+import AppBar from '@/components/layout/app-bar'
+
+let storeOptions
+let propsData
+
 describe('ErrorLayoutComponent', () => {
-  // is vue component
+  beforeEach(() => {
+    storeOptions = {
+      modules: {
+        auth: {
+          namespaced: true,
+          state: {
+            isAuthenticated: false,
+            user: {
+              photoUrl: '',
+              name: '',
+              email: '',
+            },
+          },
+        },
+        layout: {
+          namespaced: true,
+          state: {
+            showSideDrawer: true,
+          },
+        },
+      },
+    }
+
+    propsData = {
+      error: {
+        code: 400,
+      },
+    }
+  })
+
   test('is Vue component', () => {
-    const wrapper = mount(ErrorLayoutComponent)
+    const wrapper = mount(ErrorLayoutComponent, {
+      storeOptions,
+      propsData,
+    })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
-  // Inspect the raw component options
-  test('has a created hook', () => {
-    // expect(typeof ErrorLayoutComponent.created).toBe('function');
+
+  xtest('correct 404 error', () => {
+    propsData.error.code = 404
+
+    const wrapper = mount(ErrorLayoutComponent, {
+      storeOptions,
+      propsData,
+    })
+    expect(wrapper.vm.errorTitle).toEqual("This page doesn't exist")
   })
-  // Evaluate the results of functions in
-  // the raw component options
-  test('sets the correct default data', () => {
-    // expect(typeof ErrorLayoutComponent.data).toBe('function')
-    // const defaultData = ErrorLayoutComponent.data();
-    // expect(defaultData.message).toBe('hello!');
+
+  test('correct 500 error', () => {
+    propsData.error.code = 500
+
+    const wrapper = mount(ErrorLayoutComponent, {
+      storeOptions,
+      propsData,
+    })
+
+    expect(wrapper.vm.errorTitle).toEqual('Sorry, an error occurred')
   })
-  // Inspect the component instance on mount
-  test('correctly sets the message when created', () => {
-    // const vm = new Vue(ErrorLayoutComponent).$mount();
-    // expect(vm.message).toBe('bye!');
-  })
-  // Mount an instance and inspect the render output
-  test('renders the correct message', () => {
-    // const Ctor = Vue.extend(ErrorLayoutComponent);
-    // const vm = new Ctor().$mount();
-    // expect(vm.$el.textContent).toBe('bye!');
+
+  test('display app bar if authenticated', () => {
+    storeOptions.modules.auth.state.isAuthenticated = true
+
+    const wrapper = mount(ErrorLayoutComponent, {
+      storeOptions,
+      propsData,
+    })
+
+    expect(wrapper.contains(AppBar)).toBeTruthy()
   })
 })
