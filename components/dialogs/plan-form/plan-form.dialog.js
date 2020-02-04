@@ -55,7 +55,6 @@ export default Vue.component('PlanFormDialog', {
       description: '',
       startAtMenu: false,
       endAtMenu: false,
-      placeRules: [(v) => !!v || 'Place is required'],
       dateRules: [(v) => !!v || 'Date is required'],
       submitLoading: false,
       deleteLoading: false,
@@ -64,6 +63,7 @@ export default Vue.component('PlanFormDialog', {
       maxDescriptionLength: 442,
       formattedStartDate: '',
       formattedEndDate: '',
+      searchFocused: false,
     }
   },
   computed: {
@@ -82,6 +82,19 @@ export default Vue.component('PlanFormDialog', {
     google: gmapApi,
     dateRange() {
       return formatDistance(this.startAt, this.endAt)
+    },
+    searchErrors() {
+      return this.searchFocused || !!this.formattedName
+        ? ''
+        : 'Place is required'
+    },
+    formattedName() {
+      let name = ''
+      try {
+        name = this.place.formattedName()
+      } catch (e) {}
+
+      return name
     },
   },
   watch: {
@@ -139,9 +152,6 @@ export default Vue.component('PlanFormDialog', {
         this.menuToggle('endAt', isOpen)
       },
     },
-    place(newVal) {
-      if (newVal) this.placeName = newVal.formattedName()
-    },
   },
   mounted() {
     this.safeSetup()
@@ -179,6 +189,17 @@ export default Vue.component('PlanFormDialog', {
     },
     placeSelected(data) {
       this.place = new Place(data)
+      this.placeName = this.formattedName()
+    },
+    clearPlace() {
+      this.place = {}
+      this.placeName = ''
+      this.$refs.searchInput.$refs.input.value = ''
+    },
+    blurSearch() {
+      setTimeout(() => {
+        this.searchFocused = false
+      }, 200)
     },
     menuToggle(key, isOpen) {
       if (!this.show || !this[key]) return

@@ -35,10 +35,13 @@
               type="search"
               v-model="placeName"
               label="Place"
-              :rules="placeRules"
+              :error-messages="searchErrors"
               class="search-input"
               tabindex="1"
               validate-on-blur
+              @blur="blurSearch()"
+              @focus="searchFocused = true"
+              @click:clear="clearPlace"
             >
             </v-text-field>
           <v-row class="ma-0 mt-2">
