@@ -11,7 +11,6 @@ export default Vue.component('AuthButton', {
   },
   computed: {
     ...mapState({
-      isNewUser: (state) => state.auth.isNewUser,
       isLoading: (state) => state.auth.isLoading,
     }),
   },

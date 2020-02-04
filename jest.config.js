@@ -13,6 +13,7 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue',
+    '<rootDir>/layouts/**/*.vue',
   ],
   setupFiles: ['<rootDir>/test/setup'],
   snapshotSerializers: ['jest-serializer-vue'],

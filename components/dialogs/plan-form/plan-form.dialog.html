@@ -148,7 +148,7 @@
       <v-btn
         class="white--text"
         color="amber darken-1"
-        :disabled="!valid || submitLoading || deleteLoading"
+        :disabled="!valid || searchFocused || submitLoading || deleteLoading"
         @click="submit"
         :loading="submitLoading"
         tabindex="6"

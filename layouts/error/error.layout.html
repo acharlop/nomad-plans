@@ -1,0 +1,11 @@
+<v-app dark>
+  <v-content>
+    <AppBar v-if="isAuthenticated" />
+    <div class="error-container">
+      <h1 class="error--text">{{ errorTitle }}</h1>
+      <h2 class="mb-8 mx-4" style="text-align: center">{{ errorText }}</h2>
+      <v-btn v-if="is404" color="primary" large to="/" nuxt>Go home</v-btn>
+      <v-btn v-else color="primary" large @click="reload()">Go home</v-btn>
+    </div>
+  </v-content>
+</v-app>
