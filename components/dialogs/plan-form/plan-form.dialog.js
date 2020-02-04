@@ -167,12 +167,13 @@ export default Vue.component('PlanFormDialog', {
       this.endAt = ''
       this.startAtMenu = false
       this.endAtMenu = false
-      this.placeName = ''
       this.datePicker = ''
       this.formattedStartDate = ''
       this.formattedEndDate = ''
       this.startAtPickerDate = ''
       this.endAtPickerDate = ''
+
+      this.clearPlace()
 
       if (this.isEdit) {
         this.$store.commit('plans/removePlanEditId')
@@ -189,7 +190,7 @@ export default Vue.component('PlanFormDialog', {
     },
     placeSelected(data) {
       this.place = new Place(data)
-      this.placeName = this.formattedName()
+      this.placeName = this.formattedName
     },
     clearPlace() {
       this.place = {}
