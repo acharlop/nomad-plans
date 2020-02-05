@@ -128,6 +128,12 @@ export default Vue.component('PlanFormDialog', {
     placeName(newVal) {
       if (newVal === undefined) {
         this.placeName = ''
+      } else if (
+        newVal &&
+        this.formattedName &&
+        newVal !== this.formattedName
+      ) {
+        this.place = {}
       }
     },
     startAt(day) {
@@ -196,6 +202,7 @@ export default Vue.component('PlanFormDialog', {
       this.place = {}
       this.placeName = ''
       this.$refs.searchInput.$refs.input.value = ''
+      this.$refs.searchInput.$refs.input.blur()
     },
     blurSearch() {
       setTimeout(() => {
