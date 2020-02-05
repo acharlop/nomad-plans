@@ -209,11 +209,14 @@ export default Vue.component('PlanFormDialog', {
 
       // handle on close and only one date picked
       if (!isOpen && !this[secondary]) {
+        // set next date picker
+        this[`${secondary}PickerDate`] = this[key].slice(0, 7)
         // open next date picker
         this[`${secondary}Menu`] = true
       }
 
       if (isOpen) {
+        // set date picker month
         this[`${key}PickerDate`] = this[key].slice(0, 7)
       }
     },
@@ -236,8 +239,17 @@ export default Vue.component('PlanFormDialog', {
         })
       }
     },
-    clearDate(range) {
-      this[range] = ''
+    clearDate(key) {
+      this[key] = ''
+
+      const date = new Date().toISOString().slice(0, 7)
+      const secondary = key === 'startAt' ? 'endAt' : 'startAt'
+
+      this[`${key}PickerDate`] = date
+
+      if (!this[secondary]) {
+        this[`${secondary}PickerDate`] = date
+      }
     },
     // date picker allowed dates functions
     allowedDates(day) {
