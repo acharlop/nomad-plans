@@ -1,0 +1,20 @@
+<svg class="icon" width="55" height="55" v-if="isHighlighted">
+  <defs>
+    <clipPath id="avatar">
+      <circle cx="25" cy="25" r="19" />
+    </clipPath>
+  </defs>
+  <circle cx="25" cy="25" r="25" fill="black" stroke-width="5" />
+  <image clip-path="url(#avatar)" :xlink:href="photoURL" />
+</svg>
+
+<svg class="pin" width="22" height="22" v-else>
+  <circle
+    cx="11"
+    cy="11"
+    r="8"
+    fill="#FD1313"
+    :stroke="stroke"
+    :stroke-width="strokeWidth"
+  />
+</svg>

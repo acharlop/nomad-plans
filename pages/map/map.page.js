@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import { mapState, mapMutations, mapGetters } from 'vuex'
 import { gmapApi } from 'vue2-google-maps'
+import GmapCustomMarker from 'vue2-gmap-custom-marker'
+import Pin from '@/components/pin'
 
 export default Vue.component('MapPage', {
   layout: 'main',
-  components: {},
+  components: {
+    GmapCustomMarker,
+    Pin,
+  },
   props: [],
   data() {
     return {
