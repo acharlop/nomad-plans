@@ -1,0 +1,46 @@
+/* position */
+.loader-wrapper {
+  position: relative;
+  height: 135px;
+  width: 135px;
+}
+.load {
+  position: absolute;
+}
+.left-pin {
+  top: 18px;
+  left: 7px;
+}
+.center-pin {
+  top: 5px;
+  left: 45px;
+}
+.right-pin {
+  right: 7px;
+  top: 18px;
+}
+.globe {
+  top: 43px;
+  left: 17.5px;
+}
+
+/* animation */
+.bounce {
+  animation: bounce 1.5s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+}
+#left {
+  animation-delay: -0.5s;
+}
+#right {
+  animation-delay: -1s;
+}
+@keyframes bounce {
+  0%, 5%, 95%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.3);
+  }
+}
