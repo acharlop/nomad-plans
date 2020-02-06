@@ -1,18 +1,19 @@
 /* position */
 .loader-wrapper {
   position: relative;
-  height: 125px;
-  width: 115px;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 15px;
 }
-.load {
-  position: absolute;
-}
-/* pin alignment */
+
 $rotation: 30deg;
+$pin-width: 20px;
+
+/* pin alignment */
 .pin {
   position: absolute;
-  height: 45px;
-  width: 40px;
+  height: 25px;
+  width: $pin-width;
   overflow: visible;
 
   use {
@@ -24,10 +25,10 @@ $rotation: 30deg;
   animation-iteration-count: infinite;
 }
 .pin-left {
-  top: 14px;
-  left: 3px;
+  top: 9px;
+  left: 18px;
   fill: #FFB300;
-  transform-origin: 90% 90%;
+  transform-origin: 82% 102%;
   animation-delay: -0.5s;
 
   use {
@@ -35,16 +36,16 @@ $rotation: 30deg;
   }
 }
 .pin-center {
-  top: 2px;
-  left: 38px;
+  top: 5px;
+  left: calc(50% - (#{$pin-width} / 2)); // calculate exact center
   fill: #FD1313;
-  transform-origin: bottom;
+  transform-origin: center 102%;
 }
 .pin-right {
-  top: 14px;
-  right: 2px;
+  top: 11px;
+  right: 18px;
   fill: #8BC34A;
-  transform-origin: 10% 90%;
+  transform-origin: 15% 92%;
   animation-delay: -1s;
 
   use {
@@ -52,8 +53,9 @@ $rotation: 30deg;
   }
 }
 .globe {
-  top: 33px;
-  left: 7.5px;
+  position: absolute;
+  bottom: -15px;
+  left: 0;
 }
 
 /* animations */
