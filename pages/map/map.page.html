@@ -1,22 +1,29 @@
-<!-- TODO add loader -->
-<GmapMap
-  style="width: 100%; height: 100%"
-  v-if="$nuxt.isOnline"
-  ref="mapRef"
-  :center="center"
-  :zoom="zoom"
-  :options="mapOptions"
-  @bounds_changed="boundChange"
-  @zoom_changed="zoomChange"
-  @center_changed="centerChange"
->
-  <GmapMarker
-    :key="index"
-    v-for="(plan, index) in myFilteredPlans()"
-    :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
-    @click="markerClicked(plan.id)"
-    :icon="icon(plan)"
-  ></GmapMarker>
-</GmapMap>
+<div class="map-page">
+  <transition name="fade">
+    <div class="loader" v-if="loading">
+      <Loader></Loader>
+    </div>
+  </transition>
+  <GmapMap
+    style="width: 100%; height: 100%"
+    v-if="$nuxt.isOnline"
+    ref="mapRef"
+    :center="center"
+    :zoom="zoom"
+    :options="mapOptions"
+    @bounds_changed="boundChange"
+    @zoom_changed="zoomChange"
+    @center_changed="centerChange"
+    @tilesloaded="tilesLoaded"
+  >
+    <GmapMarker
+      :key="index"
+      v-for="(plan, index) in myFilteredPlans()"
+      :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
+      @click="markerClicked(plan.id)"
+      :icon="icon(plan)"
+    ></GmapMarker>
+  </GmapMap>
 
-<div v-else-if="$nuxt.isOffline">Offline maps coming soon</div>
+  <div v-else-if="$nuxt.isOffline">Offline maps coming soon</div>
+</div>
