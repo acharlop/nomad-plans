@@ -1,41 +1,62 @@
 /* position */
 .loader-wrapper {
   position: relative;
-  height: 135px;
-  width: 135px;
+  height: 125px;
+  width: 115px;
 }
 .load {
   position: absolute;
 }
-.left-pin {
-  top: 18px;
-  left: 7px;
-}
-.center-pin {
-  top: 5px;
-  left: 45px;
-}
-.right-pin {
-  right: 7px;
-  top: 18px;
-}
-.globe {
-  top: 43px;
-  left: 17.5px;
-}
+/* pin alignment */
+$rotation: 30deg;
+.pin {
+  position: absolute;
+  height: 45px;
+  width: 40px;
+  overflow: visible;
 
-/* animation */
+  use {
+    transform-origin: center;
+  }
+}
 .bounce {
   animation: bounce 1.5s;
   animation-iteration-count: infinite;
+}
+.pin-left {
+  top: 14px;
+  left: 3px;
+  fill: #FFB300;
+  transform-origin: 90% 90%;
+  animation-delay: -0.5s;
+
+  use {
+    transform: rotate(-$rotation);
+  }
+}
+.pin-center {
+  top: 2px;
+  left: 38px;
+  fill: #FD1313;
   transform-origin: bottom;
 }
-#left {
-  animation-delay: -0.5s;
-}
-#right {
+.pin-right {
+  top: 14px;
+  right: 2px;
+  fill: #8BC34A;
+  transform-origin: 10% 90%;
   animation-delay: -1s;
+
+  use {
+    transform: rotate($rotation);
+  }
 }
+.globe {
+  top: 33px;
+  left: 7.5px;
+}
+
+/* animations */
 @keyframes bounce {
   0%, 5%, 95%, 100% {
     transform: scale(1);

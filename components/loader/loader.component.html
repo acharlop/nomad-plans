@@ -1,65 +1,21 @@
 <div class="loader-wrapper">
   <!-- left pin -->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="50"
-    width="45"
-    viewBox="0 0 180 200"
-    transform="rotate(-40)"
-    class="load left-pin"
-  >
-    <g id="left" class="bounce">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <symbol id="pin" viewBox="0 0 180 200">
       <path
-        id="pin"
         d="M180.292969,72.727091C180.292969,112.893332,126.293242,190.909363,90.292979,200C54.293050,190.909363,0.292969,112.893332,0.292969,72.727091C0.292969,32.561117,40.587415,0,90.292979,0C139.998810,0,180.292969,32.561117,180.292969,72.727091Z"
-        transform="matrix(1 0 0 1 -0.29296899999994 0.00000000000002)"
-        fill="#FFB300"
-        stroke="none"
-        stroke-width="1"
       />
       <circle id="circle" cx="90" cy="70" r="37.5" fill="white" />
-    </g>
+    </symbol>
   </svg>
-  <!-- center pin -->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="50"
-    width="45"
-    viewBox="0 0 180 200"
-    class="load center-pin"
-  >
-    <g id="middle" class="bounce">
-      <path
-        id="pin"
-        d="M180.292969,72.727091C180.292969,112.893332,126.293242,190.909363,90.292979,200C54.293050,190.909363,0.292969,112.893332,0.292969,72.727091C0.292969,32.561117,40.587415,0,90.292979,0C139.998810,0,180.292969,32.561117,180.292969,72.727091Z"
-        transform="matrix(1 0 0 1 -0.29296899999994 0.00000000000002)"
-        fill="#FD1313"
-        stroke="none"
-        stroke-width="1"
-      />
-      <circle id="circle" cx="90" cy="70" r="37.5" fill="white" />
-    </g>
+  <svg class="pin pin-left bounce">
+    <use xlink:href="#pin"></use>
   </svg>
-  <!-- right pin -->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    transform="rotate(40)"
-    height="50"
-    width="45"
-    viewBox="0 0 180 200"
-    class="load right-pin"
-  >
-    <g id="right" class="bounce">
-      <path
-        id="pin"
-        d="M180.292969,72.727091C180.292969,112.893332,126.293242,190.909363,90.292979,200C54.293050,190.909363,0.292969,112.893332,0.292969,72.727091C0.292969,32.561117,40.587415,0,90.292979,0C139.998810,0,180.292969,32.561117,180.292969,72.727091Z"
-        transform="matrix(1 0 0 1 -0.29296899999994 0.00000000000002)"
-        fill="#8BC34A"
-        stroke="none"
-        stroke-width="1"
-      />
-      <circle id="circle" cx="90" cy="70" r="37.5" fill="white" />
-    </g>
+  <svg class="pin pin-center bounce">
+    <use xlink:href="#pin"></use>
+  </svg>
+  <svg class="pin pin-right bounce">
+    <use xlink:href="#pin"></use>
   </svg>
   <!-- globe -->
   <svg
