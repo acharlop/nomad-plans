@@ -41,6 +41,7 @@
     "pino-pretty": "^3.5.0",
     "vue-clamp": "^0.2.2",
     "vue-facebook-login-component": "^1.4.0",
+    "vue2-gmap-custom-marker": "^5.5.9",
     "vue2-google-maps": "^0.10.7",
     "vuex-persistedstate": "^2.7.0"
   },
