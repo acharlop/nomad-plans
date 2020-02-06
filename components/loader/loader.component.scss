@@ -1,4 +1,7 @@
-/* position */
+$rotation: 30deg;
+$pin-width: 20px;
+
+/* wrapper */
 .loader-wrapper {
   position: relative;
   height: 100px;
@@ -6,29 +9,34 @@
   margin-bottom: 15px;
 }
 
-$rotation: 30deg;
-$pin-width: 20px;
-
-/* pin alignment */
+/* pins */
 .pin {
   position: absolute;
   height: 25px;
   width: $pin-width;
   overflow: visible;
+  animation: bounce 1.5s;
+  animation-iteration-count: infinite;
 
   use {
     transform-origin: center;
   }
 }
-.bounce {
-  animation: bounce 1.5s;
-  animation-iteration-count: infinite;
+@keyframes bounce {
+  0%, 5%, 95%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.3);
+  }
 }
+
+/* layout for each pin */
 .pin-left {
-  top: 9px;
+  top: 10px;
   left: 18px;
   fill: #FFB300;
-  transform-origin: 82% 102%;
+  transform-origin: 82% 98%;
   animation-delay: -0.5s;
 
   use {
@@ -42,28 +50,20 @@ $pin-width: 20px;
   transform-origin: center 102%;
 }
 .pin-right {
-  top: 11px;
+  top: 10px;
   right: 18px;
   fill: #8BC34A;
-  transform-origin: 15% 92%;
+  transform-origin: 15% 98%;
   animation-delay: -1s;
 
   use {
     transform: rotate($rotation);
   }
 }
+
+/* globe */
 .globe {
   position: absolute;
   bottom: -15px;
   left: 0;
-}
-
-/* animations */
-@keyframes bounce {
-  0%, 5%, 95%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.3);
-  }
 }

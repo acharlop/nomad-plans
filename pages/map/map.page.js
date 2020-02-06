@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import { mapState, mapMutations, mapGetters } from 'vuex'
 import { gmapApi } from 'vue2-google-maps'
-// import { white } from 'ansi-colors'
 
 export default Vue.component('MapPage', {
   layout: 'main',
@@ -36,6 +35,7 @@ export default Vue.component('MapPage', {
           },
         },
       },
+      loading: true,
     }
   },
   computed: {
@@ -86,5 +86,8 @@ export default Vue.component('MapPage', {
     boundChange(val) {},
     zoomChange(val) {},
     centerChange(val) {},
+    tilesLoaded(val) {
+      this.loading = false
+    },
   },
 })
