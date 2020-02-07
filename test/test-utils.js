@@ -35,6 +35,8 @@ export const mount = (
     },
   })
 
+  document.body.setAttribute('data-app', true)
+
   return vueMount(component, {
     localVue,
     router,
@@ -57,6 +59,8 @@ export const shallow = (
       $vuetify: vuetifyOptions,
     },
   })
+
+  document.body.setAttribute('data-app', true)
 
   return vueShallowMount(component, {
     localVue,
