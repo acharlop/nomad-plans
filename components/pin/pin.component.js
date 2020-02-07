@@ -6,7 +6,11 @@ export default Vue.component('PinComponent', {
   props: {
     plan: {
       type: Object,
-      default: () => ({}),
+      default: () => ({
+        id: '',
+        confirmed: false,
+        endAt: '9',
+      }),
     },
   },
   data() {
@@ -20,16 +24,13 @@ export default Vue.component('PinComponent', {
       photoURL: (state) => `${state.auth.user.photoURL}?height=50&width=50`,
     }),
     isHighlighted() {
-      return this.plan.id === this.highlightId
+      return this.highlightId && this.plan.id === this.highlightId
     },
     stroke() {
       return this.plan.confirmed ? '#8BC34A' : '#FFB300'
     },
     strokeWidth() {
       return this.plan.endAt >= this.today ? 5 : 0
-    },
-    size() {
-      return this.isHighlighted ? 55 : 22
     },
   },
   mounted() {},
