@@ -16,13 +16,14 @@
     @center_changed="centerChange"
     @tilesloaded="tilesLoaded"
   >
-    <GmapMarker
+    <GmapCustomMarker
       :key="index"
       v-for="(plan, index) in myFilteredPlans()"
-      :position="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
-      @click="markerClicked(plan.id)"
-      :icon="icon(plan)"
-    ></GmapMarker>
+      :marker="google && new google.maps.LatLng(plan.place.lat(), plan.place.lng())"
+      @click.native="markerClicked(plan.id)"
+    >
+      <Pin :plan="plan"></Pin>
+    </GmapCustomMarker>
   </GmapMap>
 
   <div v-else-if="$nuxt.isOffline">Offline maps coming soon</div>
