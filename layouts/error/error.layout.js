@@ -38,9 +38,11 @@ export default Vue.component('ErrorLayout', {
       window.location.replace('/')
     },
   },
-  head() {
-    return {
-      title: this.errorText,
-    }
-  },
 })
+
+// TODO update nuxt.config to use this
+// head() {
+//   return {
+//     title: this.errorText,
+//   }
+// },

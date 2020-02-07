@@ -21,7 +21,14 @@ localVue.use(Vuex)
 const router = new VueRouter()
 
 // stubs
-const stubs = ['router-link', 'router-view', 'nuxt', 'fa', 'GmapAutocomplete']
+const stubs = [
+  'router-link',
+  'router-view',
+  'nuxt',
+  'nuxt-link',
+  'fa',
+  'GmapAutocomplete',
+]
 
 export const mount = (
   component,
