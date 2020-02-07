@@ -11660,8 +11660,8 @@ vue-template-es2015-compiler@^1.9.0:
 
 vue2-gmap-custom-marker@^5.5.9:
   version "5.5.9"
-  resolved "https://idt.jfrog.io/idt/api/npm/n2p-npm/vue2-gmap-custom-marker/-/vue2-gmap-custom-marker-5.5.9.tgz#8284acc4cce7a16159c690ec7da029d1f7613fbb"
-  integrity sha1-goSsxMznoWFZxpDsfaAp0fdhP7s=
+  resolved "https://registry.npmjs.org/vue2-gmap-custom-marker/-/vue2-gmap-custom-marker-5.5.9.tgz#8284acc4cce7a16159c690ec7da029d1f7613fbb"
+  integrity sha512-CYZ0VnxnG+TQ+0k4veBcAn3B9BvfjtTAfBuzPfq1NGweX+HDskCxj7owHz4jpz9QZhg7jWrJybK8Jn+XZHcTFw==
   dependencies:
     vue "^2.5.17"
     vue2-google-maps "^0.10.2"
