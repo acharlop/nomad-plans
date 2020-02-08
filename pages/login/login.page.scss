@@ -2,7 +2,6 @@
   position: relative;
   background:  url('~assets/images/Landing-left.jpg') center no-repeat;
   background-size: cover;
-
 }
 
 .panel-map {
@@ -54,6 +53,20 @@
 p, small, h2, h1 {
   user-select: none;
   cursor: default;
+}
+
+.auth-button {
+  color: white;
+  text-transform: unset;
+  padding: 0 8px !important;
+
+  .icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+    padding: 0;
+    color: white;
+  }
 }
 
 @media (max-width: 600px) {

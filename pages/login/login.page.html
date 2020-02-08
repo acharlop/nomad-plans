@@ -16,7 +16,10 @@
     <div class="left-wrapper" >
       <Loader class="mb-5" />
       <img class="logo" src="~assets/images/Logo-landing.svg" alt="Nomad Plans Logo">
-      <auth-button class="my-2"></auth-button>
+      <v-btn class="auth-button" color="#4267b2" :loading="loading" @click="login()">
+        <v-icon class="icon">mdi-facebook</v-icon>
+        Continue with Facebook
+      </v-btn>
       <div class="mt-6">
         <small class="legal">By signing in you agree to
           <a @click.stop="showDialog('privacy')">Privacy Policy</a>
