@@ -42,7 +42,6 @@ export default Vue.component('LoginPageComponent', {
 
     this.signInAutomatic()
       .then((loggedIn) => {
-        console.log('here')
         if (loggedIn) this.$router.push('/')
       })
       .catch((e) => {

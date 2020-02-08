@@ -1,16 +1,18 @@
 import mockConsole from 'jest-mock-console'
 import LoginPageComponent from './index.vue'
-import { mount } from '@/test/test-utils'
+import { shallow, mount } from '@/test/test-utils'
 
 let storeOptions
 let signInAutomatic
 let signInWithFacebook
+let mocks
+let restore
 
 describe('LoginPageComponent', () => {
   beforeEach(() => {
-    mockConsole()
-    signInAutomatic = jest.fn().mockRejectedValue({ error: 'err' })
-    signInWithFacebook = jest.fn().mockRejectedValue({ error: 'err' })
+    restore = mockConsole()
+    signInAutomatic = jest.fn().mockRejectedValue({ error: 'no-auto-login' })
+    signInWithFacebook = jest.fn()
 
     storeOptions = {
       modules: {
@@ -26,15 +28,21 @@ describe('LoginPageComponent', () => {
         },
       },
     }
+
+    mocks = {
+      $router: {
+        push: jest.fn(),
+      },
+    }
   })
 
   test('is a Vue instance', async () => {
-    const wrapper = await mount(LoginPageComponent, { storeOptions })
+    const wrapper = await shallow(LoginPageComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
 
   test('shows the dialog with privacy tab', async () => {
-    const wrapper = await mount(LoginPageComponent, { storeOptions })
+    const wrapper = await shallow(LoginPageComponent, { storeOptions })
     expect(wrapper.vm.legalDialog).toBeFalsy()
 
     wrapper
@@ -47,7 +55,7 @@ describe('LoginPageComponent', () => {
   })
 
   test('shows the dialog with service tab', async () => {
-    const wrapper = await mount(LoginPageComponent, { storeOptions })
+    const wrapper = await shallow(LoginPageComponent, { storeOptions })
     expect(wrapper.vm.legalDialog).toBeFalsy()
 
     wrapper
@@ -79,7 +87,49 @@ describe('LoginPageComponent', () => {
     storeOptions.modules.auth.actions.signInAutomatic = signInAutomatic
 
     expect(signInAutomatic).not.toHaveBeenCalled()
-    const wrapper = await mount(LoginPageComponent, { storeOptions })
+    await shallow(LoginPageComponent, {
+      storeOptions,
+      mocks,
+      mockRouter: false,
+    })
     expect(signInAutomatic).toHaveBeenCalled()
+  })
+
+  test('logs in', async () => {
+    signInWithFacebook = jest.fn().mockResolvedValue()
+    storeOptions.modules.auth.actions.signInWithFacebook = signInWithFacebook
+
+    const wrapper = await mount(LoginPageComponent, {
+      storeOptions,
+      mocks,
+      mockRouter: false,
+    })
+
+    expect(signInWithFacebook).not.toHaveBeenCalled()
+    wrapper.find('.auth-button').trigger('click')
+    expect(signInWithFacebook).toHaveBeenCalled()
+  })
+
+  test('handles login error', async () => {
+    signInWithFacebook = jest.fn().mockRejectedValue({ error: 'err' })
+    storeOptions.modules.auth.actions.signInWithFacebook = signInWithFacebook
+
+    const wrapper = await mount(LoginPageComponent, { storeOptions })
+
+    expect(signInWithFacebook).not.toHaveBeenCalled()
+    wrapper.find('.auth-button').trigger('click')
+    expect(signInWithFacebook).toHaveBeenCalled()
+  })
+
+  // TODO figure out how to toggle state
+  xtest('toggles loading state', async () => {
+    restore()
+    storeOptions.modules.auth.state.isLoading = true
+    const wrapper = await shallow(LoginPageComponent, { storeOptions })
+
+    expect(wrapper.vm.loading).toBeTruthy()
+    storeOptions.modules.auth.state.isLoading = false
+    await wrapper.vm.$nextTick()
+    expect(wrapper.vm.loading).toBeFalsy()
   })
 })
