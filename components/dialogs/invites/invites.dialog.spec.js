@@ -21,17 +21,26 @@ describe('LegalDialogComponent', () => {
   })
 
   // TODO [testing] fix error - [Vue warn]: Error in v-on handler: "TypeError: Cannot read property 'select' of null"
-  xtest('copies link to clip board', () => {
+  test('copies link to clip board', () => {
+    // setup
+    const { execCommand } = document
+    document.execCommand = jest.fn()
+
+    // create
     const wrapper = mount(InvitesDialogComponent)
-    const buttons = wrapper.findAll('button')
+    expect(wrapper.vm.snackbar).toBeFalsy()
 
-    const input = wrapper.find('#nomadLink')
-    expect(input).toBeTruthy()
-    input.select = jest.fn()
+    // click
+    wrapper
+      .findAll('button')
+      .at(2)
+      .trigger('click')
 
-    wrapper.copyText = jest.fn()
+    // expected effects
+    expect(document.execCommand).toHaveBeenCalledWith('copy')
+    expect(wrapper.vm.snackbar).toBeTruthy()
 
-    buttons.at(2).trigger('click')
-    expect(wrapper.copyText).toHaveBeenCalled()
+    // teardown
+    document.execCommand = execCommand
   })
 })
