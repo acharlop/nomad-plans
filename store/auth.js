@@ -86,12 +86,17 @@ export const actions = {
     return new Promise((resolve, reject) => {
       commit('setLoading', true)
 
-      auth.signOut().then(() => {
-        commit('resetUser')
-        commit('setLoggedIn', false)
-        commit('setLoading', false)
-        resolve()
-      })
+      auth
+        .signOut()
+        .then(() => {
+          commit('resetUser')
+          commit('setLoggedIn', false)
+          commit('setLoading', false)
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
     })
   },
 }

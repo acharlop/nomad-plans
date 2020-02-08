@@ -17,6 +17,7 @@ module.exports = {
   ],
   setupFiles: ['<rootDir>/test/setup'],
   snapshotSerializers: ['jest-serializer-vue'],
+  setupFilesAfterEnv: ['jest-mock-console/dist/setupTestFramework.js'],
   // coverageThreshold: {
   //   global: {
   //     branches: 80,

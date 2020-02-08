@@ -3,8 +3,11 @@ import { mount } from '@/test/test-utils'
 
 import AppBar from '@/components/layout/app-bar'
 
+const { location: originalLocation } = window
+
 let storeOptions
 let propsData
+let replace
 
 describe('ErrorLayoutComponent', () => {
   beforeEach(() => {
@@ -32,9 +35,16 @@ describe('ErrorLayoutComponent', () => {
 
     propsData = {
       error: {
-        code: 400,
+        statusCode: 500,
       },
     }
+
+    replace = jest.fn()
+    window.location.replace = replace
+  })
+
+  afterAll(() => {
+    window.location = originalLocation
   })
 
   test('is Vue component', () => {
@@ -45,25 +55,34 @@ describe('ErrorLayoutComponent', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
 
-  xtest('correct 404 error', () => {
-    propsData.error.code = 404
+  test('correct 404 error', () => {
+    propsData.error.statusCode = 404
 
     const wrapper = mount(ErrorLayoutComponent, {
       storeOptions,
       propsData,
     })
-    expect(wrapper.vm.errorTitle).toEqual("This page doesn't exist")
+    expect(wrapper.find('h1').text()).toEqual("This page doesn't exist")
   })
 
   test('correct 500 error', () => {
-    propsData.error.code = 500
-
     const wrapper = mount(ErrorLayoutComponent, {
       storeOptions,
       propsData,
     })
 
-    expect(wrapper.vm.errorTitle).toEqual('Sorry, an error occurred')
+    expect(wrapper.find('h1').text()).toEqual('Sorry, an error occurred')
+  })
+
+  test('reloads', () => {
+    const wrapper = mount(ErrorLayoutComponent, {
+      storeOptions,
+      propsData,
+    })
+
+    wrapper.find('button').trigger('click')
+
+    expect(replace).toHaveBeenCalledWith('/')
   })
 
   test('display app bar if authenticated', () => {
