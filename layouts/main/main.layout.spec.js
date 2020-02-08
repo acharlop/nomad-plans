@@ -4,51 +4,49 @@ import { shallow } from '@/test/test-utils'
 jest.mock('@/components/dialogs/plan-form', () => () => 'PlanFormDialog')
 
 let storeOptions
+let closeDialogs
+let toggleSideDrawer
 
 describe('MainLayoutComponent', () => {
   beforeEach(() => {
+    closeDialogs = jest.fn()
+    toggleSideDrawer = jest.fn()
+
     storeOptions = {
       modules: {
         layout: {
           namespaced: true,
           state: {
+            showSideDrawer: true,
             dialogs: {
               legal: false,
               invite: false,
               planForm: false,
             },
           },
-          getters: {},
+          mutations: {
+            closeDialogs,
+            toggleSideDrawer,
+          },
         },
       },
     }
   })
 
   // is Vue instance
-  test('is Vue instance', async () => {
-    const wrapper = await shallow(MainLayoutComponent, { storeOptions })
+  test('is Vue instance', () => {
+    const wrapper = shallow(MainLayoutComponent, { storeOptions })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
-  // Inspect the raw component options
-  it('has a created hook', () => {
-    // expect(typeof MainLayoutComponent.created).toBe('function');
-  })
-  // Evaluate the results of functions in
-  // the raw component options
-  it('sets the correct default data', () => {
-    // expect(typeof MainLayoutComponent.data).toBe('function')
-    // const defaultData = MainLayoutComponent.data();
-    // expect(defaultData.message).toBe('hello!');
-  })
-  // Inspect the component instance on mount
-  it('correctly sets the message when created', () => {
-    // const vm = new Vue(MainLayoutComponent).$mount();
-    // expect(vm.message).toBe('bye!');
-  })
-  // Mount an instance and inspect the render output
-  it('renders the correct message', () => {
-    // const Ctor = Vue.extend(MainLayoutComponent);
-    // const vm = new Ctor().$mount();
-    // expect(vm.$el.textContent).toBe('bye!');
+
+  it('toggles side drawer on resize', () => {
+    global.innerWidth = 500
+    shallow(MainLayoutComponent, { storeOptions })
+    expect(toggleSideDrawer).not.toHaveBeenCalled()
+
+    global.innerWidth = 700
+    global.dispatchEvent(new Event('resize'))
+
+    expect(toggleSideDrawer).toHaveBeenCalled()
   })
 })
