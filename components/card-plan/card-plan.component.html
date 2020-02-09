@@ -11,51 +11,29 @@
         <small class="ml-2">{{ dateDistance }}</small>
       </v-list-item-subtitle>
     </v-list-item-content>
-    <v-list-item-avatar
-      size="64"
-      color="grey"
-      v-if="userTripId"
-    >
-    </v-list-item-avatar>
   </v-list-item>
 
-  <v-card-text :class="[{ 'pt-1': plan.description }, 'pb-0']" v-if="plan.description" @click="planClicked">
+  <v-card-text
+    :class="[{ 'pt-1': plan.description }, 'pb-0']"
+    v-if="plan.description"
+    @click="planClicked"
+  >
     <!-- description -->
     <v-hover v-slot:default="{ hover }">
-      <Clamp
-        tag="p"
-        class="mb-0"
-        autoresize
-        :max-lines="3"
-        :expanded="hover"
-      >{{plan.description}}</Clamp>
+      <Clamp tag="p" class="mb-0" autoresize :max-lines="3" :expanded="hover">{{
+        plan.description
+      }}</Clamp>
     </v-hover>
-    <v-row class="mx-0">
-      <v-avatar v-for="friend of friendsList" :key="friend.id" size="36" class="mr-4 mt-4">
-        <img :src="friend.profileUrl" :alt="friend.name">
-      </v-avatar>
-      <v-btn
-        v-if="hasLotsOfFriends"
-        icon
-        height="36"
-        outlined
-        @click="toggleFriendsList"
-        class="mt-4"
-        style="font-size: 18px;"
-        :class="{ 'pr-1': showMoreFriends}"
-      >
-        <template v-if="showMoreFriends">
-          <v-icon small class="mr-n2">mdi-plus</v-icon>{{ moreFriendsCount }}
-        </template>
-        <template v-if="!showMoreFriends">
-          <v-icon small>mdi-minus</v-icon>
-        </template>
-      </v-btn>
-    </v-row>
   </v-card-text>
 
   <v-card-actions>
-    <v-btn class="secondary--text text--darken-1" text :disabled="confirmed" @click="confirmPlan" :loading="confirmLoading">
+    <v-btn
+      class="secondary--text text--darken-1"
+      text
+      :disabled="confirmed"
+      @click="confirmPlan"
+      :loading="confirmLoading"
+    >
       {{ confirmed ? 'confirmed' : 'confirm' }}
     </v-btn>
     <v-spacer></v-spacer>
