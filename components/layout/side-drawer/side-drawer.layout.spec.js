@@ -40,6 +40,7 @@ describe('SideDrawerLayoutComponent', () => {
         },
       },
     }
+    document.body.id = 'side-drawer'
   })
 
   // is vue component

@@ -10,22 +10,12 @@ export default Vue.component('CardPlan', {
   props: {
     plan: {
       type: Object,
-      default: () => ({}),
-    },
-    userTripId: {
-      type: String,
-      default: '',
+      required: true,
     },
   },
   data() {
     return {
-      hasLotsOfFriends: this.plan.friends
-        ? this.plan.friends.length > 4
-        : false,
-      moreFriendsCount: this.plan.friends ? this.plan.friends.length - 4 : 0,
-      showMoreFriends: true,
       confirmLoading: false,
-      place: undefined,
     }
   },
   computed: {
@@ -33,17 +23,10 @@ export default Vue.component('CardPlan', {
       highlightId: (state) => state.plans.highlightId,
     }),
     isHighlighted() {
-      return this.plan.id === this.highlightId
+      return this.highlightId && this.plan.id === this.highlightId
     },
     dateRange() {
       return formatRange(this.plan.startAt, this.plan.endAt)
-    },
-    friendsList() {
-      if (!this.plan.friends || !this.plan.friends.length) return []
-
-      return this.plan.friends.length > 4 && this.showMoreFriends
-        ? this.plan.friends.slice(0, 4)
-        : this.plan.friends
     },
     confirmed() {
       return this.plan.confirmed
@@ -76,12 +59,6 @@ export default Vue.component('CardPlan', {
       this.$store.dispatch('plans/confirmPlan', this.plan.id).then(() => {
         this.confirmLoading = false
       })
-    },
-    toggleFriendsList() {
-      this.showMoreFriends = !this.showMoreFriends
-    },
-    toggleDescription() {
-      this.showMoreDescription = !this.showMoreDescription
     },
     edit() {
       this.$store.commit('plans/setPlanEditId', this.plan.id)

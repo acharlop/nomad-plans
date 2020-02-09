@@ -14,7 +14,6 @@ import {
 const localVue = createLocalVue()
 
 // attach real instances
-localVue.use(VueRouter)
 localVue.use(Vuex)
 
 // routing
@@ -32,7 +31,14 @@ const stubs = [
 
 export const mount = (
   component,
-  { options = {}, storeOptions = {}, vuetifyOptions = {}, propsData = {} } = {}
+  {
+    options = {},
+    storeOptions = {},
+    vuetifyOptions = {},
+    propsData = {},
+    mocks = {},
+    mockRouter = true,
+  } = {}
 ) => {
   const store = new Vuex.Store(storeOptions)
 
@@ -44,12 +50,16 @@ export const mount = (
 
   document.body.setAttribute('data-app', true)
 
+  if (mockRouter) {
+    options = { ...options, router }
+  }
+
   return vueMount(component, {
     localVue,
-    router,
     stubs,
     store,
     vuetify,
+    mocks,
     propsData,
     ...options,
   })
@@ -57,7 +67,14 @@ export const mount = (
 
 export const shallow = (
   component,
-  { options = {}, storeOptions = {}, vuetifyOptions = {}, propsData = {} } = {}
+  {
+    options = {},
+    storeOptions = {},
+    vuetifyOptions = {},
+    propsData = {},
+    mocks = {},
+    mockRouter = true,
+  } = {}
 ) => {
   const store = new Vuex.Store(storeOptions)
 
@@ -69,13 +86,17 @@ export const shallow = (
 
   document.body.setAttribute('data-app', true)
 
+  if (mockRouter) {
+    options = { ...options, router }
+  }
+
   return vueShallowMount(component, {
     localVue,
-    router,
     stubs,
     store,
     vuetify,
     propsData,
+    mocks,
     ...options,
   })
 }
