@@ -24,7 +24,6 @@ export default Vue.component('SideDrawer', {
     ...mapState({
       showSideDrawer: (state) => state.layout.showSideDrawer,
       sideDrawerTab: (state) => state.layout.sideDrawerTab,
-      myPlans: (state) => state.plans.mine,
       friendsPlans: (state) => state.plans.friends,
       isLoading: (state) => state.plans.isLoading,
     }),
