@@ -7,6 +7,7 @@ let signOut
 let showDialogLegal
 let showDialogInvite
 let wrapper
+let mocks
 
 describe('ProfileMenuComponent', () => {
   beforeEach(() => {
@@ -37,6 +38,12 @@ describe('ProfileMenuComponent', () => {
             showDialogInvite,
           },
         },
+      },
+    }
+
+    mocks = {
+      $router: {
+        push: jest.fn(),
       },
     }
   })
@@ -103,7 +110,7 @@ describe('ProfileMenuComponent', () => {
   })
 
   test('sign the user out', () => {
-    wrapper = mount(ProfileMenuComponent, { storeOptions })
+    wrapper = mount(ProfileMenuComponent, { storeOptions, mocks })
     wrapper.find('.v-avatar').trigger('click')
     const links = wrapper.findAll('.v-list-item--link')
 
