@@ -6,11 +6,10 @@ let storeOptions
 let signInAutomatic
 let signInWithFacebook
 let mocks
-let restore
 
 describe('LoginPageComponent', () => {
   beforeEach(() => {
-    restore = mockConsole()
+    mockConsole()
     signInAutomatic = jest.fn().mockRejectedValue({ error: 'no-auto-login' })
     signInWithFacebook = jest.fn()
 
@@ -95,6 +94,19 @@ describe('LoginPageComponent', () => {
     expect(signInAutomatic).toHaveBeenCalled()
   })
 
+  test('handles automatic login error', async () => {
+    signInAutomatic = jest.fn().mockResolvedValue(false)
+    storeOptions.modules.auth.actions.signInAutomatic = signInAutomatic
+
+    expect(signInAutomatic).not.toHaveBeenCalled()
+    await shallow(LoginPageComponent, {
+      storeOptions,
+      mocks,
+      mockRouter: false,
+    })
+    expect(signInAutomatic).toHaveBeenCalled()
+  })
+
   test('logs in', async () => {
     signInWithFacebook = jest.fn().mockResolvedValue()
     storeOptions.modules.auth.actions.signInWithFacebook = signInWithFacebook
@@ -121,15 +133,18 @@ describe('LoginPageComponent', () => {
     expect(signInWithFacebook).toHaveBeenCalled()
   })
 
-  // TODO figure out how to toggle state
-  xtest('toggles loading state', async () => {
-    restore()
-    storeOptions.modules.auth.state.isLoading = true
+  test('toggles loading state', async () => {
+    jest.useFakeTimers()
     const wrapper = await shallow(LoginPageComponent, { storeOptions })
+    expect(wrapper.vm.loading).toBeFalsy()
 
+    // sets loading
+    storeOptions.modules.auth.state.isLoading = true
     expect(wrapper.vm.loading).toBeTruthy()
+
+    // sets not loading
     storeOptions.modules.auth.state.isLoading = false
-    await wrapper.vm.$nextTick()
+    jest.runAllTimers()
     expect(wrapper.vm.loading).toBeFalsy()
   })
 })

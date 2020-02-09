@@ -43,6 +43,7 @@ export default Vue.component('LoginPageComponent', {
     this.signInAutomatic()
       .then((loggedIn) => {
         if (loggedIn) this.$router.push('/')
+        else console.error(loggedIn)
       })
       .catch((e) => {
         console.error(e)
